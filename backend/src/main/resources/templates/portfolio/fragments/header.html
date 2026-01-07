@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="kr">
-    <div th:fragment="headerFragment">
-        <nav>
-            <a href="/">Logo</a>
-            <a href="/about"></a>
-        </nav>
-    </div>
+<header th:fragment="headerFragment" class="w-full">
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-b-2 border-b-gray-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-black text-xl font-medium" style="opacity: 1;">&lt;scshin /&gt;</div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <button class="text-black hover:text-gray-300 transition-colors duration-200 capitalize"
+                            style="opacity: 1; transform: none;">home
+                    </button>
+                    <button class="text-black hover:text-gray-300 transition-colors duration-200 capitalize"
+                            style="opacity: 1; transform: none;">about
+                    </button>
+                    <button class="text-black hover:text-gray-300 transition-colors duration-200 capitalize"
+                            style="opacity: 1; transform: none;">skills
+                    </button>
+                    <button class="text-black hover:text-gray-300 transition-colors duration-200 capitalize"
+                            style="opacity: 1; transform: none;">projects
+                    </button>
+                    <button class="text-black hover:text-gray-300 transition-colors duration-200 capitalize"
+                            style="opacity: 1; transform: none;">contact
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 </html>
