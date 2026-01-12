@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{portfolio/layouts/default_layout}" lang="kr">
+      layout:decorate="~{portfolio/layouts/default_layout}" lang="kr" class="scroll-smooth">
 <main layout:fragment="main">
     <section
             id="intro"
-            class="h-[calc(100vh-62px)] bg-slate-50 bg-gradient-to-b from-white to-blue-100 flex items-center justify-center">
+            class="h-[calc(100vh-62px)] bg-slate-50 flex items-center justify-center">
         <div class="max-w-7xl mx-auto px-6 py-20 text-center">
+            <p class="text-xl md:text-2xl text-slate-700 font-semibold">
+            비즈니스의 목표를 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">견고한 기술</span>로
+            현실화하는
+            </p>
+            <br>
             <h1 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
-                비즈니스의 목표를 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">견고한 기술</span>로
-                현실화하는
-                <br class="hidden md:block">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">Full-Stack</span>
-                개발자 신성철입니다.
+                개발자 신성철
             </h1>
 
             <div class="max-w-3xl mx-auto space-y-4">
                 <p class="text-xl md:text-2xl font-semibold text-slate-700">
-                    기술은 목적이 아닌 <span class="bg-blue-100 text-blue-700 px-2 rounded">수단</span>이라고 믿습니다.
-                </p>
-
-                <p class="text-lg text-slate-600 leading-relaxed">
-                    서비스의 본질을 이해하고, 유지보수가 용이한
-                    <span class="font-medium text-slate-800 underline decoration-blue-300 underline-offset-4">클린 코드</span>와
-                    <span class="font-medium text-slate-800 underline decoration-blue-300 underline-offset-4">확장성 있는 아키텍처</span>를
-                    통해 비즈니스의 연속성을 기여하는 데 집중합니다.
+                    기술은 목적이 아닌 <span class="bg-blue-100 text-black px-2 rounded">수단</span> 이라고 믿습니다.
                 </p>
 
                 <p class="pt-6 text-slate-400 flex items-center justify-center gap-2">
@@ -35,7 +30,7 @@
 
             <div class="mt-12 flex justify-center gap-4">
                 <a href="#projects"
-                   class="px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200">
+                   class="px-8 py-3 bg-neutral-600 text-white font-bold rounded-full hover:bg-neutral-700 transition-all shadow-lg hover:shadow-neutral-200">
                     프로젝트 보기
                 </a>
                 <a href="https://github.com/ShinSeongCheol"
@@ -65,7 +60,7 @@
         </div>
     </section>
 
-    <section class="w-full py-24 bg-white">
+    <section id="about" class="w-full py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
 
             <div class="mb-16 text-left">
@@ -248,9 +243,6 @@
                         <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Jenkins / CI/CD</span>
                         <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Slack / Jira</span>
                     </div>
-                    <div class="mt-8 pt-6 border-t border-slate-50">
-                        <p class="text-sm text-slate-500 italic">"도구는 협업의 효율을 높이는 가장 강력한 수단이라 믿습니다."</p>
-                    </div>
                 </div>
 
             </div>
@@ -262,9 +254,9 @@
 
             <div class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                    <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2">Selected Projects</h2>
+                    <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">Projects</span></h2>
                     <h3 class="text-3xl md:text-4xl font-bold text-slate-900">
-                        기술로 비즈니스를 <span class="text-blue-600">현실화한 프로젝트</span>
+                        기술로 비즈니스를 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">현실화한 프로젝트</span>
                     </h3>
                 </div>
                 <p class="text-slate-500 max-w-md text-sm md:text-base">
