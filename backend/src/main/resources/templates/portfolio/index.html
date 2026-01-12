@@ -3,6 +3,7 @@
       layout:decorate="~{portfolio/layouts/default_layout}" lang="kr">
 <main layout:fragment="main">
     <section
+            id="intro"
             class="h-[calc(100vh-62px)] bg-slate-50 bg-gradient-to-b from-white to-blue-100 flex items-center justify-center">
         <div class="max-w-7xl mx-auto px-6 py-20 text-center">
             <h1 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
@@ -37,8 +38,9 @@
                    class="px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200">
                     프로젝트 보기
                 </a>
-                <a href="#"
+                <a href="https://github.com/ShinSeongCheol"
                    class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-white hover:bg-blue-600/20 transition-all duration-300 hover:scale-110"
+                   target="_blank"
                    style="opacity: 1; transform: none;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -47,8 +49,9 @@
                         <path d="M9 18c-4.51 2-5-2-7-2"></path>
                     </svg>
                 </a>
-                <a href="#"
+                <a href="https://www.linkedin.com/in/%EC%84%B1%EC%B2%A0-%EC%8B%A0-374bb6267/"
                    class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-white hover:bg-blue-600/20 transition-all duration-300 hover:scale-110"
+                   target="_blank"
                    style="opacity: 1; transform: none;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -58,16 +61,288 @@
                         <circle cx="4" cy="4" r="2"></circle>
                     </svg>
                 </a>
-                <a href="#"
-                   class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-white hover:bg-blue-600/20 transition-all duration-300 hover:scale-110"
-                   style="opacity: 1; transform: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                         class="lucide lucide-mail w-5 h-5" aria-hidden="true">
-                        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
-                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                    </svg>
-                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mb-16 text-left">
+                <h2 class="text-md font-bold uppercase tracking-widest mb-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 ">About</span></h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+
+                <div class="space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
+                        "내일의 자산으로 만드는 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 ">기록의 힘</span>"
+                    </h3>
+
+                    <div class="space-y-4 text-lg text-slate-600 leading-relaxed">
+                        <p>
+                            저는 단순히 코드를 짜는 사람이 아니라, <strong>문제를 해결하는 과정을 기록하고 공유하는 개발자</strong>입니다.
+                            처음 접하는 기술 앞에서 막막함을 느끼기보다, 이를 분석하고 나만의 언어로 정리하여 팀의 기술 자산으로 만드는 데 익숙합니다.
+                        </p>
+                        <p>
+                            매일 작성하는 개발 일지는 단순한 기록을 넘어 더 효율적인 구조를 고민하는 밑거름이 되었으며,
+                            이러한 태도는 예상치 못한 장애 상황에서도 차분하게 원인을 파악하고 해결책을 찾아내는 저만의 큰 무기가 되었습니다.
+                        </p>
+                    </div>
+
+                    <div class="flex gap-4 pt-4">
+                        <a href="#" class="flex items-center gap-2 px-5 py-2.5 border border-slate-200 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                            <span class="text-sm font-medium">기술 블로그 읽기</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium mb-1">Total Records</p>
+                                <h4 class="text-4xl font-bold text-slate-900">365+</h4>
+                                <p class="text-slate-600 mt-2 text-sm leading-snug">지난 1년간 매일 거르지 않고 <br>작성한 개발 일지 및 트러블슈팅 기록</p>
+                            </div>
+                            <div class="p-3 bg-blue-100 rounded-lg text-blue-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium mb-1">Problem Solving</p>
+                                <h4 class="text-4xl font-bold text-slate-900">100%</h4>
+                                <p class="text-slate-600 mt-2 text-sm leading-snug">원인 파악부터 재발 방지 대책까지 <br>문서화를 통한 기술 부채 최소화</p>
+                            </div>
+                            <div class="p-3 bg-green-100 rounded-lg text-green-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="w-full py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mb-16">
+                <h2 class="text-sm font-bold uppercase tracking-widest mb-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">Skills</span></h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900">
+                    기록으로 다져진 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 ">견고한 기술 스택</span>
+                </h3>
+                <p class="text-slate-500 mt-4 max-w-2xl text-lg">
+                    단순한 사용법을 넘어 내부 동작 원리를 깊이 있게 파고들며,<br>
+                    실제 프로젝트에서 최적의 퍼포먼스를 내기 위한 기술들을 선별하여 사용합니다.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="p-2 bg-blue-50 rounded-lg text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-800">Frontend</h4>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-slate-700">React / Next.js</span>
+                                <span class="text-blue-600 font-semibold text-sm">90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-slate-700">Tailwind CSS</span>
+                                <span class="text-blue-600 font-semibold text-sm">95%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-slate-700">TypeScript</span>
+                                <span class="text-blue-600 font-semibold text-sm">80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="p-2 bg-green-50 rounded-lg text-green-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-800">Backend</h4>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-slate-700">Java / Spring Boot</span>
+                                <span class="text-green-600 font-semibold text-sm">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-green-500 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-slate-700">MySQL / PostgreSQL</span>
+                                <span class="text-green-600 font-semibold text-sm">80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-green-500 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-slate-700">Node.js</span>
+                                <span class="text-green-600 font-semibold text-sm">70%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-green-500 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="p-2 bg-purple-50 rounded-lg text-purple-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a2 2 0 01-2 2H3m2 0h14a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-800">DevOps & Tools</h4>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Git / GitHub</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Docker</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">AWS (EC2, S3)</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Jenkins / CI/CD</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Slack / Jira</span>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-50">
+                        <p class="text-sm text-slate-500 italic">"도구는 협업의 효율을 높이는 가장 강력한 수단이라 믿습니다."</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="w-full py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2">Selected Projects</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900">
+                        기술로 비즈니스를 <span class="text-blue-600">현실화한 프로젝트</span>
+                    </h3>
+                </div>
+                <p class="text-slate-500 max-w-md text-sm md:text-base">
+                    단순한 구현을 넘어, 사용자 경험 개선과 안정적인 아키텍처 설계를 고민하며 진행한 프로젝트들입니다.
+                </p>
+            </div>
+
+            <div class="space-y-20">
+
+                <div class="group grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-7 overflow-hidden rounded-2xl bg-slate-100 aspect-video shadow-xl border border-slate-100">
+                        <div class="w-full h-full flex items-center justify-center text-slate-400 group-hover:scale-105 transition-transform duration-500">
+                            Project Thumbnail Image
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-5 space-y-6">
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase">Full-Stack</span>
+                            <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase">Web Service</span>
+                        </div>
+
+                        <h4 class="text-3xl font-bold text-slate-900 leading-tight">개인 맞춤형 쇼핑 큐레이션 플랫폼</h4>
+
+                        <p class="text-slate-600 leading-relaxed">
+                            사용자의 행동 데이터를 분석하여 최적의 상품을 추천하는 비즈니스 모델을 구현했습니다.
+                            초기 로딩 속도를 <span class="text-blue-600 font-bold">40% 개선</span>하고,
+                            확장성을 고려한 데이터베이스 스키마 설계를 통해 데이터 처리 효율을 높였습니다.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 text-sm font-medium text-slate-500">
+                            <span>#Next.js</span> <span>#Spring_Boot</span> <span>#MySQL</span> <span>#Redis</span>
+                        </div>
+
+                        <div class="pt-4 flex gap-4">
+                            <a href="#" class="flex items-center gap-1 font-bold text-slate-900 hover:text-blue-600 transition-colors">
+                                View Case Study
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                            </a>
+                            <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors font-medium">GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-5 space-y-6 md:order-1 order-2">
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-green-50 text-green-600 text-xs font-bold rounded-full uppercase">Front-end</span>
+                            <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase">SaaS</span>
+                        </div>
+
+                        <h4 class="text-3xl font-bold text-slate-900 leading-tight">실시간 협업 대시보드 시스템</h4>
+
+                        <p class="text-slate-600 leading-relaxed">
+                            팀 간의 원활한 커뮤니케이션을 위해 실시간 알림 시스템과 데이터 시각화 라이브러리를 적용했습니다.
+                            기록의 힘을 믿기에 모든 트러블슈팅 과정은 <span class="text-blue-600 font-bold underline decoration-blue-200">기술 블로그에 연재</span>하며 완성도를 높였습니다.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 text-sm font-medium text-slate-500">
+                            <span>#React</span> <span>#TypeScript</span> <span>#Socket.io</span> <span>#Tailwind</span>
+                        </div>
+
+                        <div class="pt-4 flex gap-4">
+                            <a href="#" class="flex items-center gap-1 font-bold text-slate-900 hover:text-blue-600 transition-colors">
+                                View Live Site
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                            </a>
+                            <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors font-medium">Read Docs</a>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-7 overflow-hidden rounded-2xl bg-slate-100 aspect-video shadow-xl border border-slate-100 md:order-2 order-1">
+                        <div class="w-full h-full flex items-center justify-center text-slate-400 group-hover:scale-105 transition-transform duration-500">
+                            Project Thumbnail Image
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
