@@ -92,6 +92,8 @@
     --default-mono-font-family: var(--font-mono);
     --color-bg_glass: rgba(255, 255, 255, 0.8);
     --color-bg_tertiary: #f5f5f5;
+    --color-bg-primary: #fafafa;
+    --color-header-border: rgba(0, 0, 0, 0.08);
     --color-accent_primary: #6366f1;
     --color-primary: #1a1a2e;
     --color-secondary: #4a4a68;
@@ -556,9 +558,6 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 2px;
   }
-  .border-bg_glass {
-    border-color: var(--color-bg_glass);
-  }
   .border-gray-100 {
     border-color: var(--color-gray-100);
   }
@@ -576,6 +575,12 @@
   }
   .border-teal-100 {
     border-color: var(--color-teal-100);
+  }
+  .border-b-header-border {
+    border-bottom-color: var(--color-header-border);
+  }
+  .bg-bg-primary {
+    background-color: var(--color-bg-primary);
   }
   .bg-bg_glass {
     background-color: var(--color-bg_glass);
@@ -612,6 +617,9 @@
   }
   .bg-neutral-600 {
     background-color: var(--color-neutral-600);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
   }
   .bg-purple-50 {
     background-color: var(--color-purple-50);
@@ -770,14 +778,6 @@
   .leading-7 {
     --tw-leading: calc(var(--spacing) * 7);
     line-height: calc(var(--spacing) * 7);
-  }
-  .leading-\[1\.6\] {
-    --tw-leading: 1.6;
-    line-height: 1.6;
-  }
-  .leading-\[1\.6px\] {
-    --tw-leading: 1.6px;
-    line-height: 1.6px;
   }
   .leading-relaxed {
     --tw-leading: var(--leading-relaxed);
