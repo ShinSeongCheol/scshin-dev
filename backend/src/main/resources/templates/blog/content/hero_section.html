@@ -1,12 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="kr">
     <section class="hero flex items-center justify-between pt-24 pb-14 md:pt-30 px-6 md:pb-20 max-w-7xl min-h-auto md:min-h-[80vh] mx-auto my-0 gap-15" th:fragment="heroSectionFragment">
         <div class="hero-content flex-1 max-w-xl">
-            <div class="hero-badge inline-block px-4 py-2 bg-bg-tertiary rounded-2xl text-sm font-medium text-secondary mb-6">👋 환영합니다</div>
-            <h1 class="hero-title text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-tight mb-6">
+            <div class="hero-badge inline-block px-4 py-2 bg-bg-tertiary rounded-2xl text-sm font-medium text-secondary mb-6 transition-colors duration-300">👋 환영합니다</div>
+            <h1 class="hero-title text-[clamp(2.5rem,5vw,3.5rem)] text-primary font-semibold leading-tight mb-6 transition-colors duration-300">
                 생각을 기록하고<br>
                 <span class="gradient-text bg-linear-to-br from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">경험을 공유합니다</span>
             </h1>
-            <p class="hero-description text-lg text-secondary leading-7 mb-10">
+            <p class="hero-description text-lg text-secondary leading-7 mb-10 transition-colors duration-300">
                 기술, 일상, 그리고 다양한 생각들을 담은 개인 블로그입니다.
                 함께 성장하고 배워가는 공간이 되길 바랍니다.
             </p>
@@ -26,17 +26,17 @@
             </div>
         </div>
         <div class="hero-visual relative w-100 h-100 hidden lg:block">
-            <div class="floating-card card-1 absolute px-6 py-4 bg-bg-secondary rounded-xl shadow-xl flex items-center gap-3 animate-bounce [animation-duration:6s] top-20 left-10">
+            <div class="floating-card card-1 absolute px-6 py-4 bg-bg-secondary rounded-xl shadow-xl flex items-center gap-3 animate-bounce [animation-duration:6s] top-20 left-10 transition-colors duration-300">
                 <span class="card-emoji text-2xl">💡</span>
-                <span class="card-text font-semibold">아이디어</span>
+                <span class="card-text text-secondary font-semibold transition-colors duration-300">아이디어</span>
             </div>
-            <div class="floating-card card-2 absolute px-6 py-4 bg-bg-secondary rounded-xl shadow-xl flex items-center gap-3 animate-bounce [animation-duration:6s] [animation-delay:-2s] top-50 right-5">
+            <div class="floating-card card-2 absolute px-6 py-4 bg-bg-secondary rounded-xl shadow-xl flex items-center gap-3 animate-bounce [animation-duration:6s] [animation-delay:-2s] top-50 right-5 transition-colors duration-300">
                 <span class="card-emoji text-2xl">🚀</span>
-                <span class="card-text font-semibold">성장</span>
+                <span class="card-text text-secondary font-semibold transition-colors duration-300">성장</span>
             </div>
-            <div class="floating-card card-3 absolute px-6 py-4 bg-bg-secondary rounded-xl shadow-xl flex items-center gap-3 animate-bounce [animation-duration:6s] [animation-delay:-4s] bottom-15 left-20">
+            <div class="floating-card card-3 absolute px-6 py-4 bg-bg-secondary rounded-xl shadow-xl flex items-center gap-3 animate-bounce [animation-duration:6s] [animation-delay:-4s] bottom-15 left-20 transition-colors duration-300">
                 <span class="card-emoji text-2xl">✨</span>
-                <span class="card-text font-semibold">영감</span>
+                <span class="card-text text-secondary font-semibold transition-colors duration-300">영감</span>
             </div>
         </div>
     </section>

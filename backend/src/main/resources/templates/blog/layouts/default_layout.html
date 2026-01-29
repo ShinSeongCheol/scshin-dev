@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="kr">
     <head th:replace="~{blog/fragments/config::configFragment}"></head>
-    <body class="bg-bg-primary">
+    <body class="bg-bg-primary transition-colors duration-300">
         <header th:replace="~{blog/fragments/header::headerFragment}"></header>
         <main layout:fragment="main"></main>
         <footer th:replace="~{blog/fragments/footer::footerFragment}"></footer>
+        <script th:src="@{/js/theme.js}"></script>
     </body>
 </html>
