@@ -644,9 +644,6 @@
   .border-t-footer-border {
     border-top-color: var(--color-footer-border);
   }
-  .border-t-header-border {
-    border-top-color: var(--color-header-border);
-  }
   .border-b-header-border {
     border-bottom-color: var(--color-header-border);
   }
