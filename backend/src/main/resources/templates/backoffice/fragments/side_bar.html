@@ -3,9 +3,9 @@
     <aside th:fragment="sideBarFragment" class="admin-sidebar flex min-h-dvh">
         <div class="w-65 bg-backoffice-secondary border-r border-backoffice-border flex flex-col fixed top-0 left-0 bottom-0 z-50">
             <div class="sidebar-header p-6 border-b border-backoffice-border flex items-center justify-between">
-                <a href="index.html" class="sidebar-logo flex items-center gap-2 text-lg font-bold">
+                <a th:href="@{blog}" class="sidebar-logo flex items-center gap-2 text-lg font-bold">
                     <span class="logo-icon">✨</span>
-                    <span class="logo-text gradient-text bg-linear-to-br from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">My Blog</span>
+                    <span class="logo-text gradient-text bg-linear-to-br from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">&lt;scshin /&gt;</span>
                 </a>
                 <span class="admin-badge px-2 py-1 bg-linear-to-br from-violet-500 to-fuchsia-500 text-white text-xs font-bold rounded-lg tracking-[0.5]">ADMIN</span>
             </div>
