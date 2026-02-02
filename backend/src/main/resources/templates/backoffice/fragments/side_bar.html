@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="kr">
+    <aside th:fragment="sideBarFragment" class="admin-sidebar flex min-h-dvh">
+        <div class="w-65 bg-backoffice-secondary border-r border-backoffice-border flex flex-col fixed top-0 left-0 bottom-0 z-50">
+            <div class="sidebar-header p-6 border-b border-backoffice-border flex items-center justify-between">
+                <a href="index.html" class="sidebar-logo flex items-center gap-2 text-lg font-bold">
+                    <span class="logo-icon">✨</span>
+                    <span class="logo-text gradient-text bg-linear-to-br from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">My Blog</span>
+                </a>
+                <span class="admin-badge px-2 py-1 bg-linear-to-br from-violet-500 to-fuchsia-500 text-white text-xs font-bold rounded-lg tracking-[0.5]">ADMIN</span>
+            </div>
+            <nav class="sidebar-nav flex-1 px-3 py-4 flex flex-col gap-1">
+                <button class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-150 text-left w-full bg-backoffice-active text-backoffice-accent-primary cursor-pointer" data-section="dashboard">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="9"></rect>
+                        <rect x="14" y="3" width="7" height="5"></rect>
+                        <rect x="14" y="12" width="7" height="9"></rect>
+                        <rect x="3" y="16" width="7" height="5"></rect>
+                    </svg>
+                    대시보드
+                </button>
+                <button class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-backoffice-text-secondary transition-all duration-150 text-left w-full hover:bg-backoffice-tertiary hover:text-backoffice-text-primary cursor-pointer" data-section="write">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                    새 글 작성
+                </button>
+                <button class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-backoffice-text-secondary transition-all duration-150 text-left w-full hover:bg-backoffice-tertiary hover:text-backoffice-text-primary cursor-pointer" data-section="posts">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    글 관리
+                </button>
+                <button class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-backoffice-text-secondary transition-all duration-150 text-left w-full hover:bg-backoffice-tertiary hover:text-backoffice-text-primary cursor-pointer" data-section="categories">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    카테고리 관리
+                </button>
+            </nav>
+            <div class="sidebar-footer px-3 py-4">
+                <button class="logout-btn flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-backoffice-text-secondary transition-all duration-150 w-full hover:bg-[rgba(239,68,68,0.1)] hover:text-[#ef4444] cursor-pointer" id="logoutBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path>
+                    </svg>
+                    로그아웃
+                </button>
+            </div>
+        </div>
+    </aside>
+</html>

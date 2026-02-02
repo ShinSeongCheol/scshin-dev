@@ -29,7 +29,13 @@
     /*backoffice*/
     --color-backoffice-primary: #fafafa;
     --color-backoffice-secondary: #ffffff;
-    --color-backoffice-tertiary: #8888a0;
+    --color-backoffice-tertiary: #f5f5f5;
+
+    --color-backoffice-text-primary: #1a1a2e;
+    --color-backoffice-text-secondary: #4a4a68;
+    --color-backoffice-text-tertiary: #8888a0;
+
+    --color-backoffice-active: rgba(99,102,241,0.1);
 
     --color-backoffice-accent-primary: #6366f1;
 
