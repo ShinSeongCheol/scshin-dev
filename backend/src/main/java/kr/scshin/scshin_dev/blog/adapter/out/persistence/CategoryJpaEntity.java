@@ -1,6 +1,7 @@
 package kr.scshin.scshin_dev.blog.adapter.out.persistence;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,16 +21,24 @@ public class CategoryJpaEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 128)
     private String slug;
 
-    @Column
+    @Column(length = 64)
+    private String icon;
+
+    @Column(name = "theme_color", length = 32)
+    private String themeColor;
+
+    @Column(length = 255)
     private String description;
 
     @Column(name = "sort_order")
-    private int sortOrder = 0;
+    @ColumnDefault("0")
+    private int sortOrder;
 
     @Column(name = "is_visible")
+    @ColumnDefault("true")
     private boolean isVisible = true;
 
     @CreatedDate
