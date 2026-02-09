@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="kr">
+    <div th:fragment="pageHeadingFragment(title, subtitle)" class="page-header page-header-card flex items-start justify-between gap-6 border border-backoffice-border bg-backoffice-secondary rounded-3xl p-6 mb-6">
+        <div class="page-header-left flex-1">
+            <h1 th:text="${title}" class="page-title text-3xl font-bold text-backoffice-text-primary px-2 py-0 flex items-center gap-3"></h1>
+            <p th:text="${subtitle}" class="page-subtitle text-backoffice-text-tertiary text-sm px-2 mt-2"></p>
+        </div>
+    </div>
+</html>

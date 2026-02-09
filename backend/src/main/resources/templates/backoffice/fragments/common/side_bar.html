@@ -3,7 +3,7 @@
     <aside th:fragment="sideBarFragment" class="admin-sidebar flex min-h-dvh">
         <div class="min-w-72 bg-backoffice-secondary border-r border-backoffice-border flex flex-col z-50">
             <div class="sidebar-header p-6 border-b border-backoffice-border flex items-center justify-between">
-                <a th:href="@{blog}" class="sidebar-logo flex items-center gap-2 text-lg font-bold">
+                <a th:href="@{../../../blog}" class="sidebar-logo flex items-center gap-2 text-lg font-bold">
                     <span class="logo-icon">✨</span>
                     <span class="logo-text gradient-text bg-linear-to-br from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">&lt;scshin /&gt;</span>
                 </a>
@@ -12,7 +12,7 @@
 <!--                   class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-150 text-left w-full bg-backoffice-active text-backoffice-accent-primary cursor-pointer"-->
             <nav id="sidebar-nav" class="sidebar-nav flex-1 px-3 py-4 flex flex-col gap-1">
                 <a id="sidebar-nav-dashboard-button"
-                   th:href="@{/backoffice}"
+                   th:href="@{/templates/backoffice}"
                    th:class="|flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-150 text-left w-full
                              ${menu == 'dashboard' ? 'bg-backoffice-active text-backoffice-accent-primary cursor-pointer' : 'text-backoffice-text-secondary  hover:bg-backoffice-tertiary hover:text-backoffice-text-primary cursor-pointer'}|"
                    data-section="dashboard">

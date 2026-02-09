@@ -19,6 +19,9 @@ public class BackOfficeController {
     @GetMapping("/backoffice/category")
     public String category(Model model) {
         model.addAttribute("menu", "category");
+        model.addAttribute("pageTitle", "카테고리");
+        model.addAttribute("pageSubTitle", "블로그의 카테고리를 관리하세요");
+
         return "backoffice/views/category/category";
     }
 
