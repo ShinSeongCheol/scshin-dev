@@ -599,6 +599,9 @@
   .items-center {
     align-items: center;
   }
+  .items-end {
+    align-items: flex-end;
+  }
   .items-start {
     align-items: flex-start;
   }
@@ -748,9 +751,6 @@
   .border-backoffice-border {
     border-color: var(--color-backoffice-border);
   }
-  .border-emerald-200 {
-    border-color: var(--color-emerald-200);
-  }
   .border-footer-border {
     border-color: var(--color-footer-border);
   }
@@ -850,9 +850,6 @@
       background-color: color-mix(in oklab, var(--color-blue-600) 20%, transparent);
     }
   }
-  .bg-emerald-50 {
-    background-color: var(--color-emerald-50);
-  }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }
@@ -924,9 +921,6 @@
   }
   .p-0\.5 {
     padding: calc(var(--spacing) * 0.5);
-  }
-  .p-1 {
-    padding: calc(var(--spacing) * 1);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -1048,6 +1042,9 @@
   .text-left {
     text-align: left;
   }
+  .text-right {
+    text-align: right;
+  }
   .font-mono {
     font-family: var(--font-mono);
   }
@@ -1156,9 +1153,6 @@
   }
   .text-blue-600 {
     color: var(--color-blue-600);
-  }
-  .text-emerald-700 {
-    color: var(--color-emerald-700);
   }
   .text-gray-500 {
     color: var(--color-gray-500);
@@ -1304,11 +1298,6 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .transition-opacity {
-    transition-property: opacity;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
   .transition-shadow {
     transition-property: box-shadow;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -1334,10 +1323,6 @@
   .duration-500 {
     --tw-duration: 500ms;
     transition-duration: 500ms;
-  }
-  .duration-1000 {
-    --tw-duration: 1000ms;
-    transition-duration: 1000ms;
   }
   .ease-in {
     --tw-ease: var(--ease-in);
