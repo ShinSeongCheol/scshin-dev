@@ -1,11 +1,17 @@
 package kr.scshin.scshin_dev.backoffice.adapter.in.web;
 
+import kr.scshin.scshin_dev.backoffice.application.port.in.GetPostListUseCase;
+import kr.scshin.scshin_dev.backoffice.application.service.GetPostListService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class BackOfficeController {
+
+    private final GetPostListUseCase getPostListUseCase;
 
     @GetMapping("/backoffice")
     public String backOffice(Model model) {
@@ -28,6 +34,10 @@ public class BackOfficeController {
     @GetMapping("/backoffice/post")
     public String post(Model model) {
         model.addAttribute("menu", "post");
+        model.addAttribute("postList", getPostListUseCase.getPostList());
         return "backoffice/views/post/post";
     }
+
+    @GetMapping("/backoffice/post/new")
+    public String postNew(Model model) {return "backoffice/views/post/post_form";}
 }

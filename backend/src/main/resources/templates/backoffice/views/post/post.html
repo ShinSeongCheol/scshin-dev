@@ -19,41 +19,33 @@
                 <span class="px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold" id="categoryListCount">0개</span>
             </div>
 
-            <div class="flex justify-end gap-2 mx-2">
-                <button class="px-2.5 py-1 text-xl text-white bg-indigo-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none">
-                    작성
-                </button>
-                <button class="px-2.5 py-1 text-xl text-white bg-red-500 hover:bg-red-400 hover:border-red-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none" th:onclick="|deletePost(${num})|">
-                    삭제
-                </button>
-            </div>
-
-            <table class="table-auto border-collapse mx-2 select-none">
+            <table class="table-fixed mx-2 border-collapse">
                 <thead>
-                    <tr class="bg-gray-200 border border-gray-100">
-                        <th class="p-2 w-12"><input type="checkbox" id="selectAll"></th>
-                        <th class="p-2 w-12">번호</th>
-                        <th class="p-2 ">제목</th>
-                        <th class="p-2 w-12">상태</th>
-                        <th class="p-2 w-32">작성일</th>
+                    <tr class="bg-gray-200 text-sm">
+                        <th class="p-2 w-16">번호</th>
+                        <th class="p-2 w-auto text-left">제목</th>
+                        <th class="p-2 w-28">상태</th>
+                        <th class="p-2 w-36">생성일</th>
+                        <th class="p-2 w-36">수정일</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
-                    <tr th:each="num : ${#numbers.sequence(1, 10)}">
-                        <td class="p-2"><input type="checkbox" name="postIds" th:value="${num}"></td>
-                        <td th:text="${num}" class="p-2">1</td>
-                        <td class="p-2 ">
-                            <a th:href="@{/admin/edit/{id}(id=${num})}" th:text="|테스트 게시글 제목 ${num}|">글 제목</a>
-                        </td>
-                        <td class="p-2">
-                            <span class="badge" th:classappend="${num % 2 == 0} ? 'badge-green' : 'badge-gray'" th:text="${num % 2 == 0 ? 'PUBLISHED' : 'DRAFT'}">PUBLISHED</span>
-                        </td>
-                        <td th:text="|2026-04-07|" class="p-2">2026-04-07</td>
+                <tbody class="cursor-default">
+                    <tr th:each="post : ${postList}" class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td th:text="${post.id()}" class="p-2 text-center text-gray-500 text-sm">1</td>
+                        <td class="p-2 text-left"><a th:href="@{/admin/edit/{id}(id=${post.id()})}" th:text="|${post.title()}|" class="text-blue-600 hover:underline block truncate">글 제목</a></td>
+                        <td class="p-2 text-center"><span class="inline-block px-2 py-1 text-xs font-semibold rounded" th:classappend="${post.id() % 2 == 0} ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'" th:text="${post.id() % 2 == 0 ? 'PUBLISHED' : 'DRAFT'}">PUBLISHED</span></td>
+                        <td th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd')}|" class="p-2 text-center text-sm text-gray-500">2026-04-07</td>
+                        <td th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd')}|" class="p-2 text-center text-sm text-gray-500">2026-04-07</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
 
+            <div class="absolute bottom-10 right-10 flex justify-end gap-2 mx-2">
+                <button class="px-2.5 py-1 text-xl text-white bg-indigo-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none">
+                    글 쓰기
+                </button>
+            </div>
+        </div>
     </main>
     <script th:src="@{/js/backoffice/fragments/sidebar.js}"></script>
 </html>
