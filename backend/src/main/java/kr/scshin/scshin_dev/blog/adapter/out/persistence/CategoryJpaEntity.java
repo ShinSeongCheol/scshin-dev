@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "category")
 @EntityListeners(AuditingEntityListener.class)
 public class CategoryJpaEntity {
     @Id

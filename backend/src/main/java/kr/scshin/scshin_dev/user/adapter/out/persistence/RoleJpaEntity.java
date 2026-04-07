@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role")
 @Getter
 @NoArgsConstructor
 public class RoleJpaEntity {
