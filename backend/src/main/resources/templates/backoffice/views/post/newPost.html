@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backoffice/layouts/newPostLayout}" lang="kr" class="scroll-smooth" data-theme=""
+>
+    <main layout:fragment="content" class="flex justify-center p-4">
+        <div class="w-7xl bg-white flex flex-col gap-4 rounded-xl shadow-xl">
+            <div class="flex justify-between p-4 border-b border-b-gray-200">
+                <input
+                        type="text"
+                        placeholder="제목을 입력하세요"
+                        class="text-3xl font-bold  outline-none placeholder:text-gray-300"
+                />
+                <div class="flex gap-2">
+                    <button class="p-2 rounded-sm hover:bg-gray-300 hover:shadow-md hover:cursor-pointer">미리보기</button>
+                    <button class="p-2 rounded-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:cursor-pointer">저장</button>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <textarea id="" name="" class="w-full p-4 bg-gray-50 text-gray-700 border border-gray-300 rounded-xl focus:outline-none min-h-192 field-sizing-content"></textarea>
+            </div>
+        </div>
+    </main>
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/common/markdown/marked.umd.js}"></script>
+        <script th:src="@{/js/backoffice/post/newPost.js}"></script>
+    </th:block>
+</html>

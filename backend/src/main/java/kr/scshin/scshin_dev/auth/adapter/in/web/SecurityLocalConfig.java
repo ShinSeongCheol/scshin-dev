@@ -11,8 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@Profile("!local")
-public class SecurityConfig {
+@Profile("local")
+public class SecurityLocalConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -22,23 +22,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
-                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
-
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/backoffice/**").hasRole("ADMIN")
-                        .anyRequest().permitAll()
-                )
-
-                .formLogin(form -> form
-                        .loginPage("/backoffice/login")
-                        .defaultSuccessUrl("/backoffice")
-                        .permitAll()
-                )
-
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/backoffice/login")
-                        .invalidateHttpSession(true)
-                );
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
     }

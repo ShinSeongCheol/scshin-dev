@@ -38,5 +38,5 @@ public class BackOfficeController {
     }
 
     @GetMapping("/backoffice/post/new")
-    public String postNew(Model model) {return "backoffice/views/post/post_form";}
+    public String postNew(Model model) {return "backoffice/views/post/newPost";}
 }
