@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-50: oklch(97.1% 0.013 17.38);
+    --color-red-100: oklch(93.6% 0.032 17.717);
     --color-red-200: oklch(88.5% 0.062 18.334);
     --color-red-400: oklch(70.4% 0.191 22.216);
     --color-red-500: oklch(63.7% 0.237 25.331);
@@ -1204,6 +1205,9 @@
   .text-blue-600 {
     color: var(--color-blue-600);
   }
+  .text-gray-200 {
+    color: var(--color-gray-200);
+  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
@@ -1236,6 +1240,9 @@
   }
   .text-red-50 {
     color: var(--color-red-50);
+  }
+  .text-red-100 {
+    color: var(--color-red-100);
   }
   .text-red-400 {
     color: var(--color-red-400);
@@ -1412,6 +1419,13 @@
         --tw-scale-y: 105%;
         --tw-scale-z: 105%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+  }
+  .group-hover\:text-white {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        color: var(--color-white);
       }
     }
   }
