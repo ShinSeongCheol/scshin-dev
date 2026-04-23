@@ -1,7 +1,10 @@
 package kr.scshin.scshin_dev.backoffice.domain;
 
+import lombok.Builder;
+
 import java.time.LocalDateTime;
 
+@Builder
 public record Post (
     Long id,
     String title,
@@ -9,6 +12,4 @@ public record Post (
     Long authorId,
     LocalDateTime createdAt,
     LocalDateTime updatedAt
-){
-
-}
+){ }
