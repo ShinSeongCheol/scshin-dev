@@ -1,8 +1,8 @@
-package kr.scshin.scshin_dev.backoffice.application.port.out;
+package kr.scshin.scshin_dev.backoffice.application.port.in.dto.response;
 
 import java.time.LocalDateTime;
 
-public record BackofficePostListResult(
+public record PostReadResponse(
         Long id,
         String title,
         String content,

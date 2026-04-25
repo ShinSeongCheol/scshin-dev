@@ -1,8 +1,8 @@
-package kr.scshin.scshin_dev.blog.application.port.in;
+package kr.scshin.scshin_dev.backoffice.application.port.out.dto.response;
 
 import java.time.LocalDateTime;
 
-public record BlogPostListResponse(
+public record PostReadRecord(
         Long id,
         String title,
         String content,

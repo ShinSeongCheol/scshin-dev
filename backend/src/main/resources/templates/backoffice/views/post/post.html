@@ -14,7 +14,7 @@
                         <rect x="14" y="14" width="7" height="7"></rect>
                         <rect x="3" y="14" width="7" height="7"></rect>
                     </svg>
-                    모든 글
+                    <span>글 목록</span>
                 </h3>
                 <span class="px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold" id="categoryListCount">0개</span>
             </div>
@@ -24,16 +24,14 @@
                     <tr class="bg-gray-200 text-sm">
                         <th class="p-2 w-16">번호</th>
                         <th class="p-2 w-auto text-left">제목</th>
-                        <th class="p-2 w-28">상태</th>
                         <th class="p-2 w-36">생성일</th>
                         <th class="p-2 w-36">수정일</th>
                     </tr>
                 </thead>
-                <tbody class="cursor-default">
+                <tbody id="table-body" class="cursor-default">
                     <tr th:each="post : ${postList}" class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                         <td th:text="${post.id()}" class="p-2 text-center text-gray-500 text-sm">1</td>
-                        <td class="p-2 text-left"><a th:href="@{/admin/edit/{id}(id=${post.id()})}" th:text="|${post.title()}|" class="text-blue-600 hover:underline block truncate">글 제목</a></td>
-                        <td class="p-2 text-center"><span class="inline-block px-2 py-1 text-xs font-semibold rounded" th:classappend="${post.id() % 2 == 0} ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'" th:text="${post.id() % 2 == 0 ? 'PUBLISHED' : 'DRAFT'}">PUBLISHED</span></td>
+                        <td th:text="|${post.title()}|" class="text-blue-600 hover:underline block truncate p-2 text-left">글 제목</td>
                         <td th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd')}|" class="p-2 text-center text-sm text-gray-500">2026-04-07</td>
                         <td th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd')}|" class="p-2 text-center text-sm text-gray-500">2026-04-07</td>
                     </tr>

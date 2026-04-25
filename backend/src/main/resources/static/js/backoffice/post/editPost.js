@@ -1,9 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const content = document.querySelector('#content');
-    if (content) {
-        content.innerHTML = marked.parse("# Hello");
-    }
-
     const preview_button = document.querySelector('#preview-button')
     if (preview_button) {
 
@@ -11,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const upload_button = document.querySelector('#upload-button');
     if (upload_button) {
-        upload_button.addEventListener('click', uploadPost);
+        upload_button.addEventListener('click', editPost);
     }
 });
 
-const uploadPost = async (e) => {
+const editPost = async (e) => {
     e.preventDefault();
 
     const token = document.querySelector('meta[name="_csrf"]').content;
@@ -30,8 +25,8 @@ const uploadPost = async (e) => {
     }
 
     try {
-        const response = await fetch('/backoffice/post/new', {
-            method: 'POST',
+        const response = await fetch(`/backoffice/post/edit/${form_data.get('id')}`, {
+            method: 'PATCH',
             headers: {
                 'Content-type': 'application/json',
                 [header]: token
@@ -40,12 +35,11 @@ const uploadPost = async (e) => {
         })
 
         if (response.ok) {
-            location.href="/backoffice/post";
+            location.href = '/backoffice/post'
         }else {
-            console.log(response)
+            console.log(response);
         }
-    }catch (e) {
-        console.error(e)
+    }catch(e) {
+        console.error(e);
     }
 }
-

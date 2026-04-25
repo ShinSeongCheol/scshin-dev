@@ -1,12 +1,12 @@
-package kr.scshin.scshin_dev.blog.application.port.out;
+package kr.scshin.scshin_dev.blog.application.port.in.dto.response;
 
 import java.time.LocalDateTime;
 
-public record BlogLoadPostListResult(
+public record PostReadResponse(
     Long id,
     String title,
     String content,
     Long authorId,
     LocalDateTime createdAt,
     LocalDateTime updatedAt
-) {}
+) { }
