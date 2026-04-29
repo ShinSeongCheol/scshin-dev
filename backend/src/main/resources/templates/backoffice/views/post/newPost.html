@@ -15,10 +15,6 @@
                     />
                 </label>
                 <div class="flex gap-2">
-                    <button id="preview-button" class="sm:w-14 md:w-28 p-2 rounded-sm hover:bg-gray-300 hover:shadow-md hover:cursor-pointer flex justify-center items-center gap-2" type="button">
-                        <span th:replace="~{fragements/icons :: icon-visibility('16px', '16px', 'text-gray-600')}"></span>
-                        <span class="">미리보기</span>
-                    </button>
                     <button id="upload-button" class="sm:w-14 md:w-28 p-2 rounded-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:cursor-pointer flex justify-center items-center gap-2">
                         <span th:replace="~{fragements/icons :: icon-upload('16px', '16px', 'text-white')}"></span>
                         <span>업로드</span>
@@ -26,15 +22,15 @@
                 </div>
             </div>
 
-            <div class="p-4 h-full">
+            <div class="prose max-w-none p-4 h-full">
                 <label>
-                    <textarea name="content" class="w-full p-4 bg-gray-50 text-gray-700 border border-gray-300 rounded-xl focus:outline-none field-sizing-content h-full"></textarea>
+                    <textarea id="post-text-area" name="content" class="w-full p-4 bg-gray-50 text-gray-700 border border-gray-300 rounded-xl focus:outline-none field-sizing-content h-full"></textarea>
                 </label>
             </div>
         </form>
     </main>
     <th:block layout:fragment="script">
-        <script th:src="@{/js/common/markdown/marked.umd.js}"></script>
+        <script th:src="@{/js/common/markdown/simplemde.min.js}"></script>
         <script th:src="@{/js/backoffice/post/newPost.js}"></script>
     </th:block>
 </html>

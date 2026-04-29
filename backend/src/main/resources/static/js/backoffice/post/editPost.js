@@ -1,40 +1,16 @@
+let simplemde;
+
 document.addEventListener('DOMContentLoaded', () => {
-    const preview_button = document.querySelector('#preview-button')
-    if (preview_button) {
-        preview_button.addEventListener('click', previewPost);
-    }
-
-    const preview_modal_close_button = document.querySelector('#preview-modal-close-button');
-    if (preview_modal_close_button) {
-        preview_modal_close_button.addEventListener('click', closePreviewPost);
-    }
-
     const upload_button = document.querySelector('#upload-button');
     if (upload_button) {
         upload_button.addEventListener('click', editPost);
     }
+
+    const post_text_area = document.querySelector('#post-text-area');
+    if (post_text_area) {
+        simplemde = new SimpleMDE({element: post_text_area});
+    }
 });
-
-const previewPost = () => {
-    const preview_modal = document.querySelector('#preview-modal');
-    const preview_modal_content = document.querySelector('#preview-modal-content');
-    if (preview_modal && preview_modal_content) {
-        const post_form = document.querySelector('#post-form');
-        const form_data = new FormData(post_form);
-        const content = form_data.get('content');
-
-        preview_modal_content.innerHTML = marked.parse(content);
-
-        preview_modal.showModal();
-    }
-}
-
-const closePreviewPost = () => {
-    const preview_modal = document.querySelector('#preview-modal');
-    if (preview_modal) {
-        preview_modal.close();
-    }
-}
 
 const editPost = async (e) => {
     e.preventDefault();
@@ -47,7 +23,7 @@ const editPost = async (e) => {
 
     const data = {
         title: form_data.get('title'),
-        content: form_data.get('content')
+        content: simplemde.value(),
     }
 
     try {
