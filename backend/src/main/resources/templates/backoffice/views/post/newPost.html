@@ -3,6 +3,7 @@
       layout:decorate="~{backoffice/layouts/newPostLayout}" lang="kr" class="scroll-smooth" data-theme=""
 >
     <main layout:fragment="content" class="flex justify-center sm:p-4 min-h-dvh">
+        <dialog th:replace="~{backoffice/fragments/modal/preview_modal :: previewModalFragment}"></dialog>
         <form id="post-form" class="w-full lg:w-7xl bg-white flex flex-col gap-4 rounded-xl shadow-xl">
             <div class="flex justify-between gap-2 p-4 border-b border-b-gray-200">
                 <label class="flex-1">
@@ -14,7 +15,7 @@
                     />
                 </label>
                 <div class="flex gap-2">
-                    <button id="preview-button" class="sm:w-14 md:w-28 p-2 rounded-sm hover:bg-gray-300 hover:shadow-md hover:cursor-pointer flex justify-center items-center gap-2">
+                    <button id="preview-button" class="sm:w-14 md:w-28 p-2 rounded-sm hover:bg-gray-300 hover:shadow-md hover:cursor-pointer flex justify-center items-center gap-2" type="button">
                         <span th:replace="~{fragements/icons :: icon-visibility('16px', '16px', 'text-gray-600')}"></span>
                         <span class="">미리보기</span>
                     </button>
