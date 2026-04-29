@@ -1,4 +1,4 @@
-let simplemde;
+let markdown_editor;
 
 document.addEventListener('DOMContentLoaded', () => {
     const content = document.querySelector('#content');
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const post_text_area = document.querySelector('#post-text-area');
     if (post_text_area) {
-        simplemde = new SimpleMDE({element: post_text_area});
+        markdown_editor = new EasyMDE({element: post_text_area});
     }
 
     const upload_button = document.querySelector('#upload-button');
@@ -28,7 +28,7 @@ const uploadPost = async (e) => {
 
     const data = {
         title: form_data.get('title'),
-        content: simplemde.value()
+        content: markdown_editor.value()
     }
 
     try {
