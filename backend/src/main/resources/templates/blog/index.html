@@ -6,4 +6,7 @@
         <section th:replace="~{blog/content/tag_section::tagSectionFragment}"></section>
         <section th:replace="~{blog/content/post_section::postSectionFragment}"></section>
     </main>
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/blog/}"></script>
+    </th:block>
 </html>
