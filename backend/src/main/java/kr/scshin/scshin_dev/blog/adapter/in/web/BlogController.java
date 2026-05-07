@@ -23,7 +23,7 @@ public class BlogController {
         List<PostReadResponse> readPostList = postReadUseCase.readPostList();
         List<PostResponse> postResponseList = readPostList.stream().map(post -> PostResponse.builder()
                 .title(post.title())
-                .content(commonMarkParserService.renderAsSummary(post.content(), 60))
+                .content(commonMarkParserService.renderAsSummary(post.content()))
                 .createdAt(post.createdAt())
                 .build()).toList();
         model.addAttribute("postResponseList", postResponseList);
