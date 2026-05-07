@@ -15,18 +15,11 @@ public class CommonMarkParserService {
         return renderer.render(document);
     }
 
-    public String renderAsSummary(String markdown, int length) {
+    public String renderAsSummary(String markdown) {
         Parser parser = Parser.builder().build();
         Node document = parser.parse(markdown);
 
         TextContentRenderer textRenderer = TextContentRenderer.builder().build();
-        String plainText = textRenderer.render(document);
-
-        plainText = plainText.replaceAll("\\s+", "").trim();
-        if (plainText.length() > length) {
-            plainText = plainText.substring(0, length) + "...";
-        }
-
-        return "<p>" + plainText + "</p>";
+        return textRenderer.render(document);
     }
 }
