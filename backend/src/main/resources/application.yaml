@@ -8,3 +8,7 @@ spring:
     encoding: UTF-8
     cache: false
     check-template-location: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB

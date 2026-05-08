@@ -24,6 +24,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/backoffice/**").hasRole("ADMIN")
+                        .requestMatchers("/image/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
 

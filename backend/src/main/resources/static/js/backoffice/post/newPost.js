@@ -8,7 +8,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const post_text_area = document.querySelector('#post-text-area');
     if (post_text_area) {
-        markdown_editor = new EasyMDE({element: post_text_area});
+
+        let markdown_editor_config = {
+            element: post_text_area,
+            uploadImage: true,
+            imageMaxSize: 1024 * 1024 * 100,
+            imageUploadEndpoint: `${location.origin}/image/upload`,
+            imageUploadFunction: async function(file, onSuccess, onError) {
+                try {
+                    const token = document.querySelector('meta[name="_csrf"]').content;
+                    const header = document.querySelector('meta[name="_csrf_header"]').content;
+                    const formData = new FormData();
+                    formData.append("image", file);
+
+                    const response = await fetch(`${location.origin}/image/upload`, {
+                        method: "POST",
+                        headers: {
+                            [header]: token
+                        },
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        onError(response.status);
+                    }
+
+                    const result = await response.json();
+
+                    onSuccess(result.data.filePath);
+                }catch (error) {
+                    onError(error);
+                }
+            }
+        }
+        markdown_editor = new EasyMDE(markdown_editor_config);
     }
 
     const upload_button = document.querySelector('#upload-button');
