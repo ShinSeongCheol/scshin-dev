@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: scshin-dev
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+    check-template-location: true
