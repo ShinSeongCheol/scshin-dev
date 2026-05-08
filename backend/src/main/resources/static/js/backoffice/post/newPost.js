@@ -35,9 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const result = await response.json();
 
-                    onSuccess(result.data.filePath);
+                    onSuccess(result.filePath);
                 }catch (error) {
-                    onError(error);
+                    console.error(error);
+                    onError("이미지 업로드 중 오류가 발생했습니다.");
                 }
             }
         }
