@@ -52,7 +52,7 @@ public class PostImageUploadService implements PostImageUploadUseCase{
         Image image = Image.builder()
                 .originName(originName)
                 .storedName(storedName)
-                .filePath(storageStoreRecord.serverPath())
+                .filePath(storageStoreRecord.relativePath())
                 .extension(extension)
                 .status(ImageStatus.TEMPORARY)
                 .fileSize(fileSize)

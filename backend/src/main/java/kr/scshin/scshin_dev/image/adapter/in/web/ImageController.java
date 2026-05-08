@@ -30,7 +30,7 @@ public class ImageController {
                 .build();
 
         PostImageUploadResponse postImageUploadResponse = postImageUploadUseCase.uploadImage(postImageUploadRequest);
-        return ResponseEntity.ok(ImageUploadResponse.builder().filePath(postImageUploadResponse.filePath() + postImageUploadResponse.storedName()).build());
+        return ResponseEntity.ok(ImageUploadResponse.builder().filePath("/images/" + postImageUploadResponse.filePath() + "/" + postImageUploadResponse.storedName()).build());
     }
 
 }
