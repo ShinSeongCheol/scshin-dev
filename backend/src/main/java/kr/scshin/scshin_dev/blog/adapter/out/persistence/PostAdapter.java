@@ -6,6 +6,7 @@ import kr.scshin.scshin_dev.blog.application.port.out.PostUpdatePort;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostCreateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostReadRecordQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostUpdateRecordCommand;
+import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostCreateRecord;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostReadRecord;
 import kr.scshin.scshin_dev.blog.domain.Post;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +23,22 @@ public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort
     private final PostJpaRepository postJpaRepository;
 
     @Override
-    public void createPost(PostCreateRecordCommand postCreateRecordCommand) {
+    public PostCreateRecord createPost(PostCreateRecordCommand postCreateRecordCommand) {
         PostJpaEntity postJpaEntity = PostJpaEntity.builder()
                 .title(postCreateRecordCommand.title())
                 .content(postCreateRecordCommand.content())
                 .authorId(postCreateRecordCommand.authorId())
                 .build();
 
-        postJpaRepository.save(postJpaEntity);
+        PostJpaEntity savedPostJpaEntity = postJpaRepository.save(postJpaEntity);
+        return PostCreateRecord.builder()
+                .id(savedPostJpaEntity.getId())
+                .title(savedPostJpaEntity.getTitle())
+                .content(savedPostJpaEntity.getContent())
+                .authorId(savedPostJpaEntity.getAuthorId())
+                .createdAt(savedPostJpaEntity.getCreatedAt())
+                .updatedAt(savedPostJpaEntity.getUpdatedAt())
+                .build();
     }
 
     @Override
