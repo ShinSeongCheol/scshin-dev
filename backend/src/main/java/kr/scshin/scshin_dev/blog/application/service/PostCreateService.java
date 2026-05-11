@@ -4,6 +4,7 @@ import kr.scshin.scshin_dev.blog.application.port.in.PostCreateUseCase;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.request.PostCreateCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.MarkdownParsePort;
 import kr.scshin.scshin_dev.blog.application.port.out.PostCreatePort;
+import kr.scshin.scshin_dev.blog.application.port.out.PostImageUpdatePort;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostCreateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostCreateRecord;
 import kr.scshin.scshin_dev.blog.domain.Post;
@@ -21,6 +22,7 @@ public class PostCreateService implements PostCreateUseCase {
 
     private final PostCreatePort postCreatePort;
     private final MarkdownParsePort markdownParsePort;
+    private final PostImageUpdatePort postImageUpdatePort;
 
     @Override
     @Transactional
@@ -42,9 +44,9 @@ public class PostCreateService implements PostCreateUseCase {
                 .build();
 
         List<String> imageUrls = markdownParsePort.extractImageUrls(savedPost.getContent());
-        for(String imageUrl : imageUrls) {
-            log.info(imageUrl);
-        }
+        List<String> fileNames = imageUrls.stream().map(imageUrl -> imageUrl.substring(imageUrl.lastIndexOf("/") + 1)).toList();
+
+
 
         // POST_ID 획득
         // Markdown Url 파싱 파일 고유 아이디로 IMAGE status, post_id 업데이트
