@@ -8,6 +8,7 @@ import kr.scshin.scshin_dev.blog.application.port.out.PostImageUpdatePort;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostCreateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostCreateRecord;
 import kr.scshin.scshin_dev.blog.domain.Post;
+import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostImageUpdateRecordCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -46,9 +47,13 @@ public class PostCreateService implements PostCreateUseCase {
         List<String> imageUrls = markdownParsePort.extractImageUrls(savedPost.getContent());
         List<String> fileNames = imageUrls.stream().map(imageUrl -> imageUrl.substring(imageUrl.lastIndexOf("/") + 1)).toList();
 
-
-
         // POST_ID 획득
         // Markdown Url 파싱 파일 고유 아이디로 IMAGE status, post_id 업데이트
+        PostImageUpdateRecordCommand postImageUpdateRecordCommand = PostImageUpdateRecordCommand.builder()
+                .postId(savedPost.getId())
+                .fileNames(fileNames)
+                .build();
+
+        postImageUpdatePort.updatePostImage(postImageUpdateRecordCommand);
     }
 }

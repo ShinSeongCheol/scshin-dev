@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PostImageAdapter implements PostImageCreatePort, PostImageUpdatePort {
+public class ImageAdapter implements PostImageCreatePort, PostImageUpdatePort {
 
     private final ImageJpaRepository imageJpaRepository;
 
     @Override
     public PostImageCreateRecord createPostImage(PostImageCreateRecordCommand postImageCreateRecordCommand) {
 
-        PostImageEntity postImageEntity = PostImageEntity.builder()
+        ImageEntity postImageEntity = ImageEntity.builder()
                 .originName(postImageCreateRecordCommand.orignName())
                 .storedName(postImageCreateRecordCommand.storedName())
                 .filePath(postImageCreateRecordCommand.filePath())
@@ -29,25 +29,25 @@ public class PostImageAdapter implements PostImageCreatePort, PostImageUpdatePor
                 .userId(postImageCreateRecordCommand.userId())
                 .build();
 
-        PostImageEntity savedPostImageEntity = imageJpaRepository.save(postImageEntity);
+        ImageEntity savedImageEntity = imageJpaRepository.save(postImageEntity);
 
         return PostImageCreateRecord.builder()
-                .id(savedPostImageEntity.getId())
-                .originName(savedPostImageEntity.getOriginName())
-                .storedName(savedPostImageEntity.getStoredName())
-                .filePath(savedPostImageEntity.getFilePath())
-                .extension(savedPostImageEntity.getExtension())
-                .status(savedPostImageEntity.getStatus())
-                .fileSize(savedPostImageEntity.getFileSize())
-                .postId(savedPostImageEntity.getPostId())
-                .userId(savedPostImageEntity.getUserId())
-                .createdAt(savedPostImageEntity.getCreatedAt())
-                .updatedAt(savedPostImageEntity.getUpdatedAt())
+                .id(savedImageEntity.getId())
+                .originName(savedImageEntity.getOriginName())
+                .storedName(savedImageEntity.getStoredName())
+                .filePath(savedImageEntity.getFilePath())
+                .extension(savedImageEntity.getExtension())
+                .status(savedImageEntity.getStatus())
+                .fileSize(savedImageEntity.getFileSize())
+                .postId(savedImageEntity.getPostId())
+                .userId(savedImageEntity.getUserId())
+                .createdAt(savedImageEntity.getCreatedAt())
+                .updatedAt(savedImageEntity.getUpdatedAt())
                 .build();
     }
 
     @Override
     public void updateImage(PostImageUpdateRecordCommand postImageUpdateRecordCommand) {
-        
+        imageJpaRepository.updateImageByFileNames(postImageUpdateRecordCommand.postId(), postImageUpdateRecordCommand.fileNames());
     }
 }
