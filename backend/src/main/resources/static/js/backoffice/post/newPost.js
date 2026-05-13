@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
             element: post_text_area,
             uploadImage: true,
             imageMaxSize: 1024 * 1024 * 100,
-            imageUploadEndpoint: `${location.origin}/image/upload`,
             imageUploadFunction: async function(file, onSuccess, onError) {
                 try {
                     const token = document.querySelector('meta[name="_csrf"]').content;
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const formData = new FormData();
                     formData.append("image", file);
 
-                    const response = await fetch(`${location.origin}/image/upload`, {
+                    const response = await fetch(`/image/upload`, {
                         method: "POST",
                         headers: {
                             [header]: token
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const result = await response.json();
 
-                    onSuccess(`${location.origin}${result.filePath}`);
+                    onSuccess(`${result.filePath}`);
                 }catch (error) {
                     console.error(error);
                     onError("이미지 업로드 중 오류가 발생했습니다.");

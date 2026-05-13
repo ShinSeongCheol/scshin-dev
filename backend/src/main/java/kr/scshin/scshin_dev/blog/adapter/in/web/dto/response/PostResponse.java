@@ -5,5 +5,10 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record PostResponse(String title, String content, LocalDateTime createdAt) {
+public record PostResponse(
+        String title,
+        String content,
+        LocalDateTime createdAt,
+        String thumbnailUrl
+) {
 }

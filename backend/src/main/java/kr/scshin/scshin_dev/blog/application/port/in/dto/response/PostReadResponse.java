@@ -1,12 +1,17 @@
 package kr.scshin.scshin_dev.blog.application.port.in.dto.response;
 
-import java.time.LocalDateTime;
+import lombok.Builder;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Builder
 public record PostReadResponse(
     Long id,
     String title,
     String content,
     Long authorId,
     LocalDateTime createdAt,
-    LocalDateTime updatedAt
+    LocalDateTime updatedAt,
+    List<String> imageUrls
 ) { }

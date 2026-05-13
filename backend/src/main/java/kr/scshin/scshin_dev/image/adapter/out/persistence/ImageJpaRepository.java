@@ -17,4 +17,6 @@ public interface ImageJpaRepository extends JpaRepository<ImageEntity, Long> {
     @Modifying(clearAutomatically = true)
     @Transactional
     void updateImageByFileNames(@Param("postId") Long postId, @Param("fileNames") List<String> fileNames);
+
+    List<ImageEntity> findAllByPostId(@Param("postId") Long postId);
 }

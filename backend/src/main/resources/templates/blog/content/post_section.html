@@ -14,7 +14,7 @@
 
                 <article th:unless="${#lists.isEmpty(postResponseList)}" th:each="post: ${postResponseList}" class="group bg-bg-secondary rounded-2xl overflow-hidden border border-post-border transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-1 hover:shadow-[var(--shadow-post),var(--shadow-glow)] hover:border-accent_primary" data-post-id="">
                     <div class="relative h-50 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=400&fit=crop" alt="카테고리" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <img th:src="${post.thumbnailUrl}" alt="카테고리" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <span class="post-card-category absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-[0.5px] text-white bg-blue-400">카테고리</span>
                     </div>
                     <div class="p-4">

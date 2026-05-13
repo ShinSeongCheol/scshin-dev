@@ -1,7 +1,5 @@
 package kr.scshin.scshin_dev.blog.domain;
 
-import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostUpdateRecordCommand;
-import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostReadRecord;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
