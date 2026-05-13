@@ -6,5 +6,6 @@ import kr.scshin.scshin_dev.image.application.port.in.dto.response.PostImageRead
 import java.util.List;
 
 public interface PostImageReadUseCase {
-    List<List<PostImageReadResponse>> readPostImages(PostImageReadRequest postImageReadRequest);
+    List<List<PostImageReadResponse>> readPostImageLists(PostImageReadRequest postImageReadRequest);
+    List<PostImageReadResponse> readPostImageList(PostImageReadRequest postImageReadRequest);
 }

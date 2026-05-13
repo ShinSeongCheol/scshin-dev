@@ -4,4 +4,5 @@ import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostImageUpdat
 
 public interface PostImageUpdatePort {
     void updatePostImage(PostImageUpdateRecordCommand postImageUpdateRecordCommand);
+    void updatePostIdToNull(PostImageUpdateRecordCommand postImageUpdateRecordCommand);
 }

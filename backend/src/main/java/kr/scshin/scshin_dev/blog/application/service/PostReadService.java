@@ -31,7 +31,7 @@ public class PostReadService implements PostReadUseCase {
     @Override
     public List<PostReadResponse> readPostList() {
         List<PostReadRecord> postReadRecords = postReadPort.readPostList();
-        List<List<PostImageReadRecord>> postImages = postImageReadPort.readPostImages(PostImageReadRecordQuery.builder()
+        List<List<PostImageReadRecord>> postImages = postImageReadPort.readPostImageLists(PostImageReadRecordQuery.builder()
                 .postIds(postReadRecords.stream().map(PostReadRecord::id).toList())
                 .build());
 

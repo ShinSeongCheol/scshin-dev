@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,8 +14,14 @@ public interface ImageJpaRepository extends JpaRepository<ImageEntity, Long> {
        UPDATE ImageEntity ie SET ie.status=COMMITED, ie.postId=:postId WHERE ie.storedName IN :fileNames
     """)
     @Modifying(clearAutomatically = true)
-    @Transactional
     void updateImageByFileNames(@Param("postId") Long postId, @Param("fileNames") List<String> fileNames);
 
     List<ImageEntity> findAllByPostId(@Param("postId") Long postId);
+
+    @Modifying
+    @Query("""
+        UPDATE ImageEntity ie SET ie.postId = null WHERE ie.postId=:postId AND ie.storedName IN :fileNames
+    """)
+    void updatePostIdToNullByPostIdAndStoredNameIn(@Param("postId") Long postId, @Param("fileNames") List<String> fileNames);
+    void deleteByPostIdAndStoredNameIn(@Param("postId") Long postId, @Param("fileNames") List<String> fileNames);
 }

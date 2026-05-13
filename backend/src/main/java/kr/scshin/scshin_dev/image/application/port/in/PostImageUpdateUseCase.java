@@ -4,4 +4,5 @@ import kr.scshin.scshin_dev.image.application.port.in.dto.request.PostImageUpdat
 
 public interface PostImageUpdateUseCase {
     void updateImage(PostImageUpdateRequest postImageUpdateRequest);
+    void updatePostIdToNull(PostImageUpdateRequest postImageUpdateRequest);
 }

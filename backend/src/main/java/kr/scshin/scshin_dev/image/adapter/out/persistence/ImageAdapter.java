@@ -1,9 +1,11 @@
 package kr.scshin.scshin_dev.image.adapter.out.persistence;
 
 import kr.scshin.scshin_dev.image.application.port.out.PostImageCreatePort;
+import kr.scshin.scshin_dev.image.application.port.out.PostImageDeletePort;
 import kr.scshin.scshin_dev.image.application.port.out.PostImageReadPort;
 import kr.scshin.scshin_dev.image.application.port.out.PostImageUpdatePort;
 import kr.scshin.scshin_dev.image.application.port.out.dto.request.PostImageCreateRecordCommand;
+import kr.scshin.scshin_dev.image.application.port.out.dto.request.PostImageDeleteRecordCommand;
 import kr.scshin.scshin_dev.image.application.port.out.dto.request.PostImageReadRecordQuery;
 import kr.scshin.scshin_dev.image.application.port.out.dto.request.PostImageUpdateRecordCommand;
 import kr.scshin.scshin_dev.image.application.port.out.dto.response.PostImageCreateRecord;
@@ -17,7 +19,7 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class ImageAdapter implements PostImageCreatePort, PostImageUpdatePort, PostImageReadPort {
+public class ImageAdapter implements PostImageCreatePort, PostImageUpdatePort, PostImageReadPort, PostImageDeletePort {
 
     private final ImageJpaRepository imageJpaRepository;
 
@@ -57,7 +59,12 @@ public class ImageAdapter implements PostImageCreatePort, PostImageUpdatePort, P
     }
 
     @Override
-    public List<List<PostImageReadRecord>> readPostImages(PostImageReadRecordQuery postImageReadRecordQuery) {
+    public void updatePostIdToNull(PostImageUpdateRecordCommand postImageUpdateRecordCommand) {
+        imageJpaRepository.updatePostIdToNullByPostIdAndStoredNameIn(postImageUpdateRecordCommand.postId(), postImageUpdateRecordCommand.fileNames());
+    }
+
+    @Override
+    public List<List<PostImageReadRecord>> readPostImageLists(PostImageReadRecordQuery postImageReadRecordQuery) {
 
         List<List<ImageEntity>> imageEntityLists = postImageReadRecordQuery.postIds().stream().map(imageJpaRepository::findAllByPostId).toList();
 
@@ -78,5 +85,29 @@ public class ImageAdapter implements PostImageCreatePort, PostImageUpdatePort, P
                         .build()
             ).toList()
         ).toList();
+    }
+
+    @Override
+    public List<PostImageReadRecord> readPostImageList(PostImageReadRecordQuery postImageReadRecordQuery) {
+        List<ImageEntity> imageEntityList = imageJpaRepository.findAllByPostId(postImageReadRecordQuery.postIds().get(0));
+        return imageEntityList.stream().map(imageEntity -> PostImageReadRecord.builder()
+                .id(imageEntity.getId())
+                .originName(imageEntity.getOriginName())
+                .storedName(imageEntity.getStoredName())
+                .filePath(imageEntity.getFilePath())
+                .extension(imageEntity.getExtension())
+                .status(imageEntity.getStatus())
+                .fileSize(imageEntity.getFileSize())
+                .postId(imageEntity.getPostId())
+                .userId(imageEntity.getUserId())
+                .createdAt(imageEntity.getCreatedAt())
+                .updatedAt(imageEntity.getUpdatedAt())
+                .build()
+        ).toList();
+    }
+
+    @Override
+    public void deletePostImage(PostImageDeleteRecordCommand postImageDeleteRecordCommand) {
+        imageJpaRepository.deleteByPostIdAndStoredNameIn(postImageDeleteRecordCommand.postId(), postImageDeleteRecordCommand.fileNames());
     }
 }
