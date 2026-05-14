@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{blog/layouts/post_detail_layout}" lang="kr" class="scroll-smooth" data-theme="">
+    <main layout:fragment="main" class="flex justify-center sm:p-4 min-h-dvh">
+        <div class="w-full h-full lg:w-7xl bg-white flex flex-col gap-4 rounded-xl shadow-xl">
+            <div id="content" class="prose max-w-none p-4" th:text="${post.content()}"></div>
+        </div>
+    </main>
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/common/markdown/marked.umd.js}"></script>
+        <script th:src="@{/js/blog/post/postDetail.js}"></script>
+    </th:block>
+</html>
