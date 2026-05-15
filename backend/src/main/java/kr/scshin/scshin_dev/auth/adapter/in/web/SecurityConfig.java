@@ -30,7 +30,7 @@ public class SecurityConfig {
 
                 .formLogin(form -> form
                         .loginPage("/backoffice/login")
-                        .defaultSuccessUrl("/backoffice")
+                        .defaultSuccessUrl("/backoffice/")
                         .permitAll()
                 )
 
