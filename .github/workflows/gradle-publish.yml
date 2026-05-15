@@ -50,7 +50,7 @@ jobs:
     - name: Check build output
       run: |
         pwd
-        ls -al build/libs
+        ls -al backend/build/libs
 
     - name: Upload jar artifact
       uses: actions/upload-artifact@v4
