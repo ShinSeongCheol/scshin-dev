@@ -22,7 +22,12 @@ public class BlogController {
 
     private final PostReadUseCase postReadUseCase;
 
-    @GetMapping("/blog")
+    @GetMapping("/")
+    public String index(Model model) {
+        return "redirect:/blog/";
+    }
+
+    @GetMapping("/blog/")
     public String blog(Model model) {
         List<PostReadResponse> readPostList = postReadUseCase.readPostList();
         log.info("readPostList: {}", readPostList.toString());
@@ -30,6 +35,7 @@ public class BlogController {
         List<PostResponse> postResponseList = readPostList.stream().map(post -> {
             String thumbnailUrl = post.imageUrls().isEmpty() ? null : post.imageUrls().get(0);
             return PostResponse.builder()
+                    .id(post.id())
                     .title(post.title())
                     .content(post.content())
                     .createdAt(post.createdAt())
@@ -52,6 +58,6 @@ public class BlogController {
                 .build();
 
         model.addAttribute("post", postDetailResponse);
-        return "/blog/post_detail";
+        return "blog/post_detail";
     }
 }
