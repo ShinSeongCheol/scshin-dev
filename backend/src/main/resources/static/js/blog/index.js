@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         postCard.addEventListener('click', () => {
             const postId = postCard.getAttribute('data-post-id');
             if (postId) {
-                location.href = `/blog/${postId}`;
+                location.href = `/${postId}`;
             }
         });
     })

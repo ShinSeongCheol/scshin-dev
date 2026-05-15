@@ -1,6 +1,5 @@
 package kr.scshin.scshin_dev.blog.adapter.in.web;
 
-import kr.scshin.scshin_dev.blog.adapter.in.web.dto.request.PostRequest;
 import kr.scshin.scshin_dev.blog.adapter.in.web.dto.response.PostDetailResponse;
 import kr.scshin.scshin_dev.blog.adapter.in.web.dto.response.PostResponse;
 import kr.scshin.scshin_dev.blog.application.port.in.PostReadUseCase;
@@ -23,11 +22,6 @@ public class BlogController {
     private final PostReadUseCase postReadUseCase;
 
     @GetMapping("/")
-    public String index(Model model) {
-        return "redirect:/blog/";
-    }
-
-    @GetMapping("/blog/")
     public String blog(Model model) {
         List<PostReadResponse> readPostList = postReadUseCase.readPostList();
         log.info("readPostList: {}", readPostList.toString());
@@ -46,7 +40,7 @@ public class BlogController {
         return "blog/index";
     }
 
-    @GetMapping("/blog/{post_id}")
+    @GetMapping("/{post_id}")
     public String postDetail(Model model, @PathVariable("post_id") Long post_id) {
         PostReadQuery postReadQuery = PostReadQuery.builder().postId(post_id).build();
         PostReadResponse postReadResponse = postReadUseCase.readPostAsHtml(postReadQuery);
