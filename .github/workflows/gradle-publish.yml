@@ -79,3 +79,10 @@ jobs:
             -P "${{ secrets.SERVER_PORT }}" \
             "$JAR_FILE" \
             "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/github-actions/backend/app.jar"
+
+        ssh -i ~/.ssh/deploy_key \
+            -p "${{ secrets.SERVER_PORT }}" \
+            "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}" \
+            "mv /home/github-actions/backend/app.jar /home/docker/scshin-dev/app.jar" \
+            "cd /home/docker/scshin-dev" \
+            "docker compose up -d --build"
