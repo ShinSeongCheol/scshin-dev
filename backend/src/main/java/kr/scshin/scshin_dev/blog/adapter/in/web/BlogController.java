@@ -49,7 +49,7 @@ public class BlogController {
     @GetMapping("/blog/{post_id}")
     public String postDetail(Model model, @PathVariable("post_id") Long post_id) {
         PostReadQuery postReadQuery = PostReadQuery.builder().postId(post_id).build();
-        PostReadResponse postReadResponse = postReadUseCase.readPost(postReadQuery);
+        PostReadResponse postReadResponse = postReadUseCase.readPostAsHtml(postReadQuery);
         PostDetailResponse postDetailResponse = PostDetailResponse.builder()
                 .title(postReadResponse.title())
                 .content(postReadResponse.content())

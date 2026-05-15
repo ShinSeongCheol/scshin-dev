@@ -58,7 +58,20 @@ public class PostReadService implements PostReadUseCase {
         return PostReadResponse.builder()
                 .id(postReadRecord.id())
                 .title(postReadRecord.title())
-                .content(postReadRecord.content())
+                .content(markdownParsePort.renderAsMarkdown(postReadRecord.content()))
+                .authorId(postReadRecord.authorId())
+                .createdAt(postReadRecord.createdAt())
+                .updatedAt(postReadRecord.updatedAt())
+                .build();
+    }
+
+    @Override
+    public PostReadResponse readPostAsHtml(PostReadQuery postReadQuery) {
+        PostReadRecord postReadRecord = postReadPort.readPost(new PostReadRecordQuery(postReadQuery.postId()));
+        return PostReadResponse.builder()
+                .id(postReadRecord.id())
+                .title(postReadRecord.title())
+                .content(markdownParsePort.renderAsHtml(postReadRecord.content()))
                 .authorId(postReadRecord.authorId())
                 .createdAt(postReadRecord.createdAt())
                 .updatedAt(postReadRecord.updatedAt())

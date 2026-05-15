@@ -4,6 +4,8 @@ import kr.scshin.scshin_dev.blog.application.port.out.MarkdownParsePort;
 import lombok.extern.slf4j.Slf4j;
 import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
+import org.commonmark.renderer.markdown.MarkdownRenderer;
 import org.commonmark.renderer.text.TextContentRenderer;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,14 @@ import java.util.List;
 public class MarkdownParserAdapter implements MarkdownParsePort {
     private final Parser parser = Parser.builder().build();
     private final TextContentRenderer textRenderer = TextContentRenderer.builder().build();
+    HtmlRenderer htmlRenderer = HtmlRenderer.builder().build();
+    MarkdownRenderer markdownRenderer = MarkdownRenderer.builder().build();
+
+    @Override
+    public String renderAsMarkdown(String markdown) {
+        Node document = parser.parse(markdown);
+        return markdownRenderer.render(document);
+    }
 
     @Override
     public String renderAsSummary(String markdown) {
@@ -28,6 +38,12 @@ public class MarkdownParserAdapter implements MarkdownParsePort {
         });
 
         return textRenderer.render(document);
+    }
+
+    @Override
+    public String renderAsHtml(String markdown) {
+        Node document = parser.parse(markdown);
+        return htmlRenderer.render(document);
     }
 
     @Override

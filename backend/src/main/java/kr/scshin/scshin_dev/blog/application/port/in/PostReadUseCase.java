@@ -8,4 +8,5 @@ import java.util.List;
 public interface PostReadUseCase {
     List<PostReadResponse> readPostList();
     PostReadResponse readPost(PostReadQuery postReadQuery);
+    PostReadResponse readPostAsHtml(PostReadQuery postReadQuery);
 }
