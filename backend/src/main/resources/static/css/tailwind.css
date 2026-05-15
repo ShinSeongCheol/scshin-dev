@@ -1922,6 +1922,34 @@
       }
     }
   }
+  .hover\:bg-\[239\,68\,68\,0\.1\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: 239,68,68,0.1;
+      }
+    }
+  }
+  .hover\:bg-\[rgba\(83\,195\,243\,0\.1\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: rgba(83,195,243,0.1);
+      }
+    }
+  }
+  .hover\:bg-\[rgba\(83\,195\,243\,1\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: rgba(83,195,243,1);
+      }
+    }
+  }
+  .hover\:bg-\[rgba\(111\,195\,243\,0\.1\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: rgba(111,195,243,0.1);
+      }
+    }
+  }
   .hover\:bg-\[rgba\(239\,68\,68\,0\.1\)\] {
     &:hover {
       @media (hover: hover) {
@@ -2020,6 +2048,20 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-white);
+      }
+    }
+  }
+  .hover\:text-\[\#28b4f0\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #28b4f0;
+      }
+    }
+  }
+  .hover\:text-\[\#FFFFFF\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #FFFFFF;
       }
     }
   }
