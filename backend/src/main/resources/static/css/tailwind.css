@@ -2395,6 +2395,21 @@
       display: none;
     }
   }
+  .prose-img\:mx-auto {
+    & :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      margin-inline: auto;
+    }
+  }
+  .prose-img\:w-auto {
+    & :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      width: auto;
+    }
+  }
+  .prose-img\:max-w-\[50\%\] {
+    & :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      max-width: 50%;
+    }
+  }
 }
 [data-theme='dark'] {
   --color-bg-primary: #0f0f1a;
