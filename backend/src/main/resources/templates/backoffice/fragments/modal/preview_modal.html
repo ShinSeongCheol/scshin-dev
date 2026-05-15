@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="kr">
+    <dialog th:fragment="previewModalFragment" id="preview-modal" class="w-full lg:w-7xl h-full m-auto bg-white">
+        <div class="sticky top-0 flex justify-between border-b border-b-gray-300 p-2 backdrop-blur-xs bg-white/70">
+            <h2>미리보기</h2>
+            <button id="preview-modal-close-button" class="hover:ring-1 hover:ring-gray-300 hover:cursor-pointer" type="button">
+                <span th:replace="~{fragements/icons :: icon-close('24px', '24px', 'text-black')}"></span>
+            </button>
+        </div>
+        <div id="preview-modal-content" class="p-4 prose max-w-none w-full">
+
+        </div>
+    </dialog>
+</html>

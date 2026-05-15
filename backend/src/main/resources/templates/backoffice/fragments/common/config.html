@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="kr">
+    <head th:fragment="configFragment">
+        <meta charset="UTF-8">
+        <title>블로그</title>
+        <link rel="stylesheet" th:href="@{/css/tailwind.css}">
+        <link rel="stylesheet" th:href="@{/css/easymde.min.css}">
+        <meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    </head>
+</html>

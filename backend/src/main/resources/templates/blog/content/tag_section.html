@@ -1,0 +1,10 @@
+<html  xmlns:th="http://www.thymeleaf.org" lang="kr">
+    <section class="tags-section px-0 pt-0 pb-10" th:fragment="tagSectionFragment">
+        <div class="container max-w-7xl mx-auto my-0 px-6 py-0">
+            <div class="tags-wrapper flex gap-2 flex-wrap" id="tagsWrapper">
+                <button class="tag active px-4 py-2 bg-bg-secondary border border-tag-border rounded-3xl text-sm text-secondary whitespace-nowrap transition-all duration-150 ease-in hover:border-accent_primary hover:text-accent_primary cursor-pointer"  data-tag="all">전체</button>
+                <button class="tag px-4 py-2 bg-accent_primary border border-accent_primary rounded-3xl text-sm text-white whitespace-nowrap transition-all duration-150 ease-in cursor-pointer" data-tag="all">선택</button>
+            </div>
+        </div>
+    </section>
+</html>

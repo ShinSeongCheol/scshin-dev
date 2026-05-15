@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{blog/layouts/default_layout}" lang="kr" class="scroll-smooth" data-theme="">
+    <main layout:fragment="main">
+        <section th:replace="~{blog/content/hero_section::heroSectionFragment}"></section>
+        <section th:replace="~{blog/content/tag_section::tagSectionFragment}"></section>
+        <section th:replace="~{blog/content/post_section::postSectionFragment}"></section>
+    </main>
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/blog/index.js}"></script>
+    </th:block>
+</html>

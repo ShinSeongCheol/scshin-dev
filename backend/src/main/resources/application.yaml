@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: scshin-dev
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+    check-template-location: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+file:
+  upload-dir: /home/uploads/
