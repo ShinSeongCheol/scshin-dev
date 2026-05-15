@@ -2,8 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{blog/layouts/post_detail_layout}" lang="kr" class="scroll-smooth" data-theme="">
     <main layout:fragment="main" class="flex justify-center sm:p-4 min-h-dvh">
-        <div class="w-full h-full lg:w-7xl bg-white flex flex-col gap-4 rounded-xl shadow-xl">
-            <div id="content" class="prose max-w-none py-4 px-8 prose-img:max-w-[50%] prose-img:w-auto prose-img:mx-auto" th:utext="${post.content()}"></div>
+        <div class="w-full h-full lg:w-7xl bg-white flex flex-col gap-4 rounded-xl shadow-xl p-4">
+            <div class="prose max-w-none w-full">
+                <h1 th:text="${post.title()}" class="p-4 border-b border-b-gray-300">제목</h1>
+            </div>
+            <div id="content" class="prose max-w-none p-4 prose-img:max-w-[50%] prose-img:w-auto prose-img:mx-auto" th:utext="${post.content()}"></div>
         </div>
     </main>
     <th:block layout:fragment="script">
