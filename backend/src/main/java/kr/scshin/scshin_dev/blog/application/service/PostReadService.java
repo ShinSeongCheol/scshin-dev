@@ -47,7 +47,7 @@ public class PostReadService implements PostReadUseCase {
                         .authorId(post.authorId())
                         .createdAt(post.createdAt())
                         .updatedAt(post.updatedAt())
-                        .imageUrls(imageMap.getOrDefault(post.id(), Collections.emptyList()).stream().map(image -> "/images/" + image.filePath() + "/" + image.storedName()).collect(Collectors.toList()))
+                        .imageUrls(imageMap.getOrDefault(post.id(), Collections.emptyList()).stream().map(image -> "/uploads/" + image.filePath() + "/" + image.storedName()).collect(Collectors.toList()))
                         .build()
                 ).toList();
     }
