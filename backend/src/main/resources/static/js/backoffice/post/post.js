@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const tableBody = document.querySelector('#table-body');
-    if (tableBody) {
-        tableBody.addEventListener('click', onClickTableBody)
+    const postItems = document.querySelector('#post-items');
+    if (postItems) {
+        postItems.addEventListener('click', onClickPostItem)
     }
 
     const writeButton = document.querySelector('#write-button');
@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const onClickTableBody = (event) => {
-    const row = event.target.closest('tr');
-    const post_id = row.cells[0].innerText;
+const onClickPostItem = (event) => {
+    const row = event.target.closest('.post-row');
+    if (!row) return;
+
+    const post_id = row.dataset.postId;
     location.href = `/backoffice/post/edit/${post_id}`;
 }
 

@@ -19,26 +19,48 @@
                 <span class="px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold" id="categoryListCount">0개</span>
             </div>
 
-            <table class="table-fixed mx-2 border-collapse">
-                <thead>
-                    <tr class="bg-gray-200 text-sm">
-                        <th class="p-2 w-16">번호</th>
-                        <th class="p-2 w-auto text-left">제목</th>
-                        <th class="p-2 w-36">생성일</th>
-                        <th class="p-2 w-36">수정일</th>
-                        <th class="p-2 w-36">조회수</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body" class="cursor-default">
-                    <tr th:each="post : ${postList}" class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                        <td th:text="${post.id()}" class="p-2 text-center text-gray-500 text-sm">1</td>
-                        <td th:text="|${post.title()}|" class="text-blue-600 hover:underline truncate p-2 text-left">글 제목</td>
-                        <td th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>
-                        <td th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>
-                        <td th:text="|${post.views()}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">0</td>
-                    </tr>
-                </tbody>
-            </table>
+<!--            <table class="table-fixed mx-2 border-collapse">-->
+<!--                <thead>-->
+<!--                    <tr class="bg-gray-200 text-sm">-->
+<!--                        <th class="p-2 w-16">번호</th>-->
+<!--                        <th class="p-2 w-auto text-left">제목</th>-->
+<!--                        <th class="p-2 w-36">생성일</th>-->
+<!--                        <th class="p-2 w-36">수정일</th>-->
+<!--                        <th class="p-2 w-36">조회수</th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody id="table-body" class="cursor-default">-->
+<!--                    <tr th:each="post : ${postList}" class="border-b border-gray-100 hover:bg-gray-50 transition-colors">-->
+<!--                        <td th:text="${post.id()}" class="p-2 text-center text-gray-500 text-sm">1</td>-->
+<!--                        <td th:text="|${post.title()}|" class="text-blue-600 hover:underline truncate p-2 text-left">글 제목</td>-->
+<!--                        <td th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>-->
+<!--                        <td th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>-->
+<!--                        <td th:text="|${post.views()}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">0</td>-->
+<!--                    </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+
+            <div class="bg-white mx-2 shadow overflow-hidden border border-gray-200">
+                <!-- 테이블 헤더 -->
+                <div class="grid grid-cols-12 bg-gray-50 p-3 text-sm font-semibold text-gray-700 border-b">
+                    <div class="col-span-1 text-center">번호</div>
+                    <div class="col-span-6 text-left">제목</div>
+                    <div class="col-span-2 text-center">생성일</div>
+                    <div class="col-span-2 text-center">수정일</div>
+                    <div class="col-span-1 text-center">조회수</div>
+                </div>
+
+                <!-- 아이템 목록 -->
+                <div id="post-items" class="divide-y divide-gray-100">
+                    <div th:each="post : ${postList}" th:data-post-id="${post.id()}" class="post-row grid grid-cols-12 p-3 items-center hover:bg-gray-50 text-sm font-medium text-gray-900 cursor-pointer">
+                        <div th:text="${post.id()}" class="col-span-1 text-center">1</div>
+                        <div th:text="|${post.title()}|" class="col-span-6 flex items-center gap-2 text-blue-600 hover:underline truncate">제목</div>
+                        <div th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="col-span-2 text-center">2026-04-07 12:00:00</div>
+                        <div th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="col-span-2 text-center">2026-04-07 12:00:00</div>
+                        <div th:text="|${post.views()}|" class="col-span-1 text-center">1</div>
+                    </div>
+                </div>
+            </div>
 
             <div class="absolute bottom-10 right-10 flex justify-end gap-2 mx-2">
                 <button id="write-button" class="px-2.5 py-1 text-xl text-white bg-indigo-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none">
