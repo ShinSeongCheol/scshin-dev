@@ -83,6 +83,7 @@ public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort
                 .title(postUpdateRecordCommand.title())
                 .content(postUpdateRecordCommand.content())
                 .authorId(postUpdateRecordCommand.authorId())
+                .views(postUpdateRecordCommand.views())
                 .build();
 
         postJpaRepository.save(postJpaEntity);
