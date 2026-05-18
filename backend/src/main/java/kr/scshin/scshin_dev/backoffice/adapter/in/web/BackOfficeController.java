@@ -47,6 +47,11 @@ public class BackOfficeController {
         return "backoffice/views/category/category";
     }
 
+    @GetMapping("/category/new")
+    public String newCategory(Model model) {
+        return "backoffice/views/category/newCategory";
+    }
+
     @GetMapping("/post")
     public String post(Model model) {
         model.addAttribute("menu", "post");

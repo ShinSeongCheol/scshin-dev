@@ -41,8 +41,8 @@
                         <div class="col-span-2 text-center">1</div>
                         <div class="col-span-2 text-center"><span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">사용중</span></div>
                         <div class="col-span-2 text-center flex justify-center gap-2">
-                            <button class="text-blue-600 hover:underline text-xs">➕ 하위추가</button>
-                            <button class="text-gray-600 hover:underline text-xs">수정</button>
+                            <button class="px-2.5 py-1 text-xs text-indigo-600 hover:text-white hover:bg-indigo-500 border border-indigo-200 hover:border-indigo-500 rounded-md font-medium transition-all hover:cursor-pointer">수정</button>
+                            <button class="px-2.5 py-1 text-xs text-red-500 hover:text-white hover:bg-red-500 border border-red-200 hover:border-red-500 rounded-md font-medium transition-all hover:cursor-pointer">삭제</button>
                         </div>
                     </div>
 
@@ -56,112 +56,18 @@
                         <div class="col-span-2 text-center"><span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">사용중</span></div>
                         <div class="col-span-2 text-center flex justify-center gap-2">
                             <span class="text-gray-300 text-xs">-</span>
-                            <button class="text-gray-600 hover:underline text-xs">수정</button>
-                            <button class="text-red-600 hover:underline text-xs">삭제</button>
+                            <button class="px-2.5 py-1 text-xs text-indigo-600 hover:text-white hover:bg-indigo-500 border border-indigo-200 hover:border-indigo-500 rounded-md font-medium transition-all hover:cursor-pointer">수정</button>
+                            <button class="px-2.5 py-1 text-xs text-red-500 hover:text-white hover:bg-red-500 border border-red-200 hover:border-red-500 rounded-md font-medium transition-all hover:cursor-pointer">삭제</button>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-<!--            <div class="category-grid-new h-full grid grid-rows-[1fr_auto] gird-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 p-6" id="categoryGridContainer">-->
-<!--                <div class="p-2">-->
-<!--                    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3">-->
-<!--                        <div th:each="num: ${#numbers.sequence(1,28)}" class="flex items-center gap-3 px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl hover:bg-white hover:shadow-sm hover:border-indigo-200 transition-all">-->
-<!--                            <span class="text-xl">😊</span>-->
-
-<!--                            <div class="flex-1 min-w-0">-->
-<!--                                <h3 class="text-sm font-semibold text-gray-900 truncate">카테고리명</h3>-->
-<!--                                <p class="text-xs text-gray-500">100개 게시글</p>-->
-<!--                            </div>-->
-
-<!--                            <div class="flex items-center gap-1 border-l border-gray-200 pl-3 ml-2">-->
-<!--                                <button class="px-2.5 py-1 text-xs text-indigo-600 hover:text-white hover:bg-indigo-500 border border-indigo-200 hover:border-indigo-500 rounded-md font-medium transition-all hover:cursor-pointer">수정</button>-->
-<!--                                <button class="px-2.5 py-1 text-xs text-red-500 hover:text-white hover:bg-red-500 border border-red-200 hover:border-red-500 rounded-md font-medium transition-all hover:cursor-pointer">삭제</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
             <div class="absolute bottom-10 right-10 flex justify-end gap-2 mx-2">
-                <button id="write-button" class="px-2.5 py-1 text-xl text-white bg-indigo-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none">
+                <button id="create-button" type="button" class="px-2.5 py-1 text-xl text-white bg-indigo-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none">
                     추가
                 </button>
-            </div>
-<!--            </div>-->
-        </div>
-
-        <div id="category-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm invisible opacity-0 transition-all">
-            <div class="bg-white border border-gray-200 rounded-2xl p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto">
-                <h2 class="text-xl font-bold mb-6 text-gray-900">새 카테고리</h2>
-                <form id="category-form" class="space-y-5">
-                    <div id="category-icon-container">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">아이콘</label>
-                        <div class="flex flex-wrap gap-2">
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-indigo-100 border-2 border-indigo-500">📁</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">💻</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">🎨</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">📚</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">🎧</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">🎮</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">✈️</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">🍔</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">📷</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">💡</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">🔧</button>
-                            <button type="button" class="w-10 h-10 rounded-lg text-lg hover:cursor-pointer transition-all bg-gray-50 border border-gray-200 hover:border-gray-300">📊</button>
-                            <input type="hidden" id="selected-category-icon" name="icon" value="📁">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">이름 <span class="text-red-400">*</span></label>
-                        <label>
-                            <input placeholder="카테고리 이름" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all" type="text" value="">
-                        </label>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Slug</label>
-                        <label>
-                            <input placeholder="url-slug" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all font-mono text-sm" type="text" value="">
-                        </label>
-                    </div>
-
-                    <div id="category-color-container">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">색상</label>
-                        <div class="flex items-center gap-3">
-                            <div class="flex flex-wrap gap-2">
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer ring-2 ring-offset-2 ring-indigo-500 scale-110" style="background-color: rgb(99, 102, 241);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(139, 92, 246);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(236, 72, 153);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(239, 68, 68);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(249, 115, 22);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(234, 179, 8);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(34, 197, 94);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(20, 184, 166);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(6, 182, 212);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(59, 130, 246);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(107, 114, 128);"></button>
-                                <button type="button" class="w-8 h-8 rounded-lg transition-all hover:cursor-pointer hover:scale-110" style="background-color: rgb(30, 41, 59);"></button>
-                            </div>
-                            <label for="selected-category-color" class="">
-                                <input id="selected-category-color" class="w-10 h-10 rounded-lg border border-gray-200 hover:cursor-pointer p-0.5" type="color" value="#6366f1">
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">설명</label>
-                        <label>
-                            <textarea placeholder="카테고리 설명 (선택)" rows="2" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"></textarea>
-                        </label>
-                    </div>
-
-                    <div class="flex gap-3 pt-2">
-                        <button id="category-modal-cancel-button" type="button" class="flex-1 px-5 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-600 font-medium hover:bg-gray-200 hover:text-gray-900 hover:cursor-pointer transition-all">취소</button>
-                        <button id="category-modal-submit-button" type="submit" class="flex-1 px-5 py-3 bg-linear-to-br from-violet-500 to-fuchsia-500 rounded-xl text-white font-semibold transition-all hover:cursor-pointer hover:-translate-y-0.5">추가</button>
-                    </div>
-                </form>
             </div>
         </div>
     </main>
