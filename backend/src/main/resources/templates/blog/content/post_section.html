@@ -12,14 +12,14 @@
                     </div>
                 </div>
 
-                <article th:unless="${#lists.isEmpty(postResponseList)}" th:each="post: ${postResponseList}" th:data-post-id="${post.id}" id="postCards" class="group bg-bg-secondary rounded-2xl overflow-hidden border border-post-border transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-1 hover:shadow-[var(--shadow-post),var(--shadow-glow)] hover:border-accent_primary">
+                <article th:unless="${#lists.isEmpty(postResponseList)}" th:each="post: ${postResponseList}" th:data-post-id="${post.id}" id="postCards" class="group flex flex-col bg-bg-secondary rounded-2xl overflow-hidden border border-post-border transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-1 hover:shadow-[var(--shadow-post),var(--shadow-glow)] hover:border-accent_primary">
                     <div class="relative h-50 overflow-hidden">
                         <img th:src="${post.thumbnailUrl}" alt="카테고리" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" th:onerror="|this.onerror=null; this.src='/images/default_no_image.png';|">
                         <span class="post-card-category absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-[0.5px] text-white bg-blue-400">카테고리</span>
                     </div>
-                    <div class="p-4">
+                    <div class="flex flex-col flex-1 h-full p-4">
                         <h2 th:text="${post.title}" class="text-xl text-primary font-semibold leading-snug line-clamp-2 overflow-hidden transition-colors duration-300">JavaScript 비동기 처리의 모든 것: Promise부터 async/await까지</h2>
-                        <p th:utext="${post.content}" class="mt-2 text-sm text-secondary line-clamp-3 overflow-hidden transition-colors duration-300">자바스크립트에서 비동기 처리를 다루는 다양한 방법을 알아봅니다. 콜백 지옥을 벗어나 깔끔한 코드를 작성하는 방법을 배워보세요.</p>
+                        <p th:utext="${post.content}" class="flex-1 mt-2 text-sm text-secondary line-clamp-3 overflow-hidden transition-colors duration-300">자바스크립트에서 비동기 처리를 다루는 다양한 방법을 알아봅니다. 콜백 지옥을 벗어나 깔끔한 코드를 작성하는 방법을 배워보세요.</p>
                         <div class="mt-2 flex items-center justify-end text-xs text-tertiary transition-colors duration-300">
                             <span th:text="|${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}|">2026년 1월 20일</span>
                         </div>

@@ -994,6 +994,9 @@
   .flex-1 {
     flex: 1;
   }
+  .flex-grow {
+    flex-grow: 1;
+  }
   .table-fixed {
     table-layout: fixed;
   }
