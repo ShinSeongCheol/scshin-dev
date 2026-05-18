@@ -11,6 +11,10 @@ import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostReadRecor
 import kr.scshin.scshin_dev.blog.domain.Post;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -43,7 +47,8 @@ public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort
 
     @Override
     public List<PostReadRecord> readPostList() {
-        List<PostJpaEntity> postJpaEntityList = postJpaRepository.findAll();
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("createdAt").descending());
+        Page<PostJpaEntity> postJpaEntityList = postJpaRepository.findAll(pageable);
         return postJpaEntityList.stream().map(postJpaEntity -> new PostReadRecord(postJpaEntity.getId(), postJpaEntity.getTitle(), postJpaEntity.getContent(), postJpaEntity.getAuthorId(), postJpaEntity.getCreatedAt(), postJpaEntity.getUpdatedAt())).toList();
     }
 
