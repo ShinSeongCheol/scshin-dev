@@ -16,29 +16,8 @@
                     </svg>
                     <span>글 목록</span>
                 </h3>
-                <span class="px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold" id="categoryListCount">0개</span>
+                <span class="px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold" id="categoryListCount" th:text="|${#lists.size(postList)}개|">0개</span>
             </div>
-
-<!--            <table class="table-fixed mx-2 border-collapse">-->
-<!--                <thead>-->
-<!--                    <tr class="bg-gray-200 text-sm">-->
-<!--                        <th class="p-2 w-16">번호</th>-->
-<!--                        <th class="p-2 w-auto text-left">제목</th>-->
-<!--                        <th class="p-2 w-36">생성일</th>-->
-<!--                        <th class="p-2 w-36">수정일</th>-->
-<!--                        <th class="p-2 w-36">조회수</th>-->
-<!--                    </tr>-->
-<!--                </thead>-->
-<!--                <tbody id="table-body" class="cursor-default">-->
-<!--                    <tr th:each="post : ${postList}" class="border-b border-gray-100 hover:bg-gray-50 transition-colors">-->
-<!--                        <td th:text="${post.id()}" class="p-2 text-center text-gray-500 text-sm">1</td>-->
-<!--                        <td th:text="|${post.title()}|" class="text-blue-600 hover:underline truncate p-2 text-left">글 제목</td>-->
-<!--                        <td th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>-->
-<!--                        <td th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>-->
-<!--                        <td th:text="|${post.views()}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">0</td>-->
-<!--                    </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
 
             <div class="bg-white mx-2 shadow overflow-hidden border border-gray-200">
                 <!-- 테이블 헤더 -->
