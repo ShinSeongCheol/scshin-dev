@@ -2,6 +2,8 @@ package kr.scshin.scshin_dev.blog.adapter.out.markdown;
 
 import kr.scshin.scshin_dev.blog.application.port.out.MarkdownParsePort;
 import lombok.extern.slf4j.Slf4j;
+import org.commonmark.Extension;
+import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -10,14 +12,17 @@ import org.commonmark.renderer.text.TextContentRenderer;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
 @Component
 public class MarkdownParserAdapter implements MarkdownParsePort {
-    private final Parser parser = Parser.builder().build();
+    private final List<Extension> extensions = Collections.singletonList(TablesExtension.create());
+    private final Parser parser = Parser.builder().extensions(extensions).build();
     private final TextContentRenderer textRenderer = TextContentRenderer.builder().build();
-    HtmlRenderer htmlRenderer = HtmlRenderer.builder().build();
+
+    HtmlRenderer htmlRenderer = HtmlRenderer.builder().extensions(extensions).build();
     MarkdownRenderer markdownRenderer = MarkdownRenderer.builder().build();
 
     @Override
