@@ -48,7 +48,16 @@
                     글 관리
                 </a>
             </nav>
-            <div class="sidebar-footer px-3 py-4 border-t border-backoffice-border">
+            <div class="px-3 py-4 border-t border-backoffice-border">
+                <button th:id="sidebar-nav-my-account-button" class="flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-backoffice-text-secondary transition-all duration-150 w-full hover:bg-[rgba(83,195,243,0.1)] hover:text-[#28b4f0] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    내 정보
+                </button>
+            </div>
+            <div class="px-3 py-4 border-t border-backoffice-border">
                 <form th:action="@{/logout}" method="post">
                     <button th:id="sidebar-nav-logout-button" type="submit" class="logout-btn flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-backoffice-text-secondary transition-all duration-150 w-full hover:bg-[rgba(239,68,68,0.1)] hover:text-[#ef4444] cursor-pointer">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

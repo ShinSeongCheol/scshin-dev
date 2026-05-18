@@ -1,11 +1,6 @@
 let markdown_editor;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const content = document.querySelector('#content');
-    if (content) {
-        content.innerHTML = marked.parse("# Hello");
-    }
-
     const post_text_area = document.querySelector('#post-text-area');
     if (post_text_area) {
 

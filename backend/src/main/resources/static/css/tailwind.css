@@ -1922,6 +1922,13 @@
       }
     }
   }
+  .hover\:bg-\[rgba\(83\,195\,243\,0\.1\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: rgba(83,195,243,0.1);
+      }
+    }
+  }
   .hover\:bg-\[rgba\(239\,68\,68\,0\.1\)\] {
     &:hover {
       @media (hover: hover) {
@@ -2020,6 +2027,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-white);
+      }
+    }
+  }
+  .hover\:text-\[\#28b4f0\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #28b4f0;
       }
     }
   }
@@ -2393,6 +2407,11 @@
   .dark\:hidden {
     &:where([data-theme='dark'], [data-theme='dark'] *) {
       display: none;
+    }
+  }
+  .prose-code\:text-black {
+    & :is(:where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      color: var(--color-black);
     }
   }
   .prose-img\:mx-auto {
