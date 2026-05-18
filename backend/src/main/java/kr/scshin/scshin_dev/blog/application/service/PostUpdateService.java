@@ -40,7 +40,9 @@ public class PostUpdateService implements PostUpdateUseCase {
                 .authorId(postReadRecord.authorId())
                 .createdAt(postReadRecord.createdAt())
                 .updateAt(postReadRecord.updatedAt())
+                .views(postReadRecord.views())
                 .build();
+
         post.update(postUpdateCommand.title(), postUpdateCommand.content());
 
         List<String> imageUrls = markdownParsePort.extractImageUrls(post.getContent());
@@ -63,6 +65,13 @@ public class PostUpdateService implements PostUpdateUseCase {
             .build()
         );
 
-        postUpdatePort.updatePost(new PostUpdateRecordCommand(post.getId(), post.getTitle(), post.getContent(), post.getAuthorId()));
+        postUpdatePort.updatePost(PostUpdateRecordCommand.builder()
+                .id(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .authorId(post.getAuthorId())
+                .views(post.getViews())
+                .build()
+        );
     }
 }
