@@ -3,12 +3,12 @@ package kr.scshin.scshin_dev.blog.adapter.out.persistence;
 import kr.scshin.scshin_dev.blog.application.port.out.PostCreatePort;
 import kr.scshin.scshin_dev.blog.application.port.out.PostReadPort;
 import kr.scshin.scshin_dev.blog.application.port.out.PostUpdatePort;
+import kr.scshin.scshin_dev.blog.application.port.out.PostViewIncreasePort;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostCreateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostReadRecordQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostUpdateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostCreateRecord;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostReadRecord;
-import kr.scshin.scshin_dev.blog.domain.Post;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort {
+public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort, PostViewIncreasePort {
 
     private final PostJpaRepository postJpaRepository;
 
@@ -32,6 +32,7 @@ public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort
                 .title(postCreateRecordCommand.title())
                 .content(postCreateRecordCommand.content())
                 .authorId(postCreateRecordCommand.authorId())
+                .views(postCreateRecordCommand.views())
                 .build();
 
         PostJpaEntity savedPostJpaEntity = postJpaRepository.save(postJpaEntity);
@@ -49,13 +50,30 @@ public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort
     public List<PostReadRecord> readPostList() {
         Pageable pageable = PageRequest.of(0, 10, Sort.by("createdAt").descending());
         Page<PostJpaEntity> postJpaEntityList = postJpaRepository.findAll(pageable);
-        return postJpaEntityList.stream().map(postJpaEntity -> new PostReadRecord(postJpaEntity.getId(), postJpaEntity.getTitle(), postJpaEntity.getContent(), postJpaEntity.getAuthorId(), postJpaEntity.getCreatedAt(), postJpaEntity.getUpdatedAt())).toList();
+        return postJpaEntityList.stream().map(postJpaEntity -> PostReadRecord.builder()
+                .id(postJpaEntity.getId())
+                .title(postJpaEntity.getTitle())
+                .content(postJpaEntity.getContent())
+                .authorId(postJpaEntity.getAuthorId())
+                .createdAt(postJpaEntity.getCreatedAt())
+                .updatedAt(postJpaEntity.getUpdatedAt())
+                .views(postJpaEntity.getViews())
+                .build()
+        ).toList();
     }
 
     @Override
     public PostReadRecord readPost(PostReadRecordQuery postReadRecordQuery) {
         PostJpaEntity postJpaEntity = postJpaRepository.findById(postReadRecordQuery.postId()).orElseThrow();
-        return new PostReadRecord(postJpaEntity.getId(), postJpaEntity.getTitle(), postJpaEntity.getContent(), postJpaEntity.getAuthorId(), postJpaEntity.getCreatedAt(), postJpaEntity.getUpdatedAt());
+        return PostReadRecord.builder()
+                .id(postJpaEntity.getId())
+                .title(postJpaEntity.getTitle())
+                .content(postJpaEntity.getContent())
+                .authorId(postJpaEntity.getAuthorId())
+                .createdAt(postJpaEntity.getCreatedAt())
+                .updatedAt(postJpaEntity.getUpdatedAt())
+                .views(postJpaEntity.getViews())
+                .build();
     }
 
     @Override
@@ -68,5 +86,10 @@ public class PostAdapter implements PostCreatePort, PostReadPort, PostUpdatePort
                 .build();
 
         postJpaRepository.save(postJpaEntity);
+    }
+
+    @Override
+    public void increasePostViewCount(Long postId) {
+        postJpaRepository.increasePostViewCount(postId);
     }
 }
