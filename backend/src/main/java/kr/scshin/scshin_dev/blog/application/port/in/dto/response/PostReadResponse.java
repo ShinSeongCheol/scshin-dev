@@ -13,5 +13,6 @@ public record PostReadResponse(
     Long authorId,
     LocalDateTime createdAt,
     LocalDateTime updatedAt,
-    List<String> imageUrls
+    List<String> imageUrls,
+    Long views
 ) { }

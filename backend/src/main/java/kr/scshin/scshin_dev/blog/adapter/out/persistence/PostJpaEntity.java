@@ -38,4 +38,7 @@ public class PostJpaEntity {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @Column(nullable = false)
+    private Long views = 0L;
 }

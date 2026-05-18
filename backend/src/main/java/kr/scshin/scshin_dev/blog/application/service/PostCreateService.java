@@ -32,9 +32,10 @@ public class PostCreateService implements PostCreateUseCase {
             .title(postCreateCommand.title())
             .content(postCreateCommand.content())
             .authorId(postCreateCommand.authorId())
+            .views(0L)
             .build();
 
-        PostCreateRecord postCreateRecord = postCreatePort.createPost(new PostCreateRecordCommand(post.getTitle(), post.getContent(), post.getAuthorId()));
+        PostCreateRecord postCreateRecord = postCreatePort.createPost(PostCreateRecordCommand.builder().title(post.getTitle()).content(post.getContent()).authorId(post.getAuthorId()).views(post.getViews()).build());
         Post savedPost = Post.builder()
                 .id(postCreateRecord.id())
                 .title(postCreateRecord.title())

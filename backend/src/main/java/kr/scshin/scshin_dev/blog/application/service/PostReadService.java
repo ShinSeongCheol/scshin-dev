@@ -1,11 +1,13 @@
 package kr.scshin.scshin_dev.blog.application.service;
 
+import jakarta.transaction.Transactional;
 import kr.scshin.scshin_dev.blog.application.port.in.PostReadUseCase;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.request.PostReadQuery;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.PostReadResponse;
 import kr.scshin.scshin_dev.blog.application.port.out.MarkdownParsePort;
 import kr.scshin.scshin_dev.blog.application.port.out.PostImageReadPort;
 import kr.scshin.scshin_dev.blog.application.port.out.PostReadPort;
+import kr.scshin.scshin_dev.blog.application.port.out.PostViewIncreasePort;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostImageReadRecordQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostReadRecordQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostImageReadRecord;
@@ -27,6 +29,7 @@ public class PostReadService implements PostReadUseCase {
     private final PostReadPort postReadPort;
     private final MarkdownParsePort markdownParsePort;
     private final PostImageReadPort postImageReadPort;
+    private final PostViewIncreasePort postViewIncreasePort;
 
     @Override
     public List<PostReadResponse> readPostList() {
@@ -48,6 +51,7 @@ public class PostReadService implements PostReadUseCase {
                         .createdAt(post.createdAt())
                         .updatedAt(post.updatedAt())
                         .imageUrls(imageMap.getOrDefault(post.id(), Collections.emptyList()).stream().map(image -> "/uploads/" + image.filePath() + "/" + image.storedName()).collect(Collectors.toList()))
+                        .views(post.views())
                         .build()
                 ).toList();
     }
@@ -62,12 +66,17 @@ public class PostReadService implements PostReadUseCase {
                 .authorId(postReadRecord.authorId())
                 .createdAt(postReadRecord.createdAt())
                 .updatedAt(postReadRecord.updatedAt())
+                .views(postReadRecord.views())
                 .build();
     }
 
     @Override
+    @Transactional
     public PostReadResponse readPostAsHtml(PostReadQuery postReadQuery) {
         PostReadRecord postReadRecord = postReadPort.readPost(new PostReadRecordQuery(postReadQuery.postId()));
+
+        postViewIncreasePort.increasePostViewCount(postReadRecord.id());
+
         return PostReadResponse.builder()
                 .id(postReadRecord.id())
                 .title(postReadRecord.title())

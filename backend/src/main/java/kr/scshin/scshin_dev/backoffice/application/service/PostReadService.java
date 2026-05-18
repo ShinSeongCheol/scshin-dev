@@ -24,12 +24,29 @@ public class PostReadService implements PostReadUseCase {
         PostReadRecordQuery postReadRecordQuery = new PostReadRecordQuery(postReadQuery.postId());
         PostReadRecord postReadRecord = postReadPort.readPost(postReadRecordQuery);
 
-        return new PostReadResponse(postReadRecord.id(), postReadRecord.title(), postReadRecord.content(), postReadRecord.authorId(), postReadRecord.createdAt(), postReadRecord.updatedAt());
+        return PostReadResponse.builder()
+                .id(postReadRecord.id())
+                .title(postReadRecord.title())
+                .content(postReadRecord.content())
+                .createdAt(postReadRecord.createdAt())
+                .updatedAt(postReadRecord.updatedAt())
+                .authorId(postReadRecord.authorId())
+                .views(postReadRecord.views())
+                .build();
     }
 
     @Override
     public List<PostReadResponse> readPostList() {
         List<PostReadRecord> postListResult = postReadPort.readPostList();
-        return postListResult.stream().map(postResult -> new PostReadResponse(postResult.id(), postResult.title(), postResult.content(), postResult.authorId(), postResult.createdAt(), postResult.updatedAt())).toList();
+        return postListResult.stream().map(postResult -> PostReadResponse.builder()
+                .id(postResult.id())
+                .title(postResult.title())
+                .content(postResult.content())
+                .createdAt(postResult.createdAt())
+                .updatedAt(postResult.updatedAt())
+                .authorId(postResult.authorId())
+                .views(postResult.views())
+                .build()
+        ).toList();
     }
 }

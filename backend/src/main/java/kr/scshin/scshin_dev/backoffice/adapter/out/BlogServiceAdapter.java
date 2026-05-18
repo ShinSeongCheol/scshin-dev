@@ -36,7 +36,16 @@ public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpd
     @Override
     public List<PostReadRecord> readPostList() {
         List<PostReadResponse> postListResponse = postReadUseCase.readPostList();
-        return postListResponse.stream().map(post -> new PostReadRecord(post.id(), post.title(), post.content(), post.authorId(), post.createdAt(), post.updatedAt())).toList();
+        return postListResponse.stream().map(post -> PostReadRecord.builder()
+                .id(post.id())
+                .title(post.title())
+                .content(post.content())
+                .authorId(post.authorId())
+                .createdAt(post.createdAt())
+                .updatedAt(post.updatedAt())
+                .views(post.views())
+                .build()
+        ).toList();
     }
 
     @Override
@@ -44,7 +53,15 @@ public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpd
         PostReadQuery postReadQuery = new PostReadQuery(postReadRecordQuery.postId());
         PostReadResponse postReadResponse = postReadUseCase.readPost(postReadQuery);
 
-        return new PostReadRecord(postReadResponse.id(), postReadResponse.title(), postReadResponse.content(), postReadResponse.authorId(), postReadResponse.createdAt(), postReadResponse.updatedAt());
+        return PostReadRecord.builder()
+                .id(postReadResponse.id())
+                .title(postReadResponse.title())
+                .content(postReadResponse.content())
+                .authorId(postReadResponse.authorId())
+                .createdAt(postReadResponse.createdAt())
+                .updatedAt(postReadResponse.updatedAt())
+                .views(postReadResponse.views())
+                .build();
     }
 
     @Override

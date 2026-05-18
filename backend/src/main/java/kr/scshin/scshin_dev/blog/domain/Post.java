@@ -16,6 +16,7 @@ public class Post{
     private final Long authorId;
     private final LocalDateTime createdAt;
     private LocalDateTime updateAt;
+    private Long views;
 
     public void update(String title, String content) {
        this.title = title;
