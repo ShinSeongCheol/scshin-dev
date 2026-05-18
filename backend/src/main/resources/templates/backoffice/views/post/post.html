@@ -31,9 +31,9 @@
                 <tbody id="table-body" class="cursor-default">
                     <tr th:each="post : ${postList}" class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                         <td th:text="${post.id()}" class="p-2 text-center text-gray-500 text-sm">1</td>
-                        <td th:text="|${post.title()}|" class="text-blue-600 hover:underline block truncate p-2 text-left">글 제목</td>
-                        <td th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd')}|" class="p-2 text-center text-sm text-gray-500">2026-04-07</td>
-                        <td th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd')}|" class="p-2 text-center text-sm text-gray-500">2026-04-07</td>
+                        <td th:text="|${post.title()}|" class="text-blue-600 hover:underline truncate p-2 text-left">글 제목</td>
+                        <td th:text="|${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>
+                        <td th:text="|${#temporals.format(post.updatedAt(), 'yyyy-MM-dd HH:mm:ss')}|" class="p-2 text-center text-sm text-gray-500 whitespace-nowrap">2026-04-07 12:00:00</td>
                     </tr>
                 </tbody>
             </table>
