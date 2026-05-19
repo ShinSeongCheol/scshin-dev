@@ -81,6 +81,7 @@ public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpd
                 .parentCategoryId(categoryCreateRecordCommand.parentCategoryId())
                 .categoryName(categoryCreateRecordCommand.categoryName())
                 .slug(categoryCreateRecordCommand.slug())
+                .description(categoryCreateRecordCommand.description())
                 .useYn(categoryCreateRecordCommand.useYn())
                 .build();
 
