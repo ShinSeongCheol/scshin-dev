@@ -1,0 +1,102 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backoffice/layouts/newCategoryLayout}" lang="kr" class="scroll-smooth" data-theme="">
+    <main layout:fragment="content" class="flex items-center justify-center min-h-dvh sm:p-4">
+        <form class="w-full lg:w-lg p-4 bg-white flex flex-col gap-4 rounded-xl shadow-xl">
+            <div class="relative m-5 pt-5">
+                <input id="parent-category-id"
+                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
+                       placeholder="부모 카테고리"
+                       type="text">
+
+                <label for="parent-category-id"
+                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
+                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
+                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
+                    부모 카테고리
+                </label>
+
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+            </div>
+            <div class="relative m-5 pt-5">
+                <input id="category-name"
+                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
+                       placeholder="카테고리명"
+                       type="text">
+
+                <label for="category-name"
+                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
+                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
+                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
+                    카테고리명
+                </label>
+
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+            </div>
+            <div class="relative m-5 pt-5">
+                <input id="slug"
+                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
+                       placeholder="슬러그(Slug)"
+                       type="text">
+
+                <label for="slug"
+                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
+                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
+                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
+                    슬러그(Slug)
+                </label>
+
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+            </div>
+            <div class="relative m-5 pt-5">
+                <input id="description"
+                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
+                       placeholder="설명"
+                       type="text">
+
+                <label for="description"
+                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
+                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
+                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
+                    설명
+                </label>
+
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+            </div>
+            <div class="relative m-5 pt-5">
+                <input id="sort-order"
+                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
+                       placeholder="정렬 순서"
+                       type="text">
+
+                <label for="sort-order"
+                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
+                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
+                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
+                    정렬 순서
+                </label>
+
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+            </div>
+            <div class="relative m-5 pt-5">
+                <input id="use-yn"
+                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
+                       placeholder="사용여부"
+                       type="text">
+
+                <label for="use-yn"
+                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
+                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
+                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
+                    사용여부
+                </label>
+
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+            </div>
+            <div class="flex items-center justify-between gap-2 mx-5">
+                <button class="w-full h-8 bg-gray-400 hover:bg-gray-500 focus:bg-gray-600 cursor-pointer" type="button">취소</button>
+                <button class="w-full h-8 bg-blue-400 hover:bg-blue-500 focus:bg-blue-600 cursor-pointer" type="button">저장</button>
+            </div>
+        </form>
+    </main>
+    <script layout:fragment="script" th:src="@{/js/backoffice/views/category/category.js}"></script>
+</html>
