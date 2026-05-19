@@ -2,20 +2,20 @@
       layout:decorate="~{backoffice/layouts/newCategoryLayout}" lang="kr" class="scroll-smooth" data-theme="">
     <main layout:fragment="content" class="flex items-center justify-center min-h-dvh sm:p-4">
         <form class="w-full lg:w-lg p-4 bg-white flex flex-col gap-4 rounded-xl shadow-xl">
-            <div class="relative m-5 pt-5">
-                <input id="parent-category-id"
-                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
-                       placeholder="부모 카테고리"
-                       type="text">
+            <div class="relative m-5">
+                <label for="parent-category-id"></label>
+                <select id="parent-category-id" class="appearance-none block w-full p-2.5 pr-10 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent cursor-pointer transition-all duration-300 focus:border-blue-400">
+                    <option value="" selected class="text-gray-400">부모 카테고리 선택</option>
+                    <option value="1" class="text-black">카테고리 1</option>
+                    <option value="2" class="text-black">카테고리 2</option>
+                </select>
 
-                <label for="parent-category-id"
-                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
-                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
-                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
-                    부모 카테고리
-                </label>
-
-                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+                <!-- Tailwind에서는 화살표를 아이콘 컴포넌트나 아래처럼 absolute span으로 우측에 띄우는 것이 편합니다 -->
+                <span class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </span>
             </div>
             <div class="relative m-5 pt-5">
                 <input id="category-name"
@@ -93,8 +93,8 @@
                 <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
             </div>
             <div class="flex items-center justify-between gap-2 mx-5">
-                <button class="w-full h-8 bg-gray-400 hover:bg-gray-500 focus:bg-gray-600 cursor-pointer" type="button">취소</button>
-                <button class="w-full h-8 bg-blue-400 hover:bg-blue-500 focus:bg-blue-600 cursor-pointer" type="button">저장</button>
+                <button class="w-full h-8 bg-gray-400 hover:bg-gray-500 focus:bg-gray-600 transition-transform duration-150 ease-in focus:scale-95 cursor-pointer" type="button">취소</button>
+                <button class="w-full h-8 bg-blue-400 hover:bg-blue-500 focus:bg-blue-600 transition-transform duration-150 ease-in focus:scale-95 cursor-pointer" type="button">저장</button>
             </div>
         </form>
     </main>
