@@ -29,7 +29,7 @@ public class BackOfficeController {
     private final PostReadUseCase postReadUseCase;
     private final PostUpdateUseCase postUpdateUseCase;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String backOffice(Model model) {
         model.addAttribute("menu", "dashboard");
         return "backoffice/index";
