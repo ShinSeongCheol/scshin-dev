@@ -63,21 +63,6 @@
                 <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
             </div>
             <div class="relative m-5 pt-5">
-                <input id="sort-order"
-                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
-                       placeholder="정렬 순서"
-                       type="text">
-
-                <label for="sort-order"
-                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
-                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
-                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
-                    정렬 순서
-                </label>
-
-                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
-            </div>
-            <div class="relative m-5 pt-5">
                 <input id="use-yn"
                        class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
                        placeholder="사용여부"
@@ -91,6 +76,21 @@
                 </label>
 
                 <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
+            </div>
+
+            <div class="m-5 flex items-center gap-4">
+                <span class="block text-sm text-gray-400">카테고리 사용</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" name="use_yn" value="Y" class="sr-only peer" checked>
+
+                    <div class="w-11 h-6 bg-gray-300 rounded-full peer
+                    peer-checked:bg-blue-500
+                    after:content-[''] after:absolute after:top-0.5 after:left-0.5
+                    after:bg-white after:border-gray-300 after:border after:rounded-full
+                    after:h-5 after:w-5 after:transition-all
+                    peer-checked:after:translate-x-full peer-checked:after:border-white">
+                    </div>
+                </label>
             </div>
             <div class="flex items-center justify-between gap-2 mx-5">
                 <button class="w-full h-8 bg-gray-400 hover:bg-gray-500 focus:bg-gray-600 transition-transform duration-150 ease-in focus:scale-95 cursor-pointer" type="button">취소</button>
