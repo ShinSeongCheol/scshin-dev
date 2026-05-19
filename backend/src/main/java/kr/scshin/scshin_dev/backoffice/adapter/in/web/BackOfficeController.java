@@ -2,6 +2,7 @@ package kr.scshin.scshin_dev.backoffice.adapter.in.web;
 
 import jakarta.validation.Valid;
 import kr.scshin.scshin_dev.auth.adapter.out.security.CustomUserDetails;
+import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequest;
 import kr.scshin.scshin_dev.backoffice.application.port.in.CreatePostUseCase;
@@ -18,6 +19,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @Slf4j
 @Controller
@@ -48,8 +51,15 @@ public class BackOfficeController {
     }
 
     @GetMapping("/category/new")
-    public String newCategory(Model model) {
+    public String newCategory() {
         return "backoffice/views/category/newCategory";
+    }
+
+    @PostMapping("/category/new")
+    @ResponseBody
+    public ResponseEntity<String> createCategory(@Valid @RequestBody CategoryCreateRequest categoryCreateRequest) {
+        log.info(categoryCreateRequest.toString());
+        return ResponseEntity.ok("Success");
     }
 
     @GetMapping("/post")

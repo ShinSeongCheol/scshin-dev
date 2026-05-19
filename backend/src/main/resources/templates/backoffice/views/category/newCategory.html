@@ -1,10 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{backoffice/layouts/newCategoryLayout}" lang="kr" class="scroll-smooth" data-theme="">
     <main layout:fragment="content" class="flex items-center justify-center min-h-dvh sm:p-4">
-        <form class="w-full lg:w-lg p-4 bg-white flex flex-col gap-4 rounded-xl shadow-xl">
+        <form id="category-form" class="w-full lg:w-lg p-4 bg-white flex flex-col gap-4 rounded-xl shadow-xl">
             <div class="relative m-5">
                 <label for="parent-category-id"></label>
-                <select id="parent-category-id" class="appearance-none block w-full p-2.5 pr-10 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent cursor-pointer transition-all duration-300 focus:border-blue-400">
+                <select id="parent-category-id" name="parent-category-id" class="appearance-none block w-full p-2.5 pr-10 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent cursor-pointer transition-all duration-300 focus:border-blue-400">
                     <option value="" selected class="text-gray-400">부모 카테고리 선택</option>
                     <option value="1" class="text-black">카테고리 1</option>
                     <option value="2" class="text-black">카테고리 2</option>
@@ -19,6 +19,7 @@
             </div>
             <div class="relative m-5 pt-5">
                 <input id="category-name"
+                       name="category-name"
                        class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
                        placeholder="카테고리명"
                        type="text">
@@ -34,6 +35,7 @@
             </div>
             <div class="relative m-5 pt-5">
                 <input id="slug"
+                       name="slug"
                        class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
                        placeholder="슬러그(Slug)"
                        type="text">
@@ -49,6 +51,7 @@
             </div>
             <div class="relative m-5 pt-5">
                 <input id="description"
+                       name="description"
                        class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
                        placeholder="설명"
                        type="text">
@@ -58,21 +61,6 @@
                   peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
                   peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
                     설명
-                </label>
-
-                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
-            </div>
-            <div class="relative m-5 pt-5">
-                <input id="use-yn"
-                       class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
-                       placeholder="사용여부"
-                       type="text">
-
-                <label for="use-yn"
-                       class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
-                  peer-placeholder-shown:top-7 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-300
-                  peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-400">
-                    사용여부
                 </label>
 
                 <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300 ease-in peer-focus:w-full"></span>
@@ -93,10 +81,10 @@
                 </label>
             </div>
             <div class="flex items-center justify-between gap-2 mx-5">
-                <button class="w-full h-8 bg-gray-400 hover:bg-gray-500 focus:bg-gray-600 transition-transform duration-150 ease-in focus:scale-95 cursor-pointer" type="button">취소</button>
-                <button class="w-full h-8 bg-blue-400 hover:bg-blue-500 focus:bg-blue-600 transition-transform duration-150 ease-in focus:scale-95 cursor-pointer" type="button">저장</button>
+                <button id="cancel-button" class="w-full h-8 bg-gray-400 hover:bg-gray-500 focus:bg-gray-600 transition-transform duration-150 ease-in focus:scale-95 cursor-pointer" type="button">취소</button>
+                <button class="w-full h-8 bg-blue-400 hover:bg-blue-500 focus:bg-blue-600 transition-transform duration-150 ease-in focus:scale-95 cursor-pointer" type="submit">저장</button>
             </div>
         </form>
     </main>
-    <script layout:fragment="script" th:src="@{/js/backoffice/views/category/category.js}"></script>
+    <script layout:fragment="script" th:src="@{/js/backoffice/views/category/newCategory.js}"></script>
 </html>
