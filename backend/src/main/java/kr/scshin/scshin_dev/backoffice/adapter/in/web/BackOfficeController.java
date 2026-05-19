@@ -5,13 +5,16 @@ import kr.scshin.scshin_dev.auth.adapter.out.security.CustomUserDetails;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequest;
+import kr.scshin.scshin_dev.backoffice.application.port.in.CategoryCreateUseCase;
 import kr.scshin.scshin_dev.backoffice.application.port.in.CreatePostUseCase;
 import kr.scshin.scshin_dev.backoffice.application.port.in.PostReadUseCase;
 import kr.scshin.scshin_dev.backoffice.application.port.in.PostUpdateUseCase;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.CategoryCreateCommand;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.PostCreateCommand;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.PostReadQuery;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.PostUpdateCommand;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.PostReadResponse;
+import kr.scshin.scshin_dev.backoffice.application.port.out.CategoryCreatePort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +23,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-
 @Slf4j
 @Controller
 @RequestMapping("/backoffice")
 @RequiredArgsConstructor
 public class BackOfficeController {
+
+    private final CategoryCreateUseCase categoryCreateUseCase;
 
     private final CreatePostUseCase createPostUseCase;
     private final PostReadUseCase postReadUseCase;
@@ -58,7 +61,17 @@ public class BackOfficeController {
     @PostMapping("/category/new")
     @ResponseBody
     public ResponseEntity<String> createCategory(@Valid @RequestBody CategoryCreateRequest categoryCreateRequest) {
-        log.info(categoryCreateRequest.toString());
+        CategoryCreateCommand categoryCreateCommand = CategoryCreateCommand.builder()
+                .parentCategoryId(categoryCreateRequest.parentCategoryId())
+                .categoryName(categoryCreateRequest.categoryName())
+                .slug(categoryCreateRequest.slug())
+                .description(categoryCreateRequest.description())
+                .useYn(categoryCreateRequest.useYn())
+                .build();
+
+        log.info(categoryCreateCommand.toString());
+
+        categoryCreateUseCase.createCategory(categoryCreateCommand);
         return ResponseEntity.ok("Success");
     }
 

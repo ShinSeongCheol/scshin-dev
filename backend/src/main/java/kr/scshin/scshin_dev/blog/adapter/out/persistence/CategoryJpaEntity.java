@@ -1,6 +1,9 @@
 package kr.scshin.scshin_dev.blog.adapter.out.persistence;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -12,23 +15,23 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class CategoryJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "parent_category_id")
+    private Long parentCategoryId;
+
     @Column(nullable = false)
-    private String name;
+    private String categoryName;
 
     @Column(nullable = false, unique = true, length = 128)
     private String slug;
-
-    @Column(length = 64)
-    private String icon;
-
-    @Column(name = "theme_color", length = 32)
-    private String themeColor;
 
     @Column(length = 255)
     private String description;
@@ -37,9 +40,12 @@ public class CategoryJpaEntity {
     @ColumnDefault("0")
     private int sortOrder;
 
-    @Column(name = "is_visible")
-    @ColumnDefault("true")
-    private boolean isVisible = true;
+    @Column(name = "depth")
+    @ColumnDefault("1")
+    private int depth;
+
+    @Column(name = "use_yn")
+    private char useYn;
 
     @CreatedDate
     @Column(updatable = false)
@@ -47,11 +53,4 @@ public class CategoryJpaEntity {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
-    private CategoryJpaEntity parent;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<CategoryJpaEntity> children = new ArrayList<>();
 }

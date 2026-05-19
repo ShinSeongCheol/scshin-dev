@@ -1,6 +1,7 @@
 package kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record CategoryCreateRequest(
         Long parentCategoryId,
@@ -9,7 +10,7 @@ public record CategoryCreateRequest(
         @NotBlank(message = "슬러그는 필수입니다.")
         String slug,
         String description,
-        @NotBlank(message = "사용여부는 필수입니다.")
-        String useYn
+        @NotNull
+        char useYn
 ) {
 }
