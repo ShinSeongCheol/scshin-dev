@@ -49,6 +49,8 @@ const onSubmitHandle = async (e) => {
             throw new Error(`서버 에러가 발생했습니다. (코드: ${response.status})`);
         }
 
+        location.href = '/backoffice/category';
+
     }catch (error) {
         console.error(error);
         alert(error.message);
