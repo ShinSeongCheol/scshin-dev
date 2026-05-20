@@ -1,22 +1,12 @@
 package kr.scshin.scshin_dev.backoffice.adapter.out;
 
-import kr.scshin.scshin_dev.backoffice.application.port.out.CategoryCreatePort;
-import kr.scshin.scshin_dev.backoffice.application.port.out.PostCreatePort;
-import kr.scshin.scshin_dev.backoffice.application.port.out.PostReadPort;
-import kr.scshin.scshin_dev.backoffice.application.port.out.PostUpdatePort;
-import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.CategoryCreateRecordCommand;
-import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.PostCreateRecordCommand;
-import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.PostReadRecordQuery;
-import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.PostUpdateRecordCommand;
+import kr.scshin.scshin_dev.backoffice.application.port.out.*;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.*;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryReadRecord;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.PostReadRecord;
-import kr.scshin.scshin_dev.blog.application.port.in.CategoryCreateUseCase;
-import kr.scshin.scshin_dev.blog.application.port.in.PostCreateUseCase;
-import kr.scshin.scshin_dev.blog.application.port.in.PostReadUseCase;
-import kr.scshin.scshin_dev.blog.application.port.in.PostUpdateUseCase;
-import kr.scshin.scshin_dev.blog.application.port.in.dto.request.CategoryCreateCommand;
-import kr.scshin.scshin_dev.blog.application.port.in.dto.request.PostCreateCommand;
-import kr.scshin.scshin_dev.blog.application.port.in.dto.request.PostReadQuery;
-import kr.scshin.scshin_dev.blog.application.port.in.dto.request.PostUpdateCommand;
+import kr.scshin.scshin_dev.blog.application.port.in.*;
+import kr.scshin.scshin_dev.blog.application.port.in.dto.request.*;
+import kr.scshin.scshin_dev.blog.application.port.in.dto.response.CategoryReadResponse;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.PostReadResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -25,9 +15,10 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpdatePort, CategoryCreatePort {
+public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpdatePort, CategoryCreatePort, CategoryReadPort {
 
     private final CategoryCreateUseCase categoryCreateUseCase;
+    private final CategoryReadUseCase categoryReadUseCase;
 
     private final PostCreateUseCase postCreateUseCase;
     private final PostReadUseCase postReadUseCase;
@@ -86,5 +77,23 @@ public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpd
                 .build();
 
         categoryCreateUseCase.createCategory(categoryCreateCommand);
+    }
+
+    @Override
+    public List<CategoryReadRecord> readCategories(CategoryReadRecordQuery categoryReadRecordQuery) {
+        List<CategoryReadResponse> categoryReadResponses = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
+        return categoryReadResponses.stream().map(categoryReadResponse -> CategoryReadRecord.builder()
+                .id(categoryReadResponse.id())
+                .parentCategoryId(categoryReadResponse.parentCategoryId())
+                .categoryName(categoryReadResponse.categoryName())
+                .slug(categoryReadResponse.slug())
+                .description(categoryReadResponse.description())
+                .sortOrder(categoryReadResponse.sortOrder())
+                .depth(categoryReadResponse.depth())
+                .useYn(categoryReadResponse.useYn())
+                .createdAt(categoryReadResponse.createdAt())
+                .updatedAt(categoryReadResponse.updatedAt())
+                .build()
+        ).toList();
     }
 }

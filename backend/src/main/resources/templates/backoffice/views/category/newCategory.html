@@ -6,6 +6,7 @@
                 <label for="parent-category-id"></label>
                 <select id="parent-category-id" name="parent-category-id" class="appearance-none block w-full p-2.5 pr-10 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent cursor-pointer transition-all duration-300 focus:border-blue-400">
                     <option value="" selected class="text-gray-400">부모 카테고리 선택</option>
+                    <option th:each="category : ${categories}" th:value="${category.id()}" th:text="${category.categoryName()}"></option>
                     <option value="1" class="text-black">카테고리 1</option>
                     <option value="2" class="text-black">카테고리 2</option>
                 </select>

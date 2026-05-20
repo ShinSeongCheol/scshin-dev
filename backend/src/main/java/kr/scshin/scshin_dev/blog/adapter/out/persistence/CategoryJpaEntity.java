@@ -3,6 +3,7 @@ package kr.scshin.scshin_dev.blog.adapter.out.persistence;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

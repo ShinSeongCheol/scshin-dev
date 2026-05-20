@@ -5,16 +5,10 @@ import kr.scshin.scshin_dev.auth.adapter.out.security.CustomUserDetails;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequest;
-import kr.scshin.scshin_dev.backoffice.application.port.in.CategoryCreateUseCase;
-import kr.scshin.scshin_dev.backoffice.application.port.in.CreatePostUseCase;
-import kr.scshin.scshin_dev.backoffice.application.port.in.PostReadUseCase;
-import kr.scshin.scshin_dev.backoffice.application.port.in.PostUpdateUseCase;
-import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.CategoryCreateCommand;
-import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.PostCreateCommand;
-import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.PostReadQuery;
-import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.PostUpdateCommand;
+import kr.scshin.scshin_dev.backoffice.application.port.in.*;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.*;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryReadResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.PostReadResponse;
-import kr.scshin.scshin_dev.backoffice.application.port.out.CategoryCreatePort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 @RequestMapping("/backoffice")
@@ -30,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class BackOfficeController {
 
     private final CategoryCreateUseCase categoryCreateUseCase;
+    private final CategoryReadUseCase categoryReadUseCase;
 
     private final CreatePostUseCase createPostUseCase;
     private final PostReadUseCase postReadUseCase;
@@ -54,7 +51,10 @@ public class BackOfficeController {
     }
 
     @GetMapping("/category/new")
-    public String newCategory() {
+    public String newCategory(Model model) {
+        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
+        model.addAttribute("categories", categories);
+
         return "backoffice/views/category/newCategory";
     }
 
