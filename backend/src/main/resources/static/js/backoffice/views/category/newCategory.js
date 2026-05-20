@@ -28,12 +28,29 @@ const onSubmitHandle = async (e) => {
         useYn: formData.get('use_yn') ? 'Y' : 'N',
     }
 
-    await fetch('/backoffice/category/new', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            [header]: token
-        },
-        body: JSON.stringify(data),
-    })
+    try {
+        const response = await fetch('/backoffice/category/new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [header]: token
+            },
+            body: JSON.stringify(data),
+        })
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+
+            if (errorData && typeof errorData === 'object') {
+                const errorMessages = Object.values(errorData).join('\n');
+                throw new Error(errorMessages);
+            }
+
+            throw new Error(`서버 에러가 발생했습니다. (코드: ${response.status})`);
+        }
+
+    }catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
 }
