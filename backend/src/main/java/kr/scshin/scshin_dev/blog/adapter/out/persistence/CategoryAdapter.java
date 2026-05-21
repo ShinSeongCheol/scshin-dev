@@ -1,7 +1,5 @@
 package kr.scshin.scshin_dev.blog.adapter.out.persistence;
 
-import kr.scshin.scshin_dev.blog.application.port.in.dto.request.CategoryCreateCommand;
-import kr.scshin.scshin_dev.blog.application.port.in.dto.request.CategoryReadQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.CategoryCreatePort;
 import kr.scshin.scshin_dev.blog.application.port.out.CategoryReadPort;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.CategoryCreateRecordCommand;
@@ -52,5 +50,22 @@ public class CategoryAdapter implements CategoryCreatePort, CategoryReadPort {
                 .updatedAt(categoryJpaEntity.getUpdatedAt())
                 .build()
         ).toList();
+    }
+
+    @Override
+    public CategoryReadRecord readCategoryByParentCategoryId(CategoryReadRecordQuery categoryReadRecordQuery) {
+        CategoryJpaEntity categoryJpaEntity = categoryJpaRepository.findById(categoryReadRecordQuery.parentCategoryId()).orElseThrow(() -> new IllegalArgumentException("부모 카테고리가 존재하지 않습니다."));
+        return CategoryReadRecord.builder()
+                .id(categoryJpaEntity.getId())
+                .parentCategoryId(categoryJpaEntity.getParentCategoryId())
+                .categoryName(categoryJpaEntity.getCategoryName())
+                .description(categoryJpaEntity.getDescription())
+                .slug(categoryJpaEntity.getSlug())
+                .useYn(categoryJpaEntity.getUseYn())
+                .sortOrder(categoryJpaEntity.getSortOrder())
+                .depth(categoryJpaEntity.getDepth())
+                .createdAt(categoryJpaEntity.getCreatedAt())
+                .updatedAt(categoryJpaEntity.getUpdatedAt())
+                .build();
     }
 }

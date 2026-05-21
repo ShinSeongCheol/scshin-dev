@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CategoryReadPort {
     List<CategoryReadRecord> readCategories(CategoryReadRecordQuery categoryReadRecordQuery);
+    CategoryReadRecord readCategoryByParentCategoryId(CategoryReadRecordQuery categoryReadRecordQuery);
 }
