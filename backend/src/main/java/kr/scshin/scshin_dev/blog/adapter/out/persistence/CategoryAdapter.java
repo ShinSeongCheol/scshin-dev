@@ -4,7 +4,9 @@ import kr.scshin.scshin_dev.blog.application.port.out.CategoryCreatePort;
 import kr.scshin.scshin_dev.blog.application.port.out.CategoryReadPort;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.CategoryCreateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.CategoryReadRecordQuery;
+import kr.scshin.scshin_dev.blog.application.port.out.dto.request.CategoryTreeReadRecordQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.CategoryReadRecord;
+import kr.scshin.scshin_dev.blog.application.port.out.dto.response.CategoryTreeReadRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -67,5 +69,11 @@ public class CategoryAdapter implements CategoryCreatePort, CategoryReadPort {
                 .createdAt(categoryJpaEntity.getCreatedAt())
                 .updatedAt(categoryJpaEntity.getUpdatedAt())
                 .build();
+    }
+
+    @Override
+    public List<CategoryTreeReadRecord> readTreeCategories(CategoryTreeReadRecordQuery categoryTreeReadRecordQuery) {
+        List<CategoryJpaEntity> categoryJpaEntities = categoryJpaRepository.findAll();
+        return categoryJpaEntities.stream().map(CategoryTreeReadRecord::from).toList();
     }
 }

@@ -2,10 +2,14 @@ package kr.scshin.scshin_dev.backoffice.application.service;
 
 import kr.scshin.scshin_dev.backoffice.application.port.in.CategoryReadUseCase;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.CategoryReadQuery;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.CategoryTreeReadQuery;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryReadResponse;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryTreeReadResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.out.CategoryReadPort;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.CategoryReadRecordQuery;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.CategoryTreeReadRecordQuery;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryReadRecord;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryTreeReadRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -37,5 +41,13 @@ public class CategoryReadService implements CategoryReadUseCase {
                 .updatedAt(categoryReadRecord.updatedAt())
                 .build()
         ).toList();
+    }
+
+    @Override
+    public List<CategoryTreeReadResponse> readTreeCategories(CategoryTreeReadQuery categoryTreeReadQuery) {
+        CategoryTreeReadRecordQuery categoryTreeReadRecordQuery = CategoryTreeReadRecordQuery.builder().build();
+        List<CategoryTreeReadRecord> categoryTreeReadRecords = categoryReadPort.readTreeCategories(categoryTreeReadRecordQuery);
+
+        return categoryTreeReadRecords.stream().map(CategoryTreeReadResponse::from).toList();
     }
 }

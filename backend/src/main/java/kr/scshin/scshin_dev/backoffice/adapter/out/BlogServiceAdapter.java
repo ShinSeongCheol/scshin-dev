@@ -3,10 +3,12 @@ package kr.scshin.scshin_dev.backoffice.adapter.out;
 import kr.scshin.scshin_dev.backoffice.application.port.out.*;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.*;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryReadRecord;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryTreeReadRecord;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.PostReadRecord;
 import kr.scshin.scshin_dev.blog.application.port.in.*;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.request.*;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.CategoryReadResponse;
+import kr.scshin.scshin_dev.blog.application.port.in.dto.response.CategoryTreeReadResponse;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.PostReadResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -95,5 +97,13 @@ public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpd
                 .updatedAt(categoryReadResponse.updatedAt())
                 .build()
         ).toList();
+    }
+
+    @Override
+    public List<CategoryTreeReadRecord> readTreeCategories(CategoryTreeReadRecordQuery categoryTreeReadRecordQuery) {
+        CategoryTreeReadQuery categoryTreeReadQuery = CategoryTreeReadQuery.builder().build();
+        List<CategoryTreeReadResponse> categoryTreeReadResponses = categoryReadUseCase.readTreeCategories(categoryTreeReadQuery);
+
+        return categoryTreeReadResponses.stream().map(CategoryTreeReadRecord::from).toList();
     }
 }

@@ -1,75 +1,116 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{backoffice/layouts/default_layout}" lang="kr" class="scroll-smooth" data-theme="">
-    <main layout:fragment="content" class="p-4 flex flex-col">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backoffice/layouts/default_layout}"
+      lang="kr"
+      class="scroll-smooth"
+      data-theme="">
 
-        <div th:replace="~{backoffice/fragments/content/content_heading :: pageHeadingFragment('카테고리', '블로그의 카테고리를 관리하세요')}"></div>
+<main layout:fragment="content" class="p-4 flex flex-col">
 
-        <div class="categories-container bg-backoffice-secondary border border-backoffice-border rounded-2xl flex-1 flex flex-col shadow-sm gap-2">
+    <!-- 페이지 헤더 -->
+    <div th:replace="~{backoffice/fragments/content/content_heading
+        :: pageHeadingFragment('카테고리', '블로그의 카테고리를 관리하세요')}">
+    </div>
 
-            <div class="categories-header flex items-center justify-between px-6 py-5 border-b border-b-backoffice-border">
-                <h3 class="flex items-center gap-2.5 text-lg font-semibold text-backoffice-text-primary m-0">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-backoffice-text-tertiary">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                    </svg>
-                    모든 카테고리
-                </h3>
-                <span class="categories-count px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold" id="categoryListCount">0개</span>
+    <div class="categories-container bg-backoffice-secondary border border-backoffice-border rounded-2xl flex-1 flex flex-col shadow-sm gap-2 relative">
+
+        <!-- 상단 헤더 -->
+        <div class="categories-header flex items-center justify-between px-6 py-5 border-b border-b-backoffice-border">
+            <h3 class="flex items-center gap-2.5 text-lg font-semibold text-backoffice-text-primary m-0">
+                <svg width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     class="text-backoffice-text-tertiary">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                모든 카테고리
+            </h3>
+
+            <span class="categories-count px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold"
+                  id="categoryListCount"
+                  th:text="${categoryTreeList != null ? #lists.size(categoryTreeList) + '개' : '0개'}">
+                0개
+            </span>
+        </div>
+
+        <!-- 카테고리 테이블 -->
+        <div class="bg-white mx-2 shadow overflow-hidden border border-gray-200">
+
+            <!-- 테이블 헤더 -->
+            <div class="grid grid-cols-12 bg-gray-50 p-3 text-sm font-semibold text-gray-700 border-b">
+                <div class="col-span-6">카테고리명 (슬러그)</div>
+                <div class="col-span-2 text-center">정렬 순서</div>
+                <div class="col-span-2 text-center">사용 여부</div>
+                <div class="col-span-2 text-center">관리</div>
             </div>
 
+            <!-- 카테고리 목록 -->
+            <div class="divide-y divide-gray-100">
 
-            <div class="bg-white mx-2 shadow overflow-hidden border border-gray-200">
-                <!-- 테이블 헤더 -->
-                <div class="grid grid-cols-12 bg-gray-50 p-3 text-sm font-semibold text-gray-700 border-b">
-                    <div class="col-span-6">카테고리명 (슬러그)</div>
-                    <div class="col-span-2 text-center">정렬 순서</div>
-                    <div class="col-span-2 text-center">사용 여부</div>
-                    <div class="col-span-2 text-center">관리</div>
+                <!-- 데이터가 없을 때 -->
+                <div th:if="${categoryTreeList == null || categoryTreeList.isEmpty()}"
+                     class="p-8 text-center text-sm text-gray-400">
+                    등록된 카테고리가 없습니다.
                 </div>
 
-                <!-- 카테고리 아이템 목록 -->
-                <div class="divide-y divide-gray-100">
+                <!-- 루트 카테고리 반복 -->
+                <th:block th:if="${categoryTreeList != null && !categoryTreeList.isEmpty()}">
+                    <th:block th:each="rootCategory : ${categoryTreeList}">
+                        <th:block th:if="${rootCategory != null}"
+                                  th:replace="~{::categoryRow(${rootCategory})}">
+                        </th:block>
+                    </th:block>
+                </th:block>
 
-                    <!-- 1단계: 대분류 (Depth 1) -->
-                    <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-50 text-sm font-medium text-gray-900">
-                        <div class="col-span-6 flex items-center gap-2">
-                            <span class="text-gray-400">📁</span>
-                            <span>백엔드 <span class="text-xs text-gray-400">(/backend)</span></span>
-                        </div>
-                        <div class="col-span-2 text-center">1</div>
-                        <div class="col-span-2 text-center"><span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">사용중</span></div>
-                        <div class="col-span-2 text-center flex justify-center gap-2">
-                            <button class="px-2.5 py-1 text-xs text-indigo-600 hover:text-white hover:bg-indigo-500 border border-indigo-200 hover:border-indigo-500 rounded-md font-medium transition-all hover:cursor-pointer">수정</button>
-                            <button class="px-2.5 py-1 text-xs text-red-500 hover:text-white hover:bg-red-500 border border-red-200 hover:border-red-500 rounded-md font-medium transition-all hover:cursor-pointer">삭제</button>
-                        </div>
-                    </div>
-
-                    <!-- 2단계: 중분류 (Depth 2) - pl-8로 들여쓰기 공간 확보 -->
-                    <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-50 text-sm text-gray-700 bg-gray-50/30">
-                        <div class="col-span-6 flex items-center gap-2 pl-8">
-                            <span class="text-gray-400">└ 📄</span>
-                            <span>Spring <span class="text-xs text-gray-400">(/spring)</span></span>
-                        </div>
-                        <div class="col-span-2 text-center">1</div>
-                        <div class="col-span-2 text-center"><span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">사용중</span></div>
-                        <div class="col-span-2 text-center flex justify-center gap-2">
-                            <span class="text-gray-300 text-xs">-</span>
-                            <button class="px-2.5 py-1 text-xs text-indigo-600 hover:text-white hover:bg-indigo-500 border border-indigo-200 hover:border-indigo-500 rounded-md font-medium transition-all hover:cursor-pointer">수정</button>
-                            <button class="px-2.5 py-1 text-xs text-red-500 hover:text-white hover:bg-red-500 border border-red-200 hover:border-red-500 rounded-md font-medium transition-all hover:cursor-pointer">삭제</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="absolute bottom-10 right-10 flex justify-end gap-2 mx-2">
-                <button id="create-button" type="button" class="px-2.5 py-1 text-xl text-white bg-indigo-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none">
-                    추가
-                </button>
             </div>
         </div>
-    </main>
-    <script layout:fragment="script" th:src="@{/js/backoffice/views/category/category.js}"></script>
+
+        <!-- 추가 버튼 -->
+        <div class="absolute bottom-10 right-10 flex justify-end gap-2 mx-2">
+            <button id="create-button"
+                    type="button"
+                    class="px-2.5 py-1 text-xl text-white bg-indigo-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 rounded-md font-medium transition-all hover:cursor-pointer active:scale-95 duration-200 select-none">
+                추가
+            </button>
+        </div>
+
+    </div>
+
+    <th:block th:fragment="categoryRow (node)" th:with="category=${node}">
+        <div th:if="${category != null}" class="grid grid-cols-12 p-3 items-center hover:bg-gray-50 text-sm font-medium text-gray-900 border-b border-gray-100">
+            <div class="col-span-6 flex items-center gap-2" th:classappend="${category.depth() == 2} ? 'pl-6' : (${category.depth() == 3} ? 'pl-12' : (${category.depth() > 3} ? 'pl-16' : ''))">
+                <span class="text-gray-400" th:text="${category.depth() == 1} ? '📁':'└ 📄'">📁</span>
+                <span>
+                    <th:block th:text="${category.categoryName()}"></th:block>
+                    <span class="text-xs text-gray-400" th:text="|(/${category.slug()})|"></span>
+                </span>
+            </div>
+
+            <div class="col-span-2 text-center" th:text="${category.sortOrder()}"></div>
+            <div class="col-span-2 text-center">
+            <span class="px-2 py-1 text-xs rounded-full"
+                  th:class="|px-2 py-1 text-xs rounded-full ${category.useYn().toString() == 'Y' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}|"
+                  th:text="${category.useYn().toString() == 'Y'} ? '사용' : '비활성화'">사용</span>
+            </div>
+        </div>
+
+        <th:block th:if="${category != null && category.childrenList() != null && !category.childrenList().isEmpty()}">
+            <th:block th:each="childCategory : ${category.childrenList()}">
+                <th:block th:replace="~{::categoryRow (node=${childCategory})}"></th:block>
+            </th:block>
+        </th:block>
+    </th:block>
+
+</main>
+
+<script layout:fragment="script"
+        th:src="@{/js/backoffice/views/category/category.js}">
+</script>
+
 </html>

@@ -8,6 +8,7 @@ import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequ
 import kr.scshin.scshin_dev.backoffice.application.port.in.*;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.*;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryReadResponse;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryTreeReadResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.PostReadResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +47,9 @@ public class BackOfficeController {
         model.addAttribute("menu", "category");
         model.addAttribute("pageTitle", "카테고리");
         model.addAttribute("pageSubTitle", "블로그의 카테고리를 관리하세요");
+
+        List<CategoryTreeReadResponse> categoryTreeReadResponses = categoryReadUseCase.readTreeCategories(CategoryTreeReadQuery.builder().build());
+        model.addAttribute("categoryTreeList", categoryTreeReadResponses);
 
         return "backoffice/views/category/category";
     }
