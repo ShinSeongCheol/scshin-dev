@@ -34,7 +34,7 @@
 
             <span class="categories-count px-3 py-1 bg-[#6366f11a] text-backoffice-accent-primary rounded-lg text-sm font-semibold"
                   id="categoryListCount"
-                  th:text="${categoryTreeList != null ? #lists.size(categoryTreeList) + '개' : '0개'}">
+                  th:text="${categoryTreeList != null and not #lists.isEmpty(categoryTreeList) ? countTotalCategories + '개' : '0개'}">
                 0개
             </span>
         </div>

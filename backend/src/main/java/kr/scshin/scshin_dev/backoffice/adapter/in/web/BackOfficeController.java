@@ -49,8 +49,13 @@ public class BackOfficeController {
         model.addAttribute("pageSubTitle", "블로그의 카테고리를 관리하세요");
 
         List<CategoryTreeReadResponse> categoryTreeReadResponses = categoryReadUseCase.readTreeCategories(CategoryTreeReadQuery.builder().build());
-        model.addAttribute("categoryTreeList", categoryTreeReadResponses);
+        int totalCount = CategoryTreeReadResponse.countTotalCategories(categoryTreeReadResponses);
 
+        log.info("categoryTreeReadResponses: {}", categoryTreeReadResponses.toString());
+        log.info("totalCount: {}", totalCount);
+
+        model.addAttribute("categoryTreeList", categoryTreeReadResponses);
+        model.addAttribute("countTotalCategories", totalCount);
         return "backoffice/views/category/category";
     }
 

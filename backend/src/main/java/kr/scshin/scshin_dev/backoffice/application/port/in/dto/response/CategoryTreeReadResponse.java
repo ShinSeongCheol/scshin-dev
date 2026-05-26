@@ -35,4 +35,12 @@ public record CategoryTreeReadResponse(
                 .childrenList(categoryTreeReadRecord.childrenList().stream().map(CategoryTreeReadResponse::from).toList())
                 .build();
     }
+
+    public static int countTotalCategories(List<CategoryTreeReadResponse> categoryTreeReadResponses) {
+        if (categoryTreeReadResponses == null || categoryTreeReadResponses.isEmpty()) {
+            return 0;
+        }
+
+        return categoryTreeReadResponses.stream().mapToInt(category -> 1 + countTotalCategories(category.childrenList())).sum();
+    }
 }
