@@ -2,11 +2,12 @@
       layout:decorate="~{backoffice/layouts/newCategoryLayout}" lang="kr" class="scroll-smooth" data-theme="">
     <main layout:fragment="content" class="flex items-center justify-center min-h-dvh sm:p-4">
         <form id="category-form" class="w-full lg:w-lg p-4 bg-white flex flex-col gap-4 rounded-xl shadow-xl">
+            <input type="hidden" name="id" th:value="${savedCategory.id()}" />
             <div class="relative m-5">
                 <label for="parent-category-id"></label>
                 <select id="parent-category-id" name="parent-category-id" class="appearance-none block w-full p-2.5 pr-10 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent cursor-pointer transition-all duration-300 focus:border-blue-400">
-                    <option value="" selected class="text-gray-400">부모 카테고리 선택</option>
-                    <option th:each="category : ${categories}" th:value="${category.id()}" th:text="${category.categoryName()}"></option>
+                    <option value="" th:selected="${savedCategory.parentCategoryId() == null}" class="text-gray-400">부모 카테고리 선택</option>
+                    <option th:each="category : ${categories}" th:selected="${category.id() == savedCategory.parentCategoryId()}" th:value="${category.id()}" th:text="${category.categoryName()}"></option>
                 </select>
 
                 <span class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
@@ -20,7 +21,9 @@
                        name="category-name"
                        class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
                        placeholder="카테고리명"
-                       type="text">
+                       type="text"
+                       th:value="${savedCategory.categoryName()}"
+                >
 
                 <label for="category-name"
                        class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
@@ -36,7 +39,9 @@
                        name="slug"
                        class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
                        placeholder="슬러그(Slug)"
-                       type="text">
+                       type="text"
+                       th:value="${savedCategory.slug()}"
+                >
 
                 <label for="slug"
                        class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
@@ -52,7 +57,9 @@
                        name="description"
                        class="peer block w-full p-2.5 text-lg border-0 border-b-2 border-gray-300 outline-none bg-transparent placeholder-transparent"
                        placeholder="설명"
-                       type="text">
+                       type="text"
+                       th:value="${savedCategory.description()}"
+                >
 
                 <label for="description"
                        class="absolute left-0 top-0 text-sm text-gray-400 pointer-events-none transition-all duration-300 ease-in
@@ -67,14 +74,13 @@
             <div class="m-5 flex items-center gap-4">
                 <span class="block text-sm text-gray-400">카테고리 사용</span>
                 <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" name="use_yn" value="Y" class="sr-only peer" checked>
+                    <input type="checkbox" name="use_yn" value="Y" class="sr-only peer" th:checked="${savedCategory.useYn().toString() == 'Y'}">
 
-                    <div class="w-11 h-6 bg-gray-300 rounded-full peer
-                    peer-checked:bg-blue-500
-                    after:content-[''] after:absolute after:top-0.5 after:left-0.5
-                    after:bg-white after:border-gray-300 after:border after:rounded-full
-                    after:h-5 after:w-5 after:transition-all
-                    peer-checked:after:translate-x-full peer-checked:after:border-white">
+                    <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-blue-500
+                        after:content-[''] after:absolute after:top-0.5 after:left-0.5
+                        after:bg-white after:border-gray-300 after:border after:rounded-full
+                        after:h-5 after:w-5 after:transition-all
+                        peer-checked:after:translate-x-full peer-checked:after:border-white">
                     </div>
                 </label>
             </div>
@@ -84,5 +90,5 @@
             </div>
         </form>
     </main>
-    <script layout:fragment="script" th:src="@{/js/backoffice/views/category/newCategory.js}"></script>
+    <script layout:fragment="script" th:src="@{/js/backoffice/views/category/editCategory.js}"></script>
 </html>

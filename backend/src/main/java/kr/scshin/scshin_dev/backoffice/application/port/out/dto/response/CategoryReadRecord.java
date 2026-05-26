@@ -1,5 +1,6 @@
 package kr.scshin.scshin_dev.backoffice.application.port.out.dto.response;
 
+import kr.scshin.scshin_dev.blog.application.port.in.dto.response.CategoryReadResponse;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
@@ -17,4 +18,18 @@ public record CategoryReadRecord(
         LocalDateTime createdAt,
         LocalDateTime updatedAt
 ) {
+    public static CategoryReadRecord from(CategoryReadResponse categoryReadResponse) {
+        return CategoryReadRecord.builder()
+                .id(categoryReadResponse.id())
+                .parentCategoryId(categoryReadResponse.parentCategoryId())
+                .categoryName(categoryReadResponse.categoryName())
+                .slug(categoryReadResponse.slug())
+                .description(categoryReadResponse.description())
+                .sortOrder(categoryReadResponse.sortOrder())
+                .depth(categoryReadResponse.depth())
+                .useYn(categoryReadResponse.useYn())
+                .createdAt(categoryReadResponse.createdAt())
+                .updatedAt(categoryReadResponse.updatedAt())
+                .build();
+    }
 }

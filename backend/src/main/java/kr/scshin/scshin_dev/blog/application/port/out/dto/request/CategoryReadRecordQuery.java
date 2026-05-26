@@ -4,6 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record CategoryReadRecordQuery(
+        Long id,
         Long parentCategoryId
 ) {
 }

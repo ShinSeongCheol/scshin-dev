@@ -20,4 +20,13 @@ public class Category {
     private char useYn;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
+
+    public void update(Long parentCategoryId, String categoryName, String slug, String description, int depth, char useYn) {
+        this.parentCategoryId = parentCategoryId;
+        this.categoryName = categoryName;
+        this.slug = slug;
+        this.description = description;
+        this.depth = depth;
+        this.useYn = useYn;
+    }
 }

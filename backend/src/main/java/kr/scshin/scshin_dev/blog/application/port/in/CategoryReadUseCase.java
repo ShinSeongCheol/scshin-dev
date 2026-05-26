@@ -8,6 +8,7 @@ import kr.scshin.scshin_dev.blog.application.port.in.dto.response.CategoryTreeRe
 import java.util.List;
 
 public interface CategoryReadUseCase {
+    CategoryReadResponse readCategory(CategoryReadQuery categoryReadQuery);
     List<CategoryReadResponse> readCategories(CategoryReadQuery categoryReadQuery);
     List<CategoryTreeReadResponse> readTreeCategories(CategoryTreeReadQuery categoryTreeReadQuery);
 }

@@ -8,6 +8,7 @@ import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.Categor
 import java.util.List;
 
 public interface CategoryReadPort {
+    CategoryReadRecord readCategory(CategoryReadRecordQuery categoryReadRecordQuery);
     List<CategoryReadRecord> readCategories(CategoryReadRecordQuery categoryReadRecordQuery);
     List<CategoryTreeReadRecord> readTreeCategories(CategoryTreeReadRecordQuery categoryTreeReadRecordQuery);
 }

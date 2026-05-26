@@ -3,6 +3,7 @@ package kr.scshin.scshin_dev.backoffice.adapter.in.web;
 import jakarta.validation.Valid;
 import kr.scshin.scshin_dev.auth.adapter.out.security.CustomUserDetails;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryCreateRequest;
+import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryUpdateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequest;
 import kr.scshin.scshin_dev.backoffice.application.port.in.*;
@@ -28,6 +29,7 @@ public class BackOfficeController {
 
     private final CategoryCreateUseCase categoryCreateUseCase;
     private final CategoryReadUseCase categoryReadUseCase;
+    private final CategoryUpdateUseCase categoryUpdateUseCase;
 
     private final CreatePostUseCase createPostUseCase;
     private final PostReadUseCase postReadUseCase;
@@ -83,6 +85,36 @@ public class BackOfficeController {
         categoryCreateUseCase.createCategory(categoryCreateCommand);
         return ResponseEntity.ok("Success");
     }
+
+    @GetMapping("/category/edit/{id}")
+    public String newCategory(Model model, @PathVariable Long id) {
+        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
+        CategoryReadResponse category = categoryReadUseCase.readCategory(CategoryReadQuery.builder().id(id).build());
+        model.addAttribute("categories", categories);
+        model.addAttribute("savedCategory", category);
+
+        return "backoffice/views/category/editCategory";
+    }
+
+    @PatchMapping("/category/edit/{id}")
+    @ResponseBody
+    public ResponseEntity<String> updateCategory(@PathVariable Long id, @RequestBody CategoryUpdateRequest categoryUpdateRequest) {
+        log.info("category edit id: {}", id);
+        log.info("categoryUpdateRequest: {}", categoryUpdateRequest);
+
+        categoryUpdateUseCase.updateCategory(CategoryUpdateCommand.builder()
+                .id(id)
+                .parentCategoryId(categoryUpdateRequest.parentCategoryId())
+                .categoryName(categoryUpdateRequest.categoryName())
+                .slug(categoryUpdateRequest.slug())
+                .description(categoryUpdateRequest.description())
+                .useYn(categoryUpdateRequest.useYn())
+                .build()
+        );
+
+        return ResponseEntity.ok("Success");
+    }
+
 
     @GetMapping("/post")
     public String post(Model model) {

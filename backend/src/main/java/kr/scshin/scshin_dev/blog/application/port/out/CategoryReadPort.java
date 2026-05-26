@@ -8,6 +8,7 @@ import kr.scshin.scshin_dev.blog.application.port.out.dto.response.CategoryTreeR
 import java.util.List;
 
 public interface CategoryReadPort {
+    CategoryReadRecord readCategory(CategoryReadRecordQuery categoryReadRecordQuery);
     List<CategoryReadRecord> readCategories(CategoryReadRecordQuery categoryReadRecordQuery);
     CategoryReadRecord readCategoryByParentCategoryId(CategoryReadRecordQuery categoryReadRecordQuery);
     List<CategoryTreeReadRecord> readTreeCategories(CategoryTreeReadRecordQuery categoryTreeReadRecordQuery);

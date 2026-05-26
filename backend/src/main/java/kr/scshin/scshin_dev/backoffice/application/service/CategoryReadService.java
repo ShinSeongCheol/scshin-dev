@@ -24,23 +24,19 @@ public class CategoryReadService implements CategoryReadUseCase {
     private final CategoryReadPort categoryReadPort;
 
     @Override
+    public CategoryReadResponse readCategory(CategoryReadQuery categoryReadQuery) {
+        CategoryReadRecordQuery categoryReadRecordQuery = CategoryReadRecordQuery.builder().id(categoryReadQuery.id()).build();
+        CategoryReadRecord categoryReadRecord = categoryReadPort.readCategory(categoryReadRecordQuery);
+
+        return CategoryReadResponse.from(categoryReadRecord);
+    }
+
+    @Override
     public List<CategoryReadResponse> readCategories(CategoryReadQuery categoryReadQuery) {
         CategoryReadRecordQuery categoryReadRecordQuery = CategoryReadRecordQuery.builder().build();
         List<CategoryReadRecord> categoryReadRecords = categoryReadPort.readCategories(categoryReadRecordQuery);
 
-        return categoryReadRecords.stream().map(categoryReadRecord -> CategoryReadResponse.builder()
-                .id(categoryReadRecord.id())
-                .parentCategoryId(categoryReadRecord.parentCategoryId())
-                .categoryName(categoryReadRecord.categoryName())
-                .slug(categoryReadRecord.slug())
-                .description(categoryReadRecord.description())
-                .sortOrder(categoryReadRecord.sortOrder())
-                .depth(categoryReadRecord.depth())
-                .useYn(categoryReadRecord.useYn())
-                .createdAt(categoryReadRecord.createdAt())
-                .updatedAt(categoryReadRecord.updatedAt())
-                .build()
-        ).toList();
+        return categoryReadRecords.stream().map(CategoryReadResponse::from).toList();
     }
 
     @Override

@@ -1,0 +1,7 @@
+package kr.scshin.scshin_dev.blog.application.port.out.dto.request;
+
+import lombok.Builder;
+
+@Builder
+public record CategoryUpdateRecordCommand(Long id, Long parentCategoryId, String categoryName, String slug, String description, int depth, char useYn) {
+}

@@ -27,22 +27,20 @@ public class CategoryReadService implements CategoryReadUseCase {
     private final CategoryReadPort categoryReadPort;
 
     @Override
+    public CategoryReadResponse readCategory(CategoryReadQuery categoryReadQuery) {
+        CategoryReadRecordQuery categoryReadRecordQuery = CategoryReadRecordQuery.builder()
+                .id(categoryReadQuery.id())
+                .build();
+        CategoryReadRecord categoryReadRecord = categoryReadPort.readCategory(categoryReadRecordQuery);
+
+        return CategoryReadResponse.from(categoryReadRecord);
+    }
+
+    @Override
     public List<CategoryReadResponse> readCategories(CategoryReadQuery categoryReadQuery) {
 
         List<CategoryReadRecord> categoryReadRecords = categoryReadPort.readCategories(CategoryReadRecordQuery.builder().build());
-        return categoryReadRecords.stream().map(categoryReadRecord -> CategoryReadResponse.builder()
-                .id(categoryReadRecord.id())
-                .parentCategoryId(categoryReadRecord.parentCategoryId())
-                .categoryName(categoryReadRecord.categoryName())
-                .description(categoryReadRecord.description())
-                .slug(categoryReadRecord.slug())
-                .sortOrder(categoryReadRecord.sortOrder())
-                .depth(categoryReadRecord.depth())
-                .useYn(categoryReadRecord.useYn())
-                .createdAt(categoryReadRecord.createdAt())
-                .updatedAt(categoryReadRecord.updatedAt())
-                .build()
-        ).toList();
+        return categoryReadRecords.stream().map(CategoryReadResponse::from).collect(Collectors.toList());
     }
 
     @Override
@@ -50,20 +48,7 @@ public class CategoryReadService implements CategoryReadUseCase {
         CategoryTreeReadRecordQuery categoryTreeReadRecordQuery = CategoryTreeReadRecordQuery.builder().build();
         List<CategoryTreeReadRecord> categoryTreeReadRecordList = categoryReadPort.readTreeCategories(categoryTreeReadRecordQuery);
 
-        Map<Long, CategoryTreeReadResponse> categoryTreeReadRecordMap = categoryTreeReadRecordList.stream().map(record -> CategoryTreeReadResponse.builder()
-                .id(record.id())
-                .parentCategoryId(record.parentCategoryId())
-                .categoryName(record.categoryName())
-                .description(record.description())
-                .slug(record.slug())
-                .sortOrder(record.sortOrder())
-                .depth(record.depth())
-                .useYn(record.useYn())
-                .createdAt(record.createdAt())
-                .updatedAt(record.updatedAt())
-                .childrenList(new ArrayList<>())
-                .build()
-        ).collect(Collectors.toMap(CategoryTreeReadResponse::id, response -> response));
+        Map<Long, CategoryTreeReadResponse> categoryTreeReadRecordMap = categoryTreeReadRecordList.stream().map(CategoryTreeReadResponse::from).collect(Collectors.toMap(CategoryTreeReadResponse::id, response -> response));
 
         List<CategoryTreeReadResponse> rootCategories = new ArrayList<>();
         for (CategoryTreeReadResponse node : categoryTreeReadRecordMap.values()) {

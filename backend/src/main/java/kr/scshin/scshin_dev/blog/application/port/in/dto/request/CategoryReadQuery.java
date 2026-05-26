@@ -3,5 +3,5 @@ package kr.scshin.scshin_dev.blog.application.port.in.dto.request;
 import lombok.Builder;
 
 @Builder
-public record CategoryReadQuery() {
+public record CategoryReadQuery(Long id) {
 }
