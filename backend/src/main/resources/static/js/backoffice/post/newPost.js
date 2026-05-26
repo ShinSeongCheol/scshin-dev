@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let markdown_editor_config = {
             element: post_text_area,
+            status: false,
             uploadImage: true,
             imageMaxSize: 1024 * 1024 * 100,
             imageUploadFunction: async function(file, onSuccess, onError) {

@@ -83,7 +83,7 @@
     </div>
 
     <th:block th:fragment="categoryRow (node)" th:with="category=${node}">
-        <div th:if="${category != null}" class="grid grid-cols-12 p-3 items-center hover:bg-gray-50 text-sm font-medium text-gray-900 border-b border-gray-100">
+        <div th:if="${category != null}" class="grid grid-cols-12 p-3 items-center hover:bg-gray-50 text-sm font-medium text-gray-900 border-b border-gray-100 cursor-pointer">
             <div class="col-span-6 flex items-center gap-2" th:classappend="${category.depth() == 2} ? 'pl-6' : (${category.depth() == 3} ? 'pl-12' : (${category.depth() > 3} ? 'pl-16' : ''))">
                 <span class="text-gray-400" th:text="${category.depth() == 1} ? '📁':'└ 📄'">📁</span>
                 <span>
