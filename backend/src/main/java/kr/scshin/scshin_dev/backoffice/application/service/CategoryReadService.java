@@ -1,0 +1,49 @@
+package kr.scshin.scshin_dev.backoffice.application.service;
+
+import kr.scshin.scshin_dev.backoffice.application.port.in.CategoryReadUseCase;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.CategoryReadQuery;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.CategoryTreeReadQuery;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryReadResponse;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryTreeReadResponse;
+import kr.scshin.scshin_dev.backoffice.application.port.out.CategoryReadPort;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.CategoryReadRecordQuery;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.CategoryTreeReadRecordQuery;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryReadRecord;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryTreeReadRecord;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Slf4j
+@Service(value = "BackofficeCategoryReadService")
+@RequiredArgsConstructor
+public class CategoryReadService implements CategoryReadUseCase {
+
+    private final CategoryReadPort categoryReadPort;
+
+    @Override
+    public CategoryReadResponse readCategory(CategoryReadQuery categoryReadQuery) {
+        CategoryReadRecordQuery categoryReadRecordQuery = CategoryReadRecordQuery.builder().id(categoryReadQuery.id()).build();
+        CategoryReadRecord categoryReadRecord = categoryReadPort.readCategory(categoryReadRecordQuery);
+
+        return CategoryReadResponse.from(categoryReadRecord);
+    }
+
+    @Override
+    public List<CategoryReadResponse> readCategories(CategoryReadQuery categoryReadQuery) {
+        CategoryReadRecordQuery categoryReadRecordQuery = CategoryReadRecordQuery.builder().build();
+        List<CategoryReadRecord> categoryReadRecords = categoryReadPort.readCategories(categoryReadRecordQuery);
+
+        return categoryReadRecords.stream().map(CategoryReadResponse::from).toList();
+    }
+
+    @Override
+    public List<CategoryTreeReadResponse> readTreeCategories(CategoryTreeReadQuery categoryTreeReadQuery) {
+        CategoryTreeReadRecordQuery categoryTreeReadRecordQuery = CategoryTreeReadRecordQuery.builder().build();
+        List<CategoryTreeReadRecord> categoryTreeReadRecords = categoryReadPort.readTreeCategories(categoryTreeReadRecordQuery);
+
+        return categoryTreeReadRecords.stream().map(CategoryTreeReadResponse::from).toList();
+    }
+}

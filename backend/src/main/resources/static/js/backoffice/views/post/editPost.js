@@ -6,11 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
         upload_button.addEventListener('click', editPost);
     }
 
+    const cancel_button = document.querySelector('#cancel-button');
+    if (cancel_button) {
+        cancel_button.addEventListener('click', () => {location.href = '/backoffice/post';});
+    }
+
     const post_text_area = document.querySelector('#post-text-area');
     if (post_text_area) {
 
         let markdown_editor_config = {
             element: post_text_area,
+            status: false,
             uploadImage: true,
             imageMaxSize: 1024 * 1024 * 100,
             imageUploadFunction: async function(file, onSuccess, onError) {

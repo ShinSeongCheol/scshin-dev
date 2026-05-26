@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="kr">
     <head th:replace="~{backoffice/fragments/common/config::configFragment}"></head>
+    <style>
+        .editor-toolbar.fullscreen {
+            z-index: 100 !important;
+        }
+
+        .CodeMirror-fullscreen {
+            z-index: 100 !important;
+        }
+
+        .editor-preview-side,
+        .editor-preview-active-side {
+            z-index: 100 !important;
+        }
+
+        .editor-preview,
+        .editor-preview-active {
+            z-index: 100 !important;
+        }
+    </style>
     <body class="bg-bg-primary transition-colors duration-300">
+        <header layout:fragment="header"></header>
         <main layout:fragment="content"></main>
         <script layout:fragment="script"></script>
     </body>
