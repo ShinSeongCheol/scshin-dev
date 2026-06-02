@@ -1,4 +1,5 @@
 let markdown_editor;
+let tagify;
 
 document.addEventListener('DOMContentLoaded', () => {
     const upload_button = document.querySelector('#upload-button');
@@ -48,6 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         markdown_editor = new EasyMDE(markdown_editor_config);
+    }
+
+
+    const category_input = document.querySelector('#category-input');
+    if (category_input) {
+        tagify = new Tagify(category_input, {
+            enforceWhitelist: true,
+            whitelist: window.TAGIFY_WHITELIST,
+            dropdown: {
+                enabled: 0,
+                maxItems: 5
+            }
+        });
     }
 });
 

@@ -2,9 +2,8 @@ package kr.scshin.scshin_dev.blog.application.service;
 
 import kr.scshin.scshin_dev.blog.application.port.in.PostCreateUseCase;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.request.PostCreateCommand;
-import kr.scshin.scshin_dev.blog.application.port.out.MarkdownParsePort;
-import kr.scshin.scshin_dev.blog.application.port.out.PostCreatePort;
-import kr.scshin.scshin_dev.blog.application.port.out.PostImageUpdatePort;
+import kr.scshin.scshin_dev.blog.application.port.out.*;
+import kr.scshin.scshin_dev.blog.application.port.out.dto.request.CategoryPostCreateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostCreateRecordCommand;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostCreateRecord;
 import kr.scshin.scshin_dev.blog.domain.Post;
@@ -21,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostCreateService implements PostCreateUseCase {
 
+    private final CategoryPostCreatePort categoryPostCreatePort;
     private final PostCreatePort postCreatePort;
     private final MarkdownParsePort markdownParsePort;
     private final PostImageUpdatePort postImageUpdatePort;
@@ -44,6 +44,9 @@ public class PostCreateService implements PostCreateUseCase {
                 .createdAt(postCreateRecord.createdAt())
                 .updateAt(postCreateRecord.updatedAt())
                 .build();
+
+        List<CategoryPostCreateRecordCommand> categoryPostCreateRecordCommandList = postCreateCommand.categories().stream().map(categoryId -> CategoryPostCreateRecordCommand.builder().categoryId(categoryId).postId(savedPost.getId()).build()).toList();
+        categoryPostCreatePort.createCategoryPost(categoryPostCreateRecordCommandList);
 
         List<String> imageUrls = markdownParsePort.extractImageUrls(savedPost.getContent());
         List<String> fileNames = imageUrls.stream().map(imageUrl -> imageUrl.substring(imageUrl.lastIndexOf("/") + 1)).toList();

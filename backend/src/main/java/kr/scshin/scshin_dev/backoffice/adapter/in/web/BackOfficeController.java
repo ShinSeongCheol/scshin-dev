@@ -6,6 +6,7 @@ import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryCreate
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryUpdateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequest;
+import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.response.CategoryResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.in.*;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.*;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryReadResponse;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -124,13 +126,20 @@ public class BackOfficeController {
     }
 
     @GetMapping("/post/new")
-    public String postNew(Model model) {return "backoffice/views/post/newPost";}
+    public String postNew(Model model) {
+        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
+        List<CategoryResponse> categoryResponseList = categories.stream().map(category -> CategoryResponse.builder().id(category.id()).categoryName(category.categoryName()).build()).toList();
+        model.addAttribute("categoryList",  categoryResponseList);
+        return "backoffice/views/post/newPost";
+    }
 
     @PostMapping("/post/new")
     @ResponseBody
     public ResponseEntity<String> createPost(@Valid @RequestBody PostCreateRequest postCreateRequest, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        log.info("post create request: {}", postCreateRequest);
+
         Long authorId = customUserDetails.getId();
-        PostCreateCommand postCreateCommand = new PostCreateCommand(postCreateRequest.title(), postCreateRequest.content(), authorId);
+        PostCreateCommand postCreateCommand = PostCreateCommand.from(postCreateRequest, authorId);
         createPostUseCase.createPost(postCreateCommand);
 
         return ResponseEntity.ok("Success");
@@ -141,6 +150,10 @@ public class BackOfficeController {
         PostReadQuery postReadQuery = new PostReadQuery(id);
         PostReadResponse postReadResponse = postReadUseCase.readPost(postReadQuery);
         model.addAttribute("post", postReadResponse);
+
+        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
+        List<CategoryResponse> categoryResponseList = categories.stream().map(category -> CategoryResponse.builder().id(category.id()).categoryName(category.categoryName()).build()).toList();
+        model.addAttribute("categoryList",  categoryResponseList);
 
         return "backoffice/views/post/editPost";
     }

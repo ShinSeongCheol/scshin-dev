@@ -19,7 +19,7 @@ public class PostCreateService implements CreatePostUseCase {
 
     @Override
     public void createPost(PostCreateCommand postCreateCommand) {
-        PostCreateRecordCommand postCreateRecordCommand = new PostCreateRecordCommand(postCreateCommand.title(), postCreateCommand.content(), postCreateCommand.authorId());
+        PostCreateRecordCommand postCreateRecordCommand = PostCreateRecordCommand.from(postCreateCommand);
         postCreatePort.createPost(postCreateRecordCommand);
     }
 }

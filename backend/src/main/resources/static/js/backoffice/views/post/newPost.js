@@ -1,4 +1,5 @@
 let markdown_editor;
+let tagify;
 
 document.addEventListener('DOMContentLoaded', () => {
     const post_text_area = document.querySelector('#post-text-area');
@@ -44,6 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (upload_button) {
         upload_button.addEventListener('click', uploadPost);
     }
+
+    const category_input = document.querySelector('#category-input');
+    if (category_input) {
+        tagify = new Tagify(category_input, {
+            enforceWhitelist: true,
+            whitelist: window.TAGIFY_WHITELIST,
+            dropdown: {
+                enabled: 0,
+                maxItems: 5
+            }
+        });
+    }
 });
 
 const uploadPost = async (e) => {
@@ -57,7 +70,8 @@ const uploadPost = async (e) => {
 
     const data = {
         title: form_data.get('title'),
-        content: markdown_editor.value()
+        content: markdown_editor.value(),
+        categories: tagify.value.map(category => category.id)
     }
 
     try {

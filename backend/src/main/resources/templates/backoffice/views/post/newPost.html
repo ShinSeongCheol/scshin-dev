@@ -28,6 +28,12 @@
                 </label>
             </div>
 
+            <div class="flex p-4 w-full">
+                <label class="w-full">
+                    <input id="category-input" type="text" class="w-full" placeholder="카테고리를 입력하세요."/>
+                </label>
+            </div>
+
             <div class="prose prose-code:text-black max-w-none p-4 h-full">
                 <label class="">
                     <textarea id="post-text-area" name="content" class="field-sizing-content"></textarea>
@@ -37,6 +43,16 @@
     </main>
     <th:block layout:fragment="script">
         <script th:src="@{/js/common/markdown/easymde.min.js}"></script>
+        <script th:src="@{/js/common/tagify/tagify.js}"></script>
+        <script th:src="@{/js/common/tagify/tagify.polyfills.min.js}"></script>
+        <script th:inline="javascript">
+            const categoryList = [[${categoryList}]];
+            const tagifyWhitelist = categoryList.map(category => ({
+                id: category.id,
+                value: category.categoryName
+            }));
+            window.TAGIFY_WHITELIST = tagifyWhitelist;
+        </script>
         <script th:src="@{/js/backoffice/views/post/newPost.js}"></script>
     </th:block>
 </html>

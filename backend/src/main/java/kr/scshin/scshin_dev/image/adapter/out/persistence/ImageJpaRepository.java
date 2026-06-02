@@ -13,7 +13,7 @@ public interface ImageJpaRepository extends JpaRepository<ImageEntity, Long> {
     @Query("""
        UPDATE ImageEntity ie SET ie.status=COMMITED, ie.postId=:postId WHERE ie.storedName IN :fileNames
     """)
-    @Modifying(clearAutomatically = true)
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
     void updateImageByFileNames(@Param("postId") Long postId, @Param("fileNames") List<String> fileNames);
 
     List<ImageEntity> findAllByPostId(@Param("postId") Long postId);

@@ -29,7 +29,7 @@ public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpd
 
     @Override
     public void createPost(PostCreateRecordCommand postCreateRecordCommand) {
-        PostCreateCommand postCreateCommand = new PostCreateCommand(postCreateRecordCommand.title(), postCreateRecordCommand.content(), postCreateRecordCommand.authorId());
+        PostCreateCommand postCreateCommand = PostCreateCommand.from(postCreateRecordCommand);
         postCreateUseCase.createPost(postCreateCommand);
     }
 
