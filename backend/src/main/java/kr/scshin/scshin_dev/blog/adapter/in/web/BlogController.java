@@ -39,18 +39,15 @@ public class BlogController {
         }).toList();
     }
 
-    @GetMapping("/{post_id}")
-    public String postDetail(Model model, @PathVariable("post_id") Long post_id) {
+    @GetMapping("/posts/{post_id}")
+    public PostDetailResponse postDetail(@PathVariable("post_id") Long post_id) {
         PostReadQuery postReadQuery = PostReadQuery.builder().postId(post_id).build();
         PostReadResponse postReadResponse = postReadUseCase.readPostAsHtml(postReadQuery);
-        PostDetailResponse postDetailResponse = PostDetailResponse.builder()
+        return PostDetailResponse.builder()
                 .title(postReadResponse.title())
                 .content(postReadResponse.content())
                 .cratedAt(postReadResponse.createdAt())
                 .updatedAt(postReadResponse.updatedAt())
                 .build();
-
-        model.addAttribute("post", postDetailResponse);
-        return "blog/post_detail";
     }
 }
