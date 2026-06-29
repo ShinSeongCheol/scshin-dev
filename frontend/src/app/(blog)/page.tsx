@@ -75,13 +75,11 @@ export default async function Blog() {
             </section>
             {/*  글 목록  */}
             <section className="w-full max-w-7xl mt-4">
-                <div className="">
-                    <div id="postsGrid"
-                         className="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-6">
-                        {posts.map((post) => (
-                            <PostCard key={post.id} id={post.id} title={post.title} content={post.content} createdAt={post.createdAt} thumbnailUrl={post.thumbnailUrl} />
-                        ))}
-                    </div>
+                <div id="postsGrid"
+                     className="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-6">
+                    {posts.map((post) => (
+                        <PostCard key={post.id} id={post.id} title={post.title} content={post.content} createdAt={post.createdAt} thumbnailUrl={post.thumbnailUrl} />
+                    ))}
                 </div>
             </section>
         </main>

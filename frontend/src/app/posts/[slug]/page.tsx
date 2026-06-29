@@ -1,5 +1,28 @@
-export default function Post() {
+import {getPost} from "@/src/features/post/api";
+
+type Props = {
+    params: Promise<{
+        slug: string;
+    }>
+}
+
+export default async function Post({params} : Props) {
+    const {slug} = await params;
+    const post = await getPost(Number(slug))
+
     return (
-        <>posts slug page</>
+        <main className="flex justify-center sm:p-4 min-h-dvh bg-gray-50">
+            <div className="w-full h-full lg:w-7xl bg-white flex flex-col gap-4 rounded-xl shadow-xl p-4">
+                <div className="prose max-w-none w-full">
+                    <h1 className="p-4 border-b border-b-gray-300">{post.title}</h1>
+                </div>
+                <div
+                    id="content"
+                    className="prose max-w-none p-4 prose-img:max-w-[50%] prose-img:w-auto prose-img:mx-auto"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                >
+                </div>
+            </div>
+        </main>
     )
 }

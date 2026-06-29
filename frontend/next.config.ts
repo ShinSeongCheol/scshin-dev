@@ -5,6 +5,7 @@ const parsedImageUrl = new URL(imageBaseUrl);
 
 const nextConfig: NextConfig = {
   /* config options here */
+    output: "standalone",
     images: {
         dangerouslyAllowLocalIP: process.env.NODE_ENV === "development",
         remotePatterns: [
