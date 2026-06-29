@@ -11,22 +11,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @Slf4j
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class BlogController {
 
     private final PostReadUseCase postReadUseCase;
 
-    @GetMapping("/")
-    public String blog(Model model) {
+    @GetMapping("/posts")
+    public List<PostResponse> getPosts() {
         List<PostReadResponse> readPostList = postReadUseCase.readPostList();
         log.info("readPostList: {}", readPostList.toString());
 
-        List<PostResponse> postResponseList = readPostList.stream().map(post -> {
+        return readPostList.stream().map(post -> {
             String thumbnailUrl = post.imageUrls().isEmpty() ? null : post.imageUrls().get(0);
             return PostResponse.builder()
                     .id(post.id())
@@ -36,8 +37,6 @@ public class BlogController {
                     .thumbnailUrl(thumbnailUrl)
                     .build();
         }).toList();
-        model.addAttribute("postResponseList", postResponseList);
-        return "blog/index";
     }
 
     @GetMapping("/{post_id}")
