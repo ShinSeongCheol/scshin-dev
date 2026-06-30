@@ -2,6 +2,8 @@ services:
   frontend:
     build:
       context: ./frontend
+      args:
+        NEXT_PUBLIC_IMAGE_BASE_URL: ${NEXT_PUBLIC_IMAGE_BASE_URL}
     container_name: scshin-dev-frontend
     environment:
       API_URL: ${API_URL}
