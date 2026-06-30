@@ -1,4 +1,4 @@
-import PostCard from "@/src/app/(blog)/_components/PostCard";
+import {PostCard} from "@/src/features/post/ui";
 import {getPosts} from "@/src/features/post/api";
 
 export default async function Blog() {
