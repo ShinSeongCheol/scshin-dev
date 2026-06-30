@@ -14,6 +14,19 @@ export async function generateMetadata({params}:Props): Promise<Metadata> {
     return {
         title: post.title ,
         description: post.title,
+        openGraph: {
+            title: post.title,
+            description: `${post.title} 상세 페이지입니다.`,
+            type: "article",
+            images: [
+                {
+                    url: post.thumbnailUrl || "/default-og.png",
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+        },
     }
 }
 
