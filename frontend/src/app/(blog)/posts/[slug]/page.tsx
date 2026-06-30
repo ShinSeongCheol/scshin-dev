@@ -1,9 +1,20 @@
+import {Metadata} from "next";
 import {getPost} from "@/src/features/post/api";
 
 type Props = {
     params: Promise<{
         slug: string;
     }>
+}
+
+export async function generateMetadata({params}:Props): Promise<Metadata> {
+    const {slug} = await params;
+    const post = await getPost(Number(slug));
+
+    return {
+        title: post.title ,
+        description: post.title,
+    }
 }
 
 export default async function Post({params} : Props) {
