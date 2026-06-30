@@ -17,6 +17,7 @@ export default function PostCard({id, title, content, createdAt, thumbnailUrl}: 
                         alt={title}
                         width={640}
                         height={640}
+                        unoptimized={true}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                     <span className="absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-[0.5px] text-white bg-blue-400">카테고리</span>
