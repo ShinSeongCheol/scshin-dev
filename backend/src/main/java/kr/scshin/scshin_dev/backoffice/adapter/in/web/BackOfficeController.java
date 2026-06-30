@@ -21,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -42,9 +41,6 @@ public class BackOfficeController {
         model.addAttribute("menu", "dashboard");
         return "backoffice/index";
     }
-
-    @GetMapping("/login")
-    public String login() {return "backoffice/login";}
 
     @GetMapping("/category")
     public String category(Model model) {

@@ -1,6 +1,6 @@
 import {Metadata} from "next";
-import {getPost} from "@/src/features/post/api";
 import Link from "next/link";
+import {login} from "@/src/features/backoffice/actions";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     }
 }
 
-export default function login() {
+export default function LoginPage() {
     return (
         <main className={'flex-1 flex items-center justify-center bg-gray-50'}>
             <div className="flex items-center justify-center">
@@ -24,7 +24,7 @@ export default function login() {
                         <p className="text-slate-500 text-sm">블로그를 관리하려면 아이디와 비밀번호를 입력하세요</p>
                     </div>
 
-                    <form className="text-left">
+                    <form className="text-left" action={login}>
                         <div className="form-group mb-6">
                             <label htmlFor="username"
                                    className="block mb-2 font-semibold text-sm text-slate-500">아이디</label>
