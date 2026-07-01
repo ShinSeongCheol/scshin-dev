@@ -53,9 +53,9 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                     .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/backoffice/login").permitAll()
                             .requestMatchers("/backoffice/**").hasRole("ADMIN")
                             .requestMatchers("/image/**").hasRole("ADMIN")
+                            .requestMatchers("/auth/me").authenticated()
                             .anyRequest().permitAll()
                     )
                     .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))

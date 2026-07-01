@@ -8,7 +8,7 @@ export async function login(formData: FormData) {
     const username = String(formData.get('username') || "");
     const password = String(formData.get('password') || "");
 
-    const res = await fetch(`${process.env.API_URL}/backoffice/login`, {
+    const res = await fetch(`${process.env.API_URL}/auth/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
