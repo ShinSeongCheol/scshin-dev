@@ -87,14 +87,12 @@ public class BackOfficeController {
         return "backoffice/views/category/editCategory";
     }
 
-    @PatchMapping("/category/edit/{id}")
-    @ResponseBody
-    public ResponseEntity<String> updateCategory(@PathVariable Long id, @RequestBody CategoryUpdateRequest categoryUpdateRequest) {
-        log.info("category edit id: {}", id);
+    @PatchMapping("/categories")
+    public void updateCategory(@RequestBody CategoryUpdateRequest categoryUpdateRequest) {
         log.info("categoryUpdateRequest: {}", categoryUpdateRequest);
 
         categoryUpdateUseCase.updateCategory(CategoryUpdateCommand.builder()
-                .id(id)
+                .id(categoryUpdateRequest.categoryId())
                 .parentCategoryId(categoryUpdateRequest.parentCategoryId())
                 .categoryName(categoryUpdateRequest.categoryName())
                 .slug(categoryUpdateRequest.slug())
@@ -102,8 +100,6 @@ public class BackOfficeController {
                 .useYn(categoryUpdateRequest.useYn())
                 .build()
         );
-
-        return ResponseEntity.ok("Success");
     }
 
 
