@@ -24,11 +24,11 @@ export async function login(formData: FormData) {
         throw new Error("아이디 또는 비밀번호가 올바르지 않습니다.")
     }
 
-    const accessToken = await res.json();
+    const data = await res.json();
 
     const cookieStore = await cookies();
 
-    cookieStore.set("accessToken", accessToken, {
+    cookieStore.set("accessToken", data.accessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
