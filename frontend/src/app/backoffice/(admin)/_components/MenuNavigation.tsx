@@ -1,7 +1,26 @@
+'use client';
+
 import Link from "next/link";
 import {logout} from "@/src/features/backoffice/actions";
+import {usePathname} from "next/navigation";
 
-export default async function MenuNavigation() {
+export default function MenuNavigation() {
+
+    const pathname = usePathname();
+
+    const isCategories = pathname.includes('categories');
+    const isPosts = pathname.includes('posts');
+
+    const baseStyle = "flex items-center gap-4 p-2 rounded-xl font-medium text-left cursor-pointer transition-colors";
+
+    const categoriesStyle = isCategories
+        ? "text-white bg-violet-500/50"
+        : "text-gray-500 hover:bg-violet-500/50 hover:text-white";
+
+    const postsStyle = isPosts
+        ? "text-white bg-violet-500/50"
+        : "text-gray-500 hover:bg-violet-500/50 hover:text-white";
+
     return (
         <nav className={'w-64 bg-white border border-gray-200 flex flex-col'}>
             {/*로고*/}
@@ -34,11 +53,7 @@ export default async function MenuNavigation() {
                 {/*    </svg>*/}
                 {/*    대시보드*/}
                 {/*</a>*/}
-                <Link href={"/backoffice/categories"}
-                      className="flex items-center gap-4 p-4 rounded-xl font-medium text-left text-gray-500 hover:bg-violet-500/50 hover:text-white cursor-pointer"
-                    // th:class="|flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-150 text-left w-full
-                   //           ${menu == 'category' ? 'bg-backoffice-active text-backoffice-accent-primary cursor-pointer' : 'text-backoffice-text-secondary  hover:bg-backoffice-tertiary hover:text-backoffice-text-primary cursor-pointer'}|"
-                   >
+                <Link href="/backoffice/categories" className={`${baseStyle} ${categoriesStyle}`}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                     </svg>
@@ -46,11 +61,8 @@ export default async function MenuNavigation() {
                         카테고리 관리
                     </span>
                 </Link>
-                <Link href={"/backoffice/posts"}
-                      className="flex items-center gap-4 p-4 rounded-xl font-medium text-left text-gray-500 hover:bg-violet-500/50 hover:text-white cursor-pointer"
-                   // th:class="|flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-150 text-left w-full
-                   //           ${menu == 'post' ? 'bg-backoffice-active text-backoffice-accent-primary cursor-pointer' : 'text-backoffice-text-secondary  hover:bg-backoffice-tertiary hover:text-backoffice-text-primary cursor-pointer'}|"
-                   >
+
+                <Link href="/backoffice/posts" className={`${baseStyle} ${postsStyle}`}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
