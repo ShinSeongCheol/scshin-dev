@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/backoffice")
 @RequiredArgsConstructor
 public class BackOfficeController {
@@ -42,21 +42,15 @@ public class BackOfficeController {
         return "backoffice/index";
     }
 
-    @GetMapping("/category")
-    public String category(Model model) {
-        model.addAttribute("menu", "category");
-        model.addAttribute("pageTitle", "카테고리");
-        model.addAttribute("pageSubTitle", "블로그의 카테고리를 관리하세요");
-
+    @GetMapping("/categories")
+    public List<CategoryTreeReadResponse> category() {
         List<CategoryTreeReadResponse> categoryTreeReadResponses = categoryReadUseCase.readTreeCategories(CategoryTreeReadQuery.builder().build());
         int totalCount = CategoryTreeReadResponse.countTotalCategories(categoryTreeReadResponses);
 
         log.info("categoryTreeReadResponses: {}", categoryTreeReadResponses.toString());
         log.info("totalCount: {}", totalCount);
 
-        model.addAttribute("categoryTreeList", categoryTreeReadResponses);
-        model.addAttribute("countTotalCategories", totalCount);
-        return "backoffice/views/category/category";
+        return categoryTreeReadResponses;
     }
 
     @GetMapping("/category/new")
@@ -67,9 +61,8 @@ public class BackOfficeController {
         return "backoffice/views/category/newCategory";
     }
 
-    @PostMapping("/category/new")
-    @ResponseBody
-    public ResponseEntity<String> createCategory(@Valid @RequestBody CategoryCreateRequest categoryCreateRequest) {
+    @PostMapping("/categories")
+    public String createCategory(@Valid @RequestBody CategoryCreateRequest categoryCreateRequest) {
         CategoryCreateCommand categoryCreateCommand = CategoryCreateCommand.builder()
                 .parentCategoryId(categoryCreateRequest.parentCategoryId())
                 .categoryName(categoryCreateRequest.categoryName())
@@ -81,7 +74,7 @@ public class BackOfficeController {
         log.info(categoryCreateCommand.toString());
 
         categoryCreateUseCase.createCategory(categoryCreateCommand);
-        return ResponseEntity.ok("Success");
+        return "Success";
     }
 
     @GetMapping("/category/edit/{id}")
