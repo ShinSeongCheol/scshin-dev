@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,14 +52,6 @@ public class BackOfficeController {
         return categoryTreeReadResponses;
     }
 
-    @GetMapping("/category/new")
-    public String newCategory(Model model) {
-        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
-        model.addAttribute("categories", categories);
-
-        return "backoffice/views/category/newCategory";
-    }
-
     @PostMapping("/categories")
     public String createCategory(@Valid @RequestBody CategoryCreateRequest categoryCreateRequest) {
         CategoryCreateCommand categoryCreateCommand = CategoryCreateCommand.builder()
@@ -75,16 +66,6 @@ public class BackOfficeController {
 
         categoryCreateUseCase.createCategory(categoryCreateCommand);
         return "Success";
-    }
-
-    @GetMapping("/category/edit/{id}")
-    public String newCategory(Model model, @PathVariable Long id) {
-        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
-        CategoryReadResponse category = categoryReadUseCase.readCategory(CategoryReadQuery.builder().id(id).build());
-        model.addAttribute("categories", categories);
-        model.addAttribute("savedCategory", category);
-
-        return "backoffice/views/category/editCategory";
     }
 
     @PatchMapping("/categories")
