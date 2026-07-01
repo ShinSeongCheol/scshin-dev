@@ -53,8 +53,8 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                     .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/backoffice/**").hasRole("ADMIN")
-                            .requestMatchers("/image/**").hasRole("ADMIN")
+                            .requestMatchers("/backoffice/**").hasAuthority("SCOPE_admin")
+                            .requestMatchers("/image/**").hasAuthority("SCOPE_admin")
                             .requestMatchers("/auth/me").authenticated()
                             .anyRequest().permitAll()
                     )
