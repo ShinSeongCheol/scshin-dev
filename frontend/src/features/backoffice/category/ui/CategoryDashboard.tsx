@@ -38,7 +38,7 @@ export default function CategoryDashboard({categories}: Props) {
             </div>
 
             <div className="flex gap-6 ">
-                <CategoryList categories={categories} onSelect={setSelectedCategory}></CategoryList>
+                <CategoryList selectedCategory={selectedCategory} categories={categories} onSelect={setSelectedCategory}></CategoryList>
                 <CategoryForm
                     key={selectedCategory?.id || "create"}
                     selectedCategory={selectedCategory}

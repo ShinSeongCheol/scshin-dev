@@ -1,11 +1,12 @@
 import {Category} from "@/src/features/backoffice/category";
 
 interface Props {
+    selectedCategory: Category | null;
     categories: Category[];
     onSelect: (selected: Category) => void;
 }
 
-export default function CategoryList({categories, onSelect}: Props) {
+export default function CategoryList({selectedCategory, categories, onSelect}: Props) {
     return (
         <div className="w-full bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
             <table className="w-full text-left border-collapse">
@@ -19,8 +20,15 @@ export default function CategoryList({categories, onSelect}: Props) {
                 </thead>
                 <tbody className="divide-y divide-gray-50 text-sm text-gray-700">
                     {categories.map((category) => (
-                        <tr className="hover:bg-gray-50/50 transition-colors" key={category.id}
-                            onClick={() => onSelect(category)}>
+                        <tr
+                            className={`transition-colors cursor-pointer ${
+                                selectedCategory?.id === category.id
+                                    ? 'bg-violet-50/70 hover:bg-violet-50'
+                                    : 'hover:bg-gray-50/80 bg-white'       
+                            }`}
+                            key={category.id}
+                            onClick={() => onSelect(category)}
+                        >
                             <td className="p-4 text-center text-gray-400">{category.id}</td>
                             <td className="p-4 font-medium text-violet-600">{category.categoryName} ({category.slug})</td>
                             <td className="p-4 text-gray-500">
