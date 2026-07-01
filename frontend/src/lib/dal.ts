@@ -11,5 +11,5 @@ export const verifySession = cache(async () => {
         redirect('/backoffice/login');
     }
 
-    return {accessToken};
+    return accessToken;
 })
