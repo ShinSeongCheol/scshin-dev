@@ -1,4 +1,5 @@
 import {Category} from "@/src/features/backoffice/category";
+import CategoryListItem from "@/src/features/backoffice/category/ui/CategoryListItem";
 
 interface Props {
     selectedCategory: Category | null;
@@ -20,36 +21,7 @@ export default function CategoryList({selectedCategory, categories, onSelect}: P
                 </thead>
                 <tbody className="divide-y divide-gray-50 text-sm text-gray-700">
                     {categories.map((category) => (
-                        <tr
-                            className={`transition-colors cursor-pointer ${
-                                selectedCategory?.id === category.id
-                                    ? 'bg-violet-50/70 hover:bg-violet-50'
-                                    : 'hover:bg-gray-50/80 bg-white'       
-                            }`}
-                            key={category.id}
-                            onClick={() => onSelect(category)}
-                        >
-                            <td className="p-4 text-center text-gray-400">{category.id}</td>
-                            <td className="p-4 font-medium text-violet-600">{category.categoryName} ({category.slug})</td>
-                            <td className="p-4 text-gray-500">
-                                {new Date(category.createdAt).toLocaleDateString(undefined, {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric',
-                                })}
-                            </td>
-                            <td className="p-4 text-center">
-                            <span
-                                className={`px-2.5 py-1 text-xs font-semibold rounded-full ${
-                                    category.useYn === 'Y'
-                                        ? "bg-green-50 text-green-700"  // 🟢 활성화 (초록색 배지)
-                                        : "bg-red-100 text-red-700"   // ⚪ 비활성화 (회색 배지)
-                                }`}
-                            >
-                                {category.useYn === 'Y' ? "활성화" : "비활성화"}
-                            </span>
-                            </td>
-                        </tr>
+                        <CategoryListItem key={category.id} selectedCategory={selectedCategory} category={category} onSelect={onSelect} depth={category.depth}/>
                     ))}
                 </tbody>
             </table>
