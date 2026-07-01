@@ -32,7 +32,9 @@ export const requireUser = cache(async () => {
     }
 
     return await res.json() as Promise<{
-        username:string,
-        role:string,
+        sub:string,
+        scope:string,
+        iat: Date,
+        exp: Date
     }>
 })
