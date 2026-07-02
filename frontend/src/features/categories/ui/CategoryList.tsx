@@ -1,5 +1,5 @@
-import {Category} from "@/src/features/backoffice/category";
-import CategoryListItem from "@/src/features/backoffice/category/ui/CategoryListItem";
+import {Category} from "@/src/features/categories";
+import CategoryListItem from "@/src/features/categories/ui/CategoryListItem";
 
 interface Props {
     selectedCategory: Category | null;

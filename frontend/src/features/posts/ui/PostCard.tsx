@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import {Post} from "@/src/features/post";
+import {Post} from "@/src/features/posts";
 import Link from "next/link";
 
 export default function PostCard({id, title, content, createdAt, thumbnailUrl}: Post) {

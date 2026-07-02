@@ -1,11 +1,11 @@
 'use client';
 
-import CategoryList from "@/src/features/backoffice/category/ui/CategoryList";
-import {createCategoryActions} from "@/src/features/backoffice/category/actions";
-import {Category} from "@/src/features/backoffice/category";
+import CategoryList from "@/src/features/categories/ui/CategoryList";
+import {createCategoryActions} from "@/src/features/categories/actions";
+import {Category} from "@/src/features/categories";
 import {useState} from "react";
-import CategoryForm from "@/src/features/backoffice/category/ui/CategoryForm";
-import {updateCategoryActions} from "@/src/features/backoffice/category/actions/CategoryActions";
+import CategoryForm from "@/src/features/categories/ui/CategoryForm";
+import {updateCategoryActions} from "@/src/features/categories/actions/CategoryActions";
 
 interface Props {
     categories: Category[];

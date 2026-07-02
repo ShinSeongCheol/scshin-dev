@@ -1,4 +1,4 @@
-import {Category} from "@/src/features/backoffice/category";
+import {Category} from "@/src/features/categories";
 import {verifySession} from "@/src/lib";
 import {redirect} from "next/navigation";
 

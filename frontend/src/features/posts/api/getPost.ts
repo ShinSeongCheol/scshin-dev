@@ -1,4 +1,4 @@
-import {Post} from "@/src/features/post";
+import {Post} from "@/src/features/posts";
 
 export async function getPost(id: number): Promise<Post> {
     const res = await fetch(`${process.env.API_URL}/posts/${id}`, {
