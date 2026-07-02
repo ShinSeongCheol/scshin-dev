@@ -1,5 +1,5 @@
-import {PostCard} from "@/src/features/post/ui";
-import {getPosts} from "@/src/features/post/api";
+import {PostCard} from "@/src/features/posts/ui";
+import {getPosts} from "@/src/features/posts/api";
 
 export default async function Blog() {
 

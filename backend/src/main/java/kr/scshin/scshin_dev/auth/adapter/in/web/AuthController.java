@@ -3,6 +3,7 @@ package kr.scshin.scshin_dev.auth.adapter.in.web;
 import kr.scshin.scshin_dev.auth.adapter.in.web.dto.request.LoginRequest;
 import kr.scshin.scshin_dev.auth.adapter.in.web.dto.response.LoginResponse;
 import kr.scshin.scshin_dev.auth.adapter.in.web.dto.response.UserInfoResponse;
+import kr.scshin.scshin_dev.auth.adapter.out.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -35,7 +36,7 @@ public class AuthController {
     @PostMapping("/auth/login")
     public LoginResponse login(@RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
-
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Instant now = Instant.now();
 
         String scope = authentication.getAuthorities().stream()
@@ -49,6 +50,7 @@ public class AuthController {
                 .expiresAt(now.plus(1, ChronoUnit.HOURS))
                 .subject(authentication.getName())
                 .claim("scope", scope)
+                .claim("userId", Objects.requireNonNull(customUserDetails).getId())
                 .build();
 
         JwsHeader jwsHeader = JwsHeader.with(MacAlgorithm.HS256).build();

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default  function PostPage() {
     return(
         <div className="flex flex-col gap-4 p-6">
@@ -8,9 +10,12 @@ export default  function PostPage() {
                     <h1 className="text-2xl font-bold text-gray-900">게시글 관리</h1>
                     <p className="text-sm text-gray-500 mt-1">총 128개의 글이 있습니다.</p>
                 </div>
-                <button className="px-4 py-2 bg-violet-500 hover:bg-violet-600 text-white font-medium rounded-xl shadow-sm transition-colors">
+                <Link
+                    href={"/backoffice/posts/new"}
+                    className="px-4 py-2 bg-violet-500 hover:bg-violet-600 text-white font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
+                >
                     + 새 글 작성
-                </button>
+                </Link>
             </div>
 
             {/* 검색 및 필터 컨트롤 바 섹션 */}

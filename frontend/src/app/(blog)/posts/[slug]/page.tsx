@@ -1,5 +1,5 @@
 import {Metadata} from "next";
-import {getPost} from "@/src/features/post/api";
+import {getPost} from "@/src/features/posts/api";
 
 type Props = {
     params: Promise<{

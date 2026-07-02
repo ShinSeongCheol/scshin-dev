@@ -1,5 +1,5 @@
-import {getCategories} from "@/src/features/backoffice/category/api";
-import {CategoryDashboard} from "@/src/features/backoffice/category/ui";
+import {getCategories} from "@/src/features/categories/api";
+import {CategoryDashboard} from "@/src/features/categories/ui";
 
 export default async function CategoryPage() {
 

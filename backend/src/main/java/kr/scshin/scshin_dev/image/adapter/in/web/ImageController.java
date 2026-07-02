@@ -10,8 +10,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -23,10 +26,11 @@ public class ImageController {
 
     @PostMapping("/upload")
     @ResponseBody
-    public ResponseEntity<ImageUploadResponse> upload(@ModelAttribute ImageUploadRequest imageUploadRequest, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+    public ResponseEntity<ImageUploadResponse> upload(@ModelAttribute ImageUploadRequest imageUploadRequest, @AuthenticationPrincipal Jwt jwt) {
+        Long userId = jwt.getClaim("userId");
         PostImageUploadRequest postImageUploadRequest = PostImageUploadRequest.builder()
                 .multipartFile(imageUploadRequest.image())
-                .userId(customUserDetails.getId())
+                .userId(userId)
                 .build();
 
         PostImageUploadResponse postImageUploadResponse = postImageUploadUseCase.uploadImage(postImageUploadRequest);
