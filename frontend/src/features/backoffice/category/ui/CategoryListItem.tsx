@@ -20,8 +20,8 @@ export default function CategoryListItem({ selectedCategory, category, onSelect,
             >
                 <td className="p-4 text-center text-gray-400">{category.id}</td>
 
-                <td className="p-4 font-medium text-violet-600" style={{ paddingLeft: `${depth * 24 + 16}px` }}>
-                    {depth > 0 && <span className="text-gray-300 mr-1">↳</span>}
+                <td className="p-4 font-medium text-violet-600" style={{ paddingLeft: `${(depth - 1) * 24 + 16}px` }}>
+                    {depth > 1 && <span className="text-gray-300 mr-1">↳</span>}
                     {category.categoryName} ({category.slug})
                 </td>
 
@@ -48,14 +48,13 @@ export default function CategoryListItem({ selectedCategory, category, onSelect,
                 </td>
             </tr>
 
-            {/* 💡 3. 자식 리스트가 존재하면 대시보드 구조에 맞춰 재귀적으로 나를 다시 호출합니다. */}
             {category.childrenList && category.childrenList.map((child) => (
                 <CategoryListItem
                     key={child.id}
                     selectedCategory={selectedCategory}
                     category={child}
                     onSelect={onSelect}
-                    depth={depth}
+                    depth={child.depth}
                 />
             ))}
         </>

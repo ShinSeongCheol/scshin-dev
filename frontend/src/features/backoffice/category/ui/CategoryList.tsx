@@ -20,9 +20,9 @@ export default function CategoryList({selectedCategory, categories, onSelect}: P
                 </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50 text-sm text-gray-700">
-                    {categories.map((category) => (
-                        <CategoryListItem key={category.id} selectedCategory={selectedCategory} category={category} onSelect={onSelect} depth={category.depth}/>
-                    ))}
+                {categories.map((category) => {
+                    return <CategoryListItem key={category.id} selectedCategory={selectedCategory} category={category} onSelect={onSelect} depth={category.depth}/>
+                })}
                 </tbody>
             </table>
         </div>

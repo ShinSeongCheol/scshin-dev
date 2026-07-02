@@ -7,7 +7,20 @@ interface Props {
     onClear: () => void;
 }
 
+function flattenCategories(categories: Category[]): Omit<Category, 'childrenList'>[] {
+    return categories.flatMap((category) => {
+        const {childrenList, ...currentCategory} = category;
+
+        const flatChildren = childrenList && childrenList.length > 0
+            ? flattenCategories(childrenList)
+            : [];
+
+        return [currentCategory, ...flatChildren];
+    });
+}
+
 export default function CategoryForm({selectedCategory, categories, action, onClear}: Props) {
+    const flattedCategories = flattenCategories(categories)
     return (
         <div className="w-full bg-white rounded-xl shadow-sm overflow-hidden">
             <form className="flex flex-col gap-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm" action={action}>
@@ -93,7 +106,7 @@ export default function CategoryForm({selectedCategory, categories, action, onCl
                             className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition hover:border-gray-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                         >
                             <option value="">부모 카테고리 없음</option>
-                            {categories.map((category) => (
+                            {flattedCategories.map((category) => (
                                 <option key={category.id} value={category.id}>{category.categoryName}</option>
                             ))}
                         </select>
