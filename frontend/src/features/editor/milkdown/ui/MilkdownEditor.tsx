@@ -4,7 +4,7 @@ import {Milkdown, MilkdownProvider, useEditor} from "@milkdown/react";
 import "@milkdown/crepe/theme/common/style.css";
 import "@milkdown/crepe/theme/frame.css"
 import {Crepe} from "@milkdown/crepe";
-import {uploadImage} from "@/src/features/editor/editorjs/api";
+import {uploadImage} from "@/src/features/editor/milkdown/api";
 
 interface Props {
     initialMarkdown: string,
