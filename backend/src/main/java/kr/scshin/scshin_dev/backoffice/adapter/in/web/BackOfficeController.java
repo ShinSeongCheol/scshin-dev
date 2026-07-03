@@ -1,15 +1,12 @@
 package kr.scshin.scshin_dev.backoffice.adapter.in.web;
 
 import jakarta.validation.Valid;
-import kr.scshin.scshin_dev.auth.adapter.out.security.CustomUserDetails;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryUpdateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequest;
-import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.response.CategoryResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.in.*;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.*;
-import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryReadResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryTreeReadResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.PostReadResponse;
 import lombok.RequiredArgsConstructor;
@@ -84,22 +81,6 @@ public class BackOfficeController {
         );
     }
 
-
-    @GetMapping("/post")
-    public String post(Model model) {
-        model.addAttribute("menu", "post");
-        model.addAttribute("postList", postReadUseCase.readPostList());
-        return "backoffice/views/post/post";
-    }
-
-    @GetMapping("/post/new")
-    public String postNew(Model model) {
-        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
-        List<CategoryResponse> categoryResponseList = categories.stream().map(category -> CategoryResponse.builder().id(category.id()).categoryName(category.categoryName()).build()).toList();
-        model.addAttribute("categoryList",  categoryResponseList);
-        return "backoffice/views/post/newPost";
-    }
-
     @PostMapping("/posts/new")
     public ResponseEntity<String> createPost(@Valid @RequestBody PostCreateRequest postCreateRequest, @AuthenticationPrincipal Jwt jwt) {
         log.info("post create request: {}", postCreateRequest);
@@ -111,20 +92,15 @@ public class BackOfficeController {
         return ResponseEntity.ok("Success");
     }
 
-    @GetMapping("/post/edit/{id}")
-    public String postEdit(Model model, @PathVariable Long id) {
+    @GetMapping("/posts/edit/{id}")
+    public PostReadResponse postEdit(@PathVariable Long id) {
+        log.info("get edit post info: {}", id);
+
         PostReadQuery postReadQuery = new PostReadQuery(id);
-        PostReadResponse postReadResponse = postReadUseCase.readPost(postReadQuery);
-        model.addAttribute("post", postReadResponse);
-
-        List<CategoryReadResponse> categories = categoryReadUseCase.readCategories(CategoryReadQuery.builder().build());
-        List<CategoryResponse> categoryResponseList = categories.stream().map(category -> CategoryResponse.builder().id(category.id()).categoryName(category.categoryName()).build()).toList();
-        model.addAttribute("categoryList",  categoryResponseList);
-
-        return "backoffice/views/post/editPost";
+        return postReadUseCase.readPost(postReadQuery);
     }
 
-    @PatchMapping("/post/edit/{id}")
+    @PatchMapping("/posts/edit/{id}")
     public ResponseEntity<String> updatePost(@PathVariable Long id, @RequestBody PostUpdateRequest postUpdateRequest) {
         log.info("post edit id: {}", id);
         log.info("post edit request data: {}", postUpdateRequest.toString());

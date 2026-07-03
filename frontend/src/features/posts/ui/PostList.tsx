@@ -26,7 +26,7 @@ export default function PostList({posts}: Props){
                         <td className="p-4 text-center text-gray-400">{index + 1}</td>
                         <td className="p-4 font-medium text-violet-600">카테고리</td>
                         <td className="font-medium text-gray-900">
-                            <Link href={`backoffice/posts/edit/${post.id}`} className="block p-4 hover:underline  cursor-pointer">
+                            <Link href={`/backoffice/posts/edit/${post.id}`} className="block p-4 hover:underline  cursor-pointer">
                                 {post.title}
                             </Link>
                         </td>
