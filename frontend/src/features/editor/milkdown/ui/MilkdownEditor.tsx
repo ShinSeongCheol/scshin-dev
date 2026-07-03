@@ -25,7 +25,8 @@ const CrepeEditor: React.FC<Props> = ({initialMarkdown, handleChange}: Props) =>
                         const formData = new FormData();
                         formData.append('image', file);
                         try {
-                            return await uploadImage(formData);
+                            const filePath = await uploadImage(formData);
+                            return `${location.origin}${filePath}`
                         } catch (error) {
                             console.error(error);
                             return '';

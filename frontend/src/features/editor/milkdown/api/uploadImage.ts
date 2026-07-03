@@ -20,5 +20,5 @@ export async function uploadImage(formData: FormData): Promise<string> {
 
     const data = await res.json();
 
-    return `${process.env.API_URL}${data.filePath}`;
+    return `${data.filePath}`;
 }
