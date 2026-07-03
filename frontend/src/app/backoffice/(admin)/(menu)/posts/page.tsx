@@ -1,6 +1,11 @@
 import Link from "next/link";
+import {PostList} from "@/src/features/posts/ui";
+import {getPosts} from "@/src/features/posts/api";
 
-export default  function PostPage() {
+export default async function PostPage() {
+
+    const posts = await getPosts();
+
     return(
         <div className="flex flex-col gap-4 p-6">
 
@@ -38,31 +43,7 @@ export default  function PostPage() {
             </div>
 
             {/*  메인 데이터 테이블 섹션 */}
-            <div className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                    <tr className="bg-gray-50 text-gray-600 text-sm font-medium border-b border-gray-100">
-                        <th className="p-4 w-16 text-center">번호</th>
-                        <th className="p-4 w-32">카테고리</th>
-                        <th className="p-4">제목</th>
-                        <th className="p-4 w-32">등록일</th>
-                        <th className="p-4 w-24 text-center">상태</th>
-                    </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-50 text-sm text-gray-700">
-                    {/* 행(Row) 반복 구간 예시 */}
-                    <tr className="hover:bg-gray-50/50 transition-colors">
-                        <td className="p-4 text-center text-gray-400">12</td>
-                        <td className="p-4 font-medium text-violet-600">Next.js</td>
-                        <td className="p-4 font-medium text-gray-900 hover:underline cursor-pointer">Next.js 서버 컴포넌트와 클라이언트 컴포넌트의 차이점</td>
-                        <td className="p-4 text-gray-500">2026-07-01</td>
-                        <td className="p-4 text-center">
-                            <span className="px-2.5 py-1 text-xs font-semibold bg-green-50 text-green-700 rounded-full">공개</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <PostList posts={posts}/>
 
         </div>
     )

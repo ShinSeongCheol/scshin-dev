@@ -4,7 +4,7 @@ import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import type EditorJSType from '@editorjs/editorjs';
 import type { OutputData } from '@editorjs/editorjs';
 import type { ToolConstructable } from '@editorjs/editorjs';
-import {uploadFile, uploadImage} from "@/src/features/editor/api";
+import {uploadFile, uploadImage} from "@/src/features/editor/editorjs/api";
 
 export interface EditorClientRef {
     save: () => Promise<OutputData>;

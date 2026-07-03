@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
                 pathname: '/uploads/**'
             }
         ]
+    },
+    experimental: {
+        serverActions: {
+            bodySizeLimit: "10mb"
+        }
     }
 };
 

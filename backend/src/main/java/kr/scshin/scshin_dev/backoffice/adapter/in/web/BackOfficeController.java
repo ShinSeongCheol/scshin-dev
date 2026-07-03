@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -99,12 +100,11 @@ public class BackOfficeController {
         return "backoffice/views/post/newPost";
     }
 
-    @PostMapping("/post/new")
-    @ResponseBody
-    public ResponseEntity<String> createPost(@Valid @RequestBody PostCreateRequest postCreateRequest, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+    @PostMapping("/posts/new")
+    public ResponseEntity<String> createPost(@Valid @RequestBody PostCreateRequest postCreateRequest, @AuthenticationPrincipal Jwt jwt) {
         log.info("post create request: {}", postCreateRequest);
 
-        Long authorId = customUserDetails.getId();
+        Long authorId = jwt.getClaim("userId");
         PostCreateCommand postCreateCommand = PostCreateCommand.from(postCreateRequest, authorId);
         createPostUseCase.createPost(postCreateCommand);
 
