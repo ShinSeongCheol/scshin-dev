@@ -27,8 +27,6 @@ export async function getAdminPostById(postId: number): Promise<Post> {
         cache: 'no-store',
     })
 
-    console.log(res);
-
     if (res.status === 401) {
         redirect('/backoffice/login');
     }
