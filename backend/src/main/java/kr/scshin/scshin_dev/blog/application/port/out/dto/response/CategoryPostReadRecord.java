@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Builder
 public record CategoryPostReadRecord(
-        String categoryId,
+        Long categoryId,
         Long postId,
         LocalDateTime createdAt
 ) {

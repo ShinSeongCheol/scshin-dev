@@ -1,6 +1,6 @@
 'use server';
 
-import {Post} from "@/src/features/posts";
+import {Post, PostDetail} from "@/src/features/posts";
 import {verifySession} from "@/src/lib";
 import {redirect} from "next/navigation";
 
@@ -16,7 +16,7 @@ export async function getPost(id: number): Promise<Post> {
     return res.json()
 }
 
-export async function getAdminPostById(postId: number): Promise<Post> {
+export async function getAdminPostById(postId: number): Promise<PostDetail> {
     const accessToken = await verifySession();
 
     const res = await fetch(`${process.env.API_URL}/backoffice/posts/edit/${postId}`, {

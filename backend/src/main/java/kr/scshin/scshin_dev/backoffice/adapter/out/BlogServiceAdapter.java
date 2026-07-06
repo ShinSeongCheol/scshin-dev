@@ -4,11 +4,13 @@ import kr.scshin.scshin_dev.backoffice.application.port.out.*;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.request.*;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryReadRecord;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.CategoryTreeReadRecord;
+import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.PostReadDetailRecord;
 import kr.scshin.scshin_dev.backoffice.application.port.out.dto.response.PostReadRecord;
 import kr.scshin.scshin_dev.blog.application.port.in.*;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.request.*;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.CategoryReadResponse;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.CategoryTreeReadResponse;
+import kr.scshin.scshin_dev.blog.application.port.in.dto.response.PostReadDetailResponse;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.PostReadResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -49,24 +51,33 @@ public class BlogServiceAdapter implements PostCreatePort, PostReadPort, PostUpd
     }
 
     @Override
-    public PostReadRecord readPost(PostReadRecordQuery postReadRecordQuery) {
+    public PostReadDetailRecord readPost(PostReadRecordQuery postReadRecordQuery) {
         PostReadQuery postReadQuery = new PostReadQuery(postReadRecordQuery.postId());
-        PostReadResponse postReadResponse = postReadUseCase.readPost(postReadQuery);
+        PostReadDetailResponse postReadDetailResponse = postReadUseCase.readPost(postReadQuery);
 
-        return PostReadRecord.builder()
-                .id(postReadResponse.id())
-                .title(postReadResponse.title())
-                .content(postReadResponse.content())
-                .authorId(postReadResponse.authorId())
-                .createdAt(postReadResponse.createdAt())
-                .updatedAt(postReadResponse.updatedAt())
-                .views(postReadResponse.views())
+        return PostReadDetailRecord.builder()
+                .id(postReadDetailResponse.id())
+                .title(postReadDetailResponse.title())
+                .content(postReadDetailResponse.content())
+                .authorId(postReadDetailResponse.authorId())
+                .createdAt(postReadDetailResponse.createdAt())
+                .updatedAt(postReadDetailResponse.updatedAt())
+                .views(postReadDetailResponse.views())
+                .categoryIds(postReadDetailResponse.categoryIds())
                 .build();
     }
 
     @Override
     public void updatePost(PostUpdateRecordCommand postUpdateRecordCommand) {
-        postUpdateUseCase.updatePost(new PostUpdateCommand(postUpdateRecordCommand.id(), postUpdateRecordCommand.title(), postUpdateRecordCommand.content()));
+
+        postUpdateUseCase.updatePost(
+                PostUpdateCommand.builder()
+                .id(postUpdateRecordCommand.id())
+                .title(postUpdateRecordCommand.title())
+                .content(postUpdateRecordCommand.content())
+                .categories(postUpdateRecordCommand.categories())
+                .build()
+        );
     }
 
     @Override

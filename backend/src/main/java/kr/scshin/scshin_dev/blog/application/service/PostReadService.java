@@ -3,13 +3,13 @@ package kr.scshin.scshin_dev.blog.application.service;
 import jakarta.transaction.Transactional;
 import kr.scshin.scshin_dev.blog.application.port.in.PostReadUseCase;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.request.PostReadQuery;
+import kr.scshin.scshin_dev.blog.application.port.in.dto.response.PostReadDetailResponse;
 import kr.scshin.scshin_dev.blog.application.port.in.dto.response.PostReadResponse;
-import kr.scshin.scshin_dev.blog.application.port.out.MarkdownParsePort;
-import kr.scshin.scshin_dev.blog.application.port.out.PostImageReadPort;
-import kr.scshin.scshin_dev.blog.application.port.out.PostReadPort;
-import kr.scshin.scshin_dev.blog.application.port.out.PostViewIncreasePort;
+import kr.scshin.scshin_dev.blog.application.port.out.*;
+import kr.scshin.scshin_dev.blog.application.port.out.dto.request.CategoryPostReadRecordQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostImageReadRecordQuery;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.request.PostReadRecordQuery;
+import kr.scshin.scshin_dev.blog.application.port.out.dto.response.CategoryPostReadRecord;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostImageReadRecord;
 import kr.scshin.scshin_dev.blog.application.port.out.dto.response.PostReadRecord;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +30,8 @@ public class PostReadService implements PostReadUseCase {
     private final MarkdownParsePort markdownParsePort;
     private final PostImageReadPort postImageReadPort;
     private final PostViewIncreasePort postViewIncreasePort;
+
+    private final CategoryPostReadPort categoryPostReadPort;
 
     @Override
     public List<PostReadResponse> readPostList() {
@@ -57,9 +59,14 @@ public class PostReadService implements PostReadUseCase {
     }
 
     @Override
-    public PostReadResponse readPost(PostReadQuery postReadQuery) {
+    public PostReadDetailResponse readPost(PostReadQuery postReadQuery) {
         PostReadRecord postReadRecord = postReadPort.readPost(new PostReadRecordQuery(postReadQuery.postId()));
-        return PostReadResponse.builder()
+        List<CategoryPostReadRecord> categoryPostReadRecord = categoryPostReadPort.readCategoryPost(new CategoryPostReadRecordQuery(postReadQuery.postId()));
+
+        log.info("read post record: {}", postReadRecord);
+        log.info("read category post read record: {}", categoryPostReadRecord);
+
+        return PostReadDetailResponse.builder()
                 .id(postReadRecord.id())
                 .title(postReadRecord.title())
                 .content(markdownParsePort.renderAsMarkdown(postReadRecord.content()))
@@ -67,6 +74,7 @@ public class PostReadService implements PostReadUseCase {
                 .createdAt(postReadRecord.createdAt())
                 .updatedAt(postReadRecord.updatedAt())
                 .views(postReadRecord.views())
+                .categoryIds(categoryPostReadRecord.stream().map(CategoryPostReadRecord::categoryId).collect(Collectors.toList()))
                 .build();
     }
 

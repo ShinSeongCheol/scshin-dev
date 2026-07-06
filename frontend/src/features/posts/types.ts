@@ -5,3 +5,14 @@ export type Post = {
     createdAt: Date;
     thumbnailUrl: string;
 }
+
+export type PostDetail = {
+    id: number;
+    title: string;
+    content: string;
+    authorId: number;
+    createdAt: Date;
+    updatedAt: Date;
+    views:number;
+    categoryIds: number[];
+}

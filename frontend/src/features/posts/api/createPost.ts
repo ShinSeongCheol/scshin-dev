@@ -3,7 +3,7 @@
 import {verifySession} from "@/src/lib";
 import {redirect} from "next/navigation";
 
-export async function createPost(title:string, content:string, categories:number[]) {
+export async function createPost(title:string, content:string, categoryIds:number[]) {
     const accessToken =  await verifySession();
 
     const res = await fetch(`${process.env.API_URL}/backoffice/posts/new`, {
@@ -17,7 +17,7 @@ export async function createPost(title:string, content:string, categories:number
         body: JSON.stringify({
             title,
             content,
-            categories,
+            categories: categoryIds,
         }),
     })
 

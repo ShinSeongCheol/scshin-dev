@@ -17,6 +17,13 @@ public class PostUpdateService implements PostUpdateUseCase {
 
     @Override
     public void updatePost(PostUpdateCommand postUpdateCommand) {
-        postUpdatePort.updatePost(new PostUpdateRecordCommand(postUpdateCommand.id(), postUpdateCommand.title(), postUpdateCommand.content()));
+        postUpdatePort.updatePost(
+                PostUpdateRecordCommand.builder()
+                        .id(postUpdateCommand.id())
+                        .title(postUpdateCommand.title())
+                        .content(postUpdateCommand.content())
+                        .categories(postUpdateCommand.categories())
+                        .build()
+        );
     }
 }

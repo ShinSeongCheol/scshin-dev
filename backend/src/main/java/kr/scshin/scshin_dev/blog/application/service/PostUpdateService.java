@@ -28,6 +28,10 @@ public class PostUpdateService implements PostUpdateUseCase {
     private final PostImageUpdatePort postImageUpdatePort;
     private final PostImageReadPort postImageReadPort;
 
+    private final CategoryPostCreatePort categoryPostCreatePort;
+    private final CategoryPostDeletePort categoryPostDeletePort;
+
+
     @Override
     @Transactional
     public void updatePost(PostUpdateCommand postUpdateCommand) {
@@ -73,5 +77,19 @@ public class PostUpdateService implements PostUpdateUseCase {
                 .views(post.getViews())
                 .build()
         );
+
+        // 카테고리 - 포스트 관계 삭제
+        categoryPostDeletePort.deleteCategoryPostByPostId(post.getId());
+
+        // 카테고리 - 포스트 간 새 관계 설정
+        List<CategoryPostCreateRecordCommand> categoryPostCreateRecordCommandList = postUpdateCommand.categories().stream().map(
+                categoryId -> CategoryPostCreateRecordCommand.builder()
+                        .categoryId(categoryId)
+                        .postId(post.getId())
+                        .build())
+                .toList();
+
+
+        categoryPostCreatePort.createCategoryPost(categoryPostCreateRecordCommandList);
     }
 }

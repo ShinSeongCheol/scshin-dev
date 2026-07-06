@@ -5,10 +5,11 @@ import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryCreate
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.CategoryUpdateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostCreateRequest;
 import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.request.PostUpdateRequest;
+import kr.scshin.scshin_dev.backoffice.adapter.in.web.dto.response.PostDetailResponse;
 import kr.scshin.scshin_dev.backoffice.application.port.in.*;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.request.*;
 import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.CategoryTreeReadResponse;
-import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.PostReadResponse;
+import kr.scshin.scshin_dev.backoffice.application.port.in.dto.response.PostReadDetailResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -93,11 +94,22 @@ public class BackOfficeController {
     }
 
     @GetMapping("/posts/edit/{id}")
-    public PostReadResponse postEdit(@PathVariable Long id) {
+    public PostDetailResponse postEdit(@PathVariable Long id) {
         log.info("get edit post info: {}", id);
 
         PostReadQuery postReadQuery = new PostReadQuery(id);
-        return postReadUseCase.readPost(postReadQuery);
+        PostReadDetailResponse postReadDetailResponse = postReadUseCase.readPost(postReadQuery);
+
+        return PostDetailResponse.builder()
+                .id(postReadDetailResponse.id())
+                .title(postReadDetailResponse.title())
+                .content(postReadDetailResponse.content())
+                .authorId(postReadDetailResponse.authorId())
+                .createdAt(postReadDetailResponse.createdAt())
+                .updatedAt(postReadDetailResponse.updatedAt())
+                .views(postReadDetailResponse.views())
+                .categoryIds(postReadDetailResponse.categoryIds())
+                .build();
     }
 
     @PatchMapping("/posts/edit/{id}")
@@ -105,7 +117,12 @@ public class BackOfficeController {
         log.info("post edit id: {}", id);
         log.info("post edit request data: {}", postUpdateRequest.toString());
 
-        postUpdateUseCase.updatePost(new PostUpdateCommand(id, postUpdateRequest.title(), postUpdateRequest.content()));
+        postUpdateUseCase.updatePost(PostUpdateCommand.builder()
+                .id(id)
+                .title(postUpdateRequest.title())
+                .content(postUpdateRequest.content())
+                .categories(postUpdateRequest.categories())
+                .build());
 
         return ResponseEntity.ok("Success");
     }
