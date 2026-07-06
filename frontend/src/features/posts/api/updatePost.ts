@@ -6,7 +6,7 @@ import {redirect} from "next/navigation";
 export async function updatePost(postId: number, title:string, content:string, categories:number[]) {
     const accessToken =  await verifySession();
 
-    const res = await fetch(`${process.env.API_URL}/backoffice/posts/edit/${postId}`, {
+    const res = await fetch(`${process.env.API_URL}/backoffice/posts/${postId}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",

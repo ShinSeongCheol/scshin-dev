@@ -19,7 +19,7 @@ export async function getPost(id: number): Promise<Post> {
 export async function getAdminPostById(postId: number): Promise<PostDetail> {
     const accessToken = await verifySession();
 
-    const res = await fetch(`${process.env.API_URL}/backoffice/posts/edit/${postId}`, {
+    const res = await fetch(`${process.env.API_URL}/backoffice/posts/${postId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,

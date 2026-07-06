@@ -82,7 +82,7 @@ public class BackOfficeController {
         );
     }
 
-    @PostMapping("/posts/new")
+    @PostMapping("/posts")
     public ResponseEntity<String> createPost(@Valid @RequestBody PostCreateRequest postCreateRequest, @AuthenticationPrincipal Jwt jwt) {
         log.info("post create request: {}", postCreateRequest);
 
@@ -93,7 +93,7 @@ public class BackOfficeController {
         return ResponseEntity.ok("Success");
     }
 
-    @GetMapping("/posts/edit/{id}")
+    @GetMapping("/posts/{id}")
     public PostDetailResponse postEdit(@PathVariable Long id) {
         log.info("get edit post info: {}", id);
 
@@ -112,7 +112,7 @@ public class BackOfficeController {
                 .build();
     }
 
-    @PatchMapping("/posts/edit/{id}")
+    @PatchMapping("/posts/{id}")
     public ResponseEntity<String> updatePost(@PathVariable Long id, @RequestBody PostUpdateRequest postUpdateRequest) {
         log.info("post edit id: {}", id);
         log.info("post edit request data: {}", postUpdateRequest.toString());

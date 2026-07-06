@@ -6,7 +6,7 @@ import {redirect} from "next/navigation";
 export async function createPost(title:string, content:string, categoryIds:number[]) {
     const accessToken =  await verifySession();
 
-    const res = await fetch(`${process.env.API_URL}/backoffice/posts/new`, {
+    const res = await fetch(`${process.env.API_URL}/backoffice/posts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
